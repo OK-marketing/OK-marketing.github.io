@@ -116,6 +116,8 @@ nav a.nl{display:none}
 .btn-ghost::before{background:var(--panel-2)}
 .btn-ghost:hover{border-color:var(--red)}
 .btn-sm{padding:.5rem .8rem;min-height:40px;font-size:.8rem}
+.btn,.btn .mono{white-space:nowrap}
+@media (max-width:400px){.btn-sm{font-size:.72rem;padding:.5rem .6rem}}
 
 /* ---------------- hero ---------------- */
 .hero{padding-top:1.8rem;padding-bottom:1.5rem;overflow:hidden}
@@ -883,7 +885,11 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
   document.querySelectorAll('[data-count]').forEach(function(el){
     var target = Number(el.dataset.count);
     if(reduce){ el.textContent = target; return; }
+    /* filet de sécurité : dans un onglet en arrière-plan requestAnimationFrame
+       est gelé, le compteur resterait bloqué sur une valeur intermédiaire. */
+    setTimeout(function(){ el.textContent = target; }, 3000);
     setTimeout(function(){
+      if(document.hidden){ el.textContent = target; return; }
       var s = null;
       function step(ts){
         if(!s) s = ts;

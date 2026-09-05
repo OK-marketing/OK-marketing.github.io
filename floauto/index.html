@@ -1323,7 +1323,10 @@ footer.site{background:var(--asphalt-2);border-top:1px solid var(--line);padding
   document.querySelectorAll('[data-count]').forEach(function(el){
     var target = Number(el.dataset.count);
     if(reduce){ el.textContent = target; return; }
+    /* filet de securite : dans un onglet en arriere-plan requestAnimationFrame est gele. */
+    setTimeout(function(){ el.textContent = target; }, 3000);
     setTimeout(function(){
+      if(document.hidden){ el.textContent = target; return; }
       var s = null;
       function step(ts){
         if(!s) s = ts;
