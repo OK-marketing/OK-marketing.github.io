@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Carrosserie Avenue — Carrosserie et peinture à Brie-Comte-Robert</title>
+<meta name="description" content="Carrosserie Avenue, atelier de carrosserie et peinture à Brie-Comte-Robert (77) : pare-chocs, ailes, portières, peinture et raccords, débosselage. Envoyez une photo du dégât sur WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Carrosserie Avenue">
+<meta property="og:title" content="Carrosserie Avenue — Carrosserie et peinture à Brie-Comte-Robert">
+<meta property="og:description" content="Une photo du dégât sur WhatsApp, une estimation en retour. 160 rue du Tubœuf, 77170 Brie-Comte-Robert.">
+<meta property="og:url" content="https://ok-marketing.github.io/carrosserie-avenue/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+
+<style>
+/* =========================================================
+   Carrosserie Avenue — mobile first
+   ========================================================= */
+:root{
+  --ink:#08090C;
+  --ink-2:#0F1116;
+  --panel:#151920;
+  --panel-2:#1C212A;
+  --line:#242A34;
+  --line-2:#333B48;
+  --text:#F4F4F2;
+  --muted:#98A0AD;
+  --red:#FF2E4D;
+  --red-deep:#C10E2B;
+  --red-ink:#2A0009;
+  --chrome:#8FA3BD;
+  --wa:#25D366;
+  --wa-ink:#042E15;
+  --bar-h:0px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:"Archivo","Segoe UI",system-ui,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;padding-bottom:var(--bar-h);
+}
+p{margin:0}
+a{color:var(--red)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{width:min(1180px,100% - 2rem);margin-inline:auto}
+section{padding-block:3rem;position:relative}
+
+h1,h2,.display{
+  font-family:"Archivo Black","Archivo",sans-serif;font-weight:400;
+  text-transform:uppercase;line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance;
+}
+h1{font-size:clamp(2.4rem,10vw,5.2rem)}
+h2{font-size:clamp(1.75rem,6.5vw,3rem)}
+h3{font-family:"Archivo",sans-serif;font-size:1.06rem;font-weight:700;margin:0}
+.eyebrow{
+  font-family:"Space Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--red);display:block;
+}
+.lead{font-size:1.02rem;color:var(--muted);line-height:1.62;max-width:58ch}
+.mono{font-family:"Space Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
+  background:linear-gradient(90deg,var(--red),#FF7A50);
+  transform:scaleX(0);transform-origin:0 50%;
+}
+
+/* ---------------- header ---------------- */
+header{
+  position:sticky;top:0;z-index:50;background:rgba(8,9,12,.82);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.bar{display:flex;align-items:center;gap:.7rem;min-height:58px}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--text);min-width:0}
+.logo-mark{
+  width:30px;height:30px;flex:none;position:relative;border-radius:6px;overflow:hidden;
+  background:linear-gradient(135deg,var(--red),var(--red-deep));
+}
+.logo-mark::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.85) 48%,transparent 62%);
+  animation:sheen 4.5s ease-in-out infinite;
+}
+@keyframes sheen{0%,70%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.logo-txt{
+  font-family:"Archivo Black",sans-serif;font-size:1.02rem;letter-spacing:-.01em;
+  text-transform:uppercase;line-height:1;
+}
+.tagline{display:none}
+nav{margin-left:auto;display:flex;align-items:center;gap:1.4rem}
+nav a.nl{display:none}
+
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.9rem 1.3rem;min-height:50px;font-family:"Archivo",sans-serif;font-size:.95rem;
+  font-weight:700;letter-spacing:.01em;text-decoration:none;border:2px solid transparent;
+  cursor:pointer;overflow:hidden;isolation:isolate;border-radius:4px;
+  transition:color .25s ease,border-color .25s ease,transform .2s ease;
+}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-101%);transition:transform .38s cubic-bezier(.4,0,.2,1)}
+.btn:hover::before{transform:translateX(0)}
+.btn:active{transform:scale(.98)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red::before{background:#FF5C74}
+.btn-wa{background:var(--wa);color:var(--wa-ink)}
+.btn-wa::before{background:#4DF08D}
+.btn-ghost{border-color:var(--line-2);color:var(--text)}
+.btn-ghost::before{background:var(--panel-2)}
+.btn-ghost:hover{border-color:var(--red)}
+.btn-sm{padding:.5rem .8rem;min-height:40px;font-size:.8rem}
+
+/* ---------------- hero ---------------- */
+.hero{padding-top:1.8rem;padding-bottom:1.5rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg .glow{
+  position:absolute;left:50%;top:-40%;width:130vw;height:130vw;max-width:1000px;max-height:1000px;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(255,46,77,.13),rgba(255,46,77,0) 62%);
+}
+.hero-bg .grid{
+  position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);
+  background-size:100% 58px;
+  mask-image:linear-gradient(#000,transparent 70%);
+  -webkit-mask-image:linear-gradient(#000,transparent 70%);
+}
+.hero .wrap{position:relative;z-index:1}
+
+.reveal-line{display:block;overflow:hidden}
+.reveal-line span{display:block;transform:translateY(105%);animation:lineUp .8s cubic-bezier(.16,.84,.34,1) forwards}
+.reveal-line:nth-child(1) span{animation-delay:.05s}
+.reveal-line:nth-child(2) span{animation-delay:.15s}
+@keyframes lineUp{to{transform:translateY(0)}}
+h1 em{font-style:normal;color:var(--red)}
+
+.fade-up{opacity:0;transform:translateY(14px);animation:fadeUp .75s cubic-bezier(.16,.84,.34,1) forwards}
+.d1{animation-delay:.3s}.d2{animation-delay:.4s}.d3{animation-delay:.5s}.d4{animation-delay:.6s}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+.hero h1{margin-top:.7rem}
+.hero .lead{margin-top:.9rem}
+
+.rate-row{
+  display:flex;align-items:center;gap:.6rem;margin-top:1rem;
+  font-family:"Space Mono",monospace;font-size:.74rem;letter-spacing:.06em;color:var(--muted);
+}
+.stars{color:var(--red);letter-spacing:.1em;font-size:.9rem}
+.rate-row b{color:var(--text);font-family:"Archivo Black",sans-serif;font-size:1.05rem}
+
+/* ---------------- avant / après ---------------- */
+.ba-wrap{margin-top:1.4rem;position:relative}
+.ba{
+  position:relative;width:100%;aspect-ratio:800/520;overflow:hidden;border-radius:8px;
+  border:1px solid var(--line-2);background:var(--ink-2);
+  touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none;
+}
+.ba-layer{position:absolute;inset:0}
+.ba-layer svg{width:100%;height:100%;display:block}
+.ba-after{clip-path:inset(0 0 0 var(--x,50%))}
+.ba-div{
+  position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;
+  box-shadow:0 0 14px rgba(255,255,255,.55);z-index:3;pointer-events:none;
+}
+.ba-knob{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;background:#fff;color:var(--ink);
+  display:grid;place-items:center;font-size:.9rem;font-weight:700;
+  box-shadow:0 4px 18px rgba(0,0,0,.5);
+}
+.ba-knob::before{content:"‹ ›";font-family:"Archivo",sans-serif;letter-spacing:-.05em}
+.ba-tag{
+  position:absolute;top:.6rem;z-index:2;font-family:"Space Mono",monospace;font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;padding:.3rem .55rem;border-radius:3px;
+  background:rgba(8,9,12,.72);border:1px solid var(--line-2);backdrop-filter:blur(6px);
+}
+.ba-tag-l{left:.6rem;color:var(--muted)}
+.ba-tag-r{right:.6rem;color:var(--red);border-color:rgba(255,46,77,.45)}
+.ba-hint{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.6rem;
+  font-family:"Space Mono",monospace;font-size:.63rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+}
+.ba-hint i{display:block;width:26px;height:1px;background:var(--line-2);position:relative;overflow:hidden}
+.ba-hint i::after{content:"";position:absolute;inset:0;background:var(--red);animation:hintRun 2s ease-in-out infinite}
+@keyframes hintRun{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.gloss{animation:glossRun 5s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes glossRun{0%,55%{transform:translateX(-420px) skewX(-16deg)}100%{transform:translateX(980px) skewX(-16deg)}}
+.spark{animation:sparkle 2.6s ease-in-out infinite}
+.spark:nth-of-type(2){animation-delay:.5s}
+.spark:nth-of-type(3){animation-delay:1.1s}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(.4)}45%{opacity:1;transform:scale(1)}}
+.tail-glow{animation:tailPulse 3.2s ease-in-out infinite}
+@keyframes tailPulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+.hero-cta{display:grid;gap:.6rem;margin-top:1.4rem}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;
+  margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line);
+}
+.hero-stats b{display:block;font-family:"Archivo Black",sans-serif;font-size:1.3rem;line-height:1.1}
+.hero-stats small{
+  display:block;font-family:"Space Mono",monospace;font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-top:.15rem;
+}
+
+/* ---------------- bandeau ---------------- */
+.band{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding-block:.8rem}
+.band-track{display:flex;width:max-content;animation:slide 30s linear infinite}
+.band:hover .band-track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.band-item{
+  font-family:"Archivo Black",sans-serif;font-size:1.05rem;text-transform:uppercase;
+  padding-inline:1rem;white-space:nowrap;display:flex;align-items:center;gap:1rem;
+}
+.band-item::after{content:"";width:7px;height:7px;background:var(--red);transform:rotate(45deg);flex:none}
+.band-item:nth-child(even){color:var(--muted)}
+
+/* ---------------- titres de section ---------------- */
+.head{margin-bottom:1.8rem}
+.head h2{margin-top:.6rem}
+.head .lead{margin-top:.8rem}
+
+/* ---------------- prestations ---------------- */
+.grid-svc{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{
+  background:var(--panel);padding:1.3rem;display:flex;flex-direction:column;gap:.55rem;
+  position:relative;overflow:hidden;transition:background .35s ease;
+}
+.svc::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);
+  transform:scaleY(0);transform-origin:0 0;transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.svc:hover{background:var(--panel-2)}
+.svc:hover::before{transform:scaleY(1)}
+.svc .n{font-family:"Space Mono",monospace;font-size:.68rem;color:var(--red);letter-spacing:.1em}
+.svc p{font-size:.92rem;color:var(--muted)}
+
+/* ---------------- étapes ---------------- */
+.steps{background:var(--ink-2);border-block:1px solid var(--line)}
+.step-list{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{
+  background:var(--panel);padding:1.3rem;display:grid;grid-template-columns:2.6rem 1fr;
+  gap:.9rem;align-items:start;
+}
+.step-n{
+  font-family:"Archivo Black",sans-serif;font-size:1.5rem;color:transparent;line-height:1;
+  -webkit-text-stroke:1.5px var(--red);
+}
+.step h3{margin-bottom:.3rem}
+.step p{font-size:.9rem;color:var(--muted)}
+
+/* ---------------- avis ---------------- */
+.avis-top{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.6rem}
+.avis-score{font-family:"Archivo Black",sans-serif;font-size:3.2rem;line-height:1;color:var(--red)}
+.avis-meta{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.avis-list{display:grid;gap:1rem}
+.avis{
+  border:1px solid var(--line);background:var(--panel);padding:1.1rem;border-radius:6px;
+  transition:border-color .35s ease,transform .35s ease;
+}
+.avis:hover{border-color:var(--red);transform:translateY(-3px)}
+.avis q{font-size:1rem;line-height:1.5;quotes:"«\00a0" "\00a0»";display:block}
+.avis footer{margin-top:.6rem;font-family:"Space Mono",monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em}
+
+/* ---------------- devis ---------------- */
+.devis{border:1px solid var(--line);background:var(--panel);border-radius:8px;overflow:hidden}
+.devis-form{padding:1.3rem;display:grid;gap:1rem}
+.devis-out{
+  padding:1.3rem;display:grid;gap:.9rem;align-content:start;
+  background:linear-gradient(165deg,var(--panel-2),var(--ink-2));border-top:1px solid var(--line);
+}
+.g2{display:grid;gap:1rem}
+label{
+  display:block;font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;
+}
+input[type=text],select,textarea{
+  width:100%;padding:.8rem;font-family:inherit;font-size:16px;border-radius:4px;
+  background:var(--ink);color:var(--text);border:1px solid var(--line-2);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(255,46,77,.16)}
+textarea{resize:vertical;min-height:4.4rem}
+.preview{
+  font-family:"Space Mono",monospace;font-size:.76rem;line-height:1.6;white-space:pre-wrap;
+  background:var(--ink);border:1px solid var(--line);padding:.9rem;color:var(--muted);
+  border-radius:4px;min-height:8rem;
+}
+.preview .caret{display:inline-block;width:8px;height:1em;background:var(--red);vertical-align:-2px;animation:blink2 1s steps(2) infinite}
+@keyframes blink2{50%{opacity:0}}
+.photo-note{
+  display:flex;gap:.6rem;align-items:flex-start;font-size:.82rem;color:var(--muted);
+  border-left:2px solid var(--red);padding-left:.7rem;line-height:1.5;
+}
+
+/* ---------------- infos ---------------- */
+.infos{display:grid;gap:2.2rem}
+.status{
+  display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line-2);border-radius:4px;
+  padding:.42rem .7rem;font-family:"Space Mono",monospace;font-size:.66rem;letter-spacing:.08em;
+  text-transform:uppercase;margin-top:1rem;
+}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:block;flex:none}
+.status.open{border-color:rgba(59,229,124,.4);color:#3BE57C}
+.status.open i{background:#3BE57C;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hours{width:100%;border-collapse:collapse;margin-top:1.1rem}
+.hours td{padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.hours td:last-child{text-align:right;font-family:"Space Mono",monospace;font-size:.78rem;color:var(--muted)}
+.hours tr.today td,.hours tr.today td:last-child{color:var(--red)}
+.contact{display:grid;gap:1rem;margin-top:1.1rem}
+.contact .k{
+  font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);display:block;
+}
+.contact a{font-size:1.05rem;font-weight:600;text-decoration:none;color:var(--text);transition:color .25s ease}
+.contact a:hover{color:var(--red)}
+
+/* ---------------- cta ---------------- */
+.cta{background:linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;overflow:hidden;position:relative}
+.cta::before{
+  content:"";position:absolute;inset:-50%;opacity:.12;
+  background:repeating-linear-gradient(115deg,#000 0 20px,transparent 20px 40px);
+  animation:stripes 3s linear infinite;
+}
+@keyframes stripes{to{transform:translateX(40px)}}
+.cta .wrap{position:relative;z-index:1}
+.cta h2{color:#fff}
+.cta p{color:rgba(255,255,255,.85);margin-top:.8rem}
+.cta-row{display:grid;gap:.6rem;margin-top:1.5rem}
+.btn-white{background:#fff;color:var(--red-ink)}
+.btn-white::before{background:#FFE3E8}
+
+footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-block:2rem;color:var(--muted);font-size:.78rem}
+.foot{display:grid;gap:1.2rem}
+.foot strong{color:var(--text)}
+.foot p{line-height:1.65}
+
+/* ---------------- barre mobile ---------------- */
+.mbar{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:var(--line);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.mbar a{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:60px;
+  text-decoration:none;font-weight:700;font-size:.94rem;
+}
+.mbar .m-call{background:var(--panel);color:var(--text)}
+.mbar .m-wa{background:var(--wa);color:var(--wa-ink)}
+.mbar svg{width:18px;height:18px;flex:none}
+
+/* ---------------- apparition ---------------- */
+.js .r{opacity:0;transform:translateY(22px)}
+.js .r.in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,.84,.34,1),transform .75s cubic-bezier(.16,.84,.34,1)}
+.js .r.s1{transition-delay:.07s}.js .r.s2{transition-delay:.14s}.js .r.s3{transition-delay:.21s}
+
+/* ================= >= 640px ================= */
+@media (min-width:640px){
+  body{font-size:16.5px}
+  section{padding-block:4rem}
+  .wrap{width:min(1180px,100% - 3rem)}
+  .hero-cta{grid-auto-flow:column;justify-content:start}
+  .cta-row{grid-auto-flow:column;justify-content:start}
+  .g2{grid-template-columns:1fr 1fr}
+  .grid-svc{grid-template-columns:1fr 1fr}
+  .step-list{grid-template-columns:1fr 1fr}
+  .avis-list{grid-template-columns:1fr 1fr}
+  .hero-stats b{font-size:1.55rem}
+  .foot{grid-template-columns:1fr 1fr;gap:2rem}
+}
+
+/* ================= >= 900px ================= */
+@media (min-width:900px){
+  section{padding-block:5.5rem}
+  .mbar{display:none}
+  .tagline{
+    display:block;font-family:"Space Mono",monospace;font-size:.63rem;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line-2);padding-left:.8rem;
+  }
+  .logo-txt{font-size:1.2rem}
+  nav a.nl{display:block;font-size:.85rem;color:var(--muted);text-decoration:none;font-weight:500;position:relative}
+  nav a.nl::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--red);
+    transform:scaleX(0);transform-origin:100% 50%;transition:transform .3s ease;
+  }
+  nav a.nl:hover{color:var(--text)}
+  nav a.nl:hover::after{transform:scaleX(1);transform-origin:0 50%}
+
+  .hero{padding-top:3rem;padding-bottom:2.5rem}
+  .hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:3rem;align-items:center}
+  .ba-wrap{margin-top:0}
+  .hero .lead{margin-top:1.1rem}
+  .hero-stats{grid-template-columns:repeat(3,auto);justify-content:start;gap:2.2rem}
+
+  .head{display:grid;grid-template-columns:1fr 1.05fr;gap:3rem;align-items:end;margin-bottom:2.6rem}
+  .head .lead{margin-top:0}
+  .grid-svc{grid-template-columns:repeat(3,1fr)}
+  .step-list{grid-template-columns:repeat(4,1fr)}
+  .avis-list{grid-template-columns:repeat(3,1fr)}
+  .devis{display:grid;grid-template-columns:1fr .9fr}
+  .devis-form{padding:2.2rem}
+  .devis-out{padding:2.2rem;border-top:0;border-left:1px solid var(--line)}
+  .infos{grid-template-columns:1fr 1fr;gap:4rem}
+  .band-item{font-size:1.3rem;padding-inline:1.4rem}
+}
+
+@media (max-width:899px){
+  :root{--bar-h:calc(60px + env(safe-area-inset-bottom))}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition-duration:.01ms !important}
+  .js .r{opacity:1 !important;transform:none !important}
+  .reveal-line span,.fade-up{transform:none !important;opacity:1 !important}
+}
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<div id="progress"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">
+      <span class="logo-mark"></span>
+      <span class="logo-txt">Carrosserie Avenue</span>
+    </a>
+    <span class="tagline">Brie-Comte-Robert · 77</span>
+    <nav>
+      <a class="nl" href="#prestations">Prestations</a>
+      <a class="nl" href="#etapes">Comment ça marche</a>
+      <a class="nl" href="#devis">Devis</a>
+      <a class="btn btn-red btn-sm" href="tel:+33751190289"><span class="mono">07 51 19 02 89</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"><div class="glow"></div><div class="grid"></div></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow fade-up">Atelier de carrosserie &amp; peinture · Brie-Comte-Robert (77)</span>
+        <h1>
+          <span class="reveal-line"><span>On efface</span></span>
+          <span class="reveal-line"><span><em>le choc.</em></span></span>
+        </h1>
+        <p class="lead fade-up d1">Pare-chocs, ailes, portières, peinture et raccords. Envoyez une photo du dégât sur WhatsApp&nbsp;: vous savez à quoi vous en tenir avant même de passer à l'atelier.</p>
+
+        <div class="rate-row fade-up d2">
+          <span class="stars">★★★★★</span>
+          <b>4,9</b>
+          <span>45 avis Google</span>
+        </div>
+
+        <div class="hero-cta fade-up d3">
+          <a class="btn btn-wa" href="https://wa.me/33751190289?text=Bonjour%2C%20je%20vous%20envoie%20une%20photo%20d%27un%20d%C3%A9g%C3%A2t%20sur%20ma%20voiture%20pour%20une%20estimation." target="_blank" rel="noopener">Envoyer une photo du dégât</a>
+          <a class="btn btn-ghost" href="#prestations">Voir les prestations</a>
+        </div>
+
+        <div class="hero-stats fade-up d4">
+          <div><b data-count="45">45</b><small>avis clients</small></div>
+          <div><b>6 j/7</b><small>lundi au samedi</small></div>
+          <div><b>Toutes</b><small>marques</small></div>
+        </div>
+      </div>
+
+      <div class="ba-wrap fade-up d2">
+        <div class="ba" id="ba" role="group" aria-label="Comparaison avant et après réparation">
+          <span class="ba-tag ba-tag-l">Avant</span>
+          <span class="ba-tag ba-tag-r">Après</span>
+
+          <div class="ba-layer ba-before">
+            <svg viewBox="0 0 800 520" role="img" aria-label="Aile arrière enfoncée et rayée avant réparation">
+              <defs>
+                <clipPath id="panelClip">
+                  <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"/>
+                </clipPath>
+                <linearGradient id="dullPaint" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#495160"/>
+                  <stop offset="55%" stop-color="#3A4150"/>
+                  <stop offset="100%" stop-color="#2A303B"/>
+                </linearGradient>
+                <radialGradient id="dentGrad" cx="50%" cy="45%">
+                  <stop offset="0%" stop-color="#171B22" stop-opacity=".92"/>
+                  <stop offset="70%" stop-color="#171B22" stop-opacity=".38"/>
+                  <stop offset="100%" stop-color="#171B22" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="glossBand" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+                  <stop offset="45%" stop-color="#fff" stop-opacity=".38"/>
+                  <stop offset="55%" stop-color="#fff" stop-opacity=".38"/>
+                  <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="candy" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FF4A63"/>
+                  <stop offset="48%" stop-color="#E31338"/>
+                  <stop offset="100%" stop-color="#8E0A22"/>
+                </linearGradient>
+              </defs>
+
+              <rect width="800" height="520" fill="#0F1116"/>
+              <g clip-path="url(#panelClip)">
+                <rect width="800" height="520" fill="url(#dullPaint)"/>
+                <ellipse cx="300" cy="290" rx="150" ry="92" fill="url(#dentGrad)"/>
+                <path d="M190 300 q110 -66 218 -10" fill="none" stroke="#20252E" stroke-width="5" opacity=".8"/>
+                <path d="M208 330 q100 -52 190 -6" fill="none" stroke="#20252E" stroke-width="3.5" opacity=".6"/>
+                <g stroke="#C9D2DE" stroke-width="2.5" opacity=".55" stroke-linecap="round">
+                  <line x1="440" y1="250" x2="620" y2="212"/>
+                  <line x1="452" y1="272" x2="640" y2="232"/>
+                  <line x1="468" y1="296" x2="600" y2="266"/>
+                  <line x1="446" y1="316" x2="588" y2="288"/>
+                </g>
+                <g stroke="#8A94A4" stroke-width="1.4" opacity=".5">
+                  <line x1="500" y1="340" x2="660" y2="310"/>
+                  <line x1="516" y1="358" x2="628" y2="336"/>
+                </g>
+                <g fill="#1B2029" opacity=".85">
+                  <circle cx="576" cy="248" r="5"/><circle cx="604" cy="272" r="3.4"/>
+                  <circle cx="548" cy="292" r="2.6"/><circle cx="628" cy="256" r="2.2"/>
+                </g>
+              </g>
+
+              <path d="M240 452 a160 160 0 0 1 320 0 Z" fill="#0B0D11"/>
+              <path d="M240 452 a160 160 0 0 1 320 0" fill="none" stroke="#525A68" stroke-width="3"/>
+              <path d="M282 452 a118 118 0 0 1 236 0 Z" fill="#15171C"/>
+              <line x1="150" y1="104" x2="150" y2="446" stroke="#20252E" stroke-width="5"/>
+              <line x1="153" y1="104" x2="153" y2="446" stroke="#59616F" stroke-width="1"/>
+              <path d="M60 268 C 260 244, 540 236, 770 246" fill="none" stroke="#20252E" stroke-width="3" opacity=".7"/>
+              <rect x="628" y="128" width="130" height="66" rx="10" fill="#3A2028" stroke="#4A2530" stroke-width="2"/>
+              <rect x="644" y="146" width="98" height="30" rx="6" fill="#4A2530"/>
+              <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"
+                    fill="none" stroke="#525A68" stroke-width="2.5"/>
+            </svg>
+          </div>
+
+          <div class="ba-layer ba-after" id="baAfter">
+            <svg viewBox="0 0 800 520" role="img" aria-label="La même aile réparée, peinte et lustrée">
+              <rect width="800" height="520" fill="#0F1116"/>
+              <g clip-path="url(#panelClip)">
+                <rect width="800" height="520" fill="url(#candy)"/>
+                <ellipse cx="300" cy="170" rx="230" ry="26" fill="#fff" opacity=".17"/>
+                <ellipse cx="560" cy="352" rx="180" ry="16" fill="#fff" opacity=".09"/>
+                <path d="M60 232 C 280 206, 560 200, 780 212 L 780 226 C 560 214, 280 220, 60 246 Z" fill="#fff" opacity=".13"/>
+                <rect class="gloss" x="0" y="-60" width="150" height="640" fill="url(#glossBand)"/>
+              </g>
+
+              <path d="M240 452 a160 160 0 0 1 320 0 Z" fill="#0B0D11"/>
+              <path d="M240 452 a160 160 0 0 1 320 0" fill="none" stroke="#FF6B80" stroke-width="3"/>
+              <path d="M282 452 a118 118 0 0 1 236 0 Z" fill="#15171C"/>
+              <line x1="150" y1="104" x2="150" y2="446" stroke="#7E0A1E" stroke-width="5"/>
+              <line x1="153" y1="104" x2="153" y2="446" stroke="#FF8A9C" stroke-width="1.2" opacity=".8"/>
+              <path d="M60 268 C 260 244, 540 236, 770 246" fill="none" stroke="#FF8A9C" stroke-width="2" opacity=".55"/>
+
+              <rect x="628" y="128" width="130" height="66" rx="10" fill="#2A0910" stroke="#FF6B80" stroke-width="2"/>
+              <rect class="tail-glow" x="644" y="146" width="98" height="30" rx="6" fill="#FF2E4D"/>
+              <rect class="tail-glow" x="652" y="152" width="82" height="16" rx="4" fill="#FFB3BF" opacity=".8"/>
+
+              <g fill="#fff">
+                <path class="spark" d="M470 210 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7 z"/>
+                <path class="spark" d="M250 340 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z"/>
+                <path class="spark" d="M660 300 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z"/>
+              </g>
+
+              <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"
+                    fill="none" stroke="#FF6B80" stroke-width="2.5"/>
+            </svg>
+          </div>
+
+          <div class="ba-div" id="baDiv"><span class="ba-knob"></span></div>
+        </div>
+        <p class="ba-hint"><i></i> Glissez pour comparer <i></i></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band"><div class="band-track" id="band"></div></div>
+
+<section id="prestations">
+  <div class="wrap">
+    <div class="head r">
+      <div>
+        <span class="eyebrow">Prestations</span>
+        <h2>Tôlerie, peinture, finitions</h2>
+      </div>
+      <p class="lead">Du petit impact de parking à l'élément de carrosserie à remplacer, tout est traité à l'atelier de Brie-Comte-Robert.</p>
+    </div>
+
+    <div class="grid-svc">
+      <article class="svc r"><span class="n">01</span><h3>Pare-chocs</h3><p>Réparation des plastiques, remplacement, repose et peinture raccord, à l'avant comme à l'arrière.</p></article>
+      <article class="svc r s1"><span class="n">02</span><h3>Ailes &amp; portières</h3><p>Redressage de tôle, remplacement d'élément, ajustement des jeux de carrosserie.</p></article>
+      <article class="svc r s2"><span class="n">03</span><h3>Peinture &amp; raccords</h3><p>Mise en teinte d'après le code couleur du véhicule, raccord invisible, vernis et polissage.</p></article>
+      <article class="svc r"><span class="n">04</span><h3>Débosselage</h3><p>Petits chocs, impacts de grêle et enfoncements repris sans toucher à la peinture d'origine quand c'est possible.</p></article>
+      <article class="svc r s1"><span class="n">05</span><h3>Optiques &amp; vitrage</h3><p>Remplacement de feux, de rétroviseurs, de pare-brise et de vitres latérales.</p></article>
+      <article class="svc r s2"><span class="n">06</span><h3>Lustrage &amp; rénovation</h3><p>Polissage de la carrosserie, effacement des micro-rayures, rénovation des optiques ternis.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="etapes">
+  <div class="wrap">
+    <div class="head r">
+      <div>
+        <span class="eyebrow">Comment ça marche</span>
+        <h2>Une photo suffit pour commencer</h2>
+      </div>
+      <p class="lead">Pas besoin de déplacer la voiture pour savoir où vous allez. Tout démarre depuis votre téléphone.</p>
+    </div>
+
+    <div class="step-list">
+      <div class="step r"><span class="step-n">01</span><div><h3>Photographiez le dégât</h3><p>Une photo de face et une de trois quarts, en plein jour si possible.</p></div></div>
+      <div class="step r s1"><span class="step-n">02</span><div><h3>Envoyez sur WhatsApp</h3><p>Avec la marque, le modèle et l'année du véhicule.</p></div></div>
+      <div class="step r s2"><span class="step-n">03</span><div><h3>On vous répond</h3><p>Pour préciser l'intervention et convenir d'un passage à l'atelier.</p></div></div>
+      <div class="step r s3"><span class="step-n">04</span><div><h3>Vous récupérez la voiture</h3><p>Élément réparé, peint et raccordé au reste de la carrosserie.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="wrap">
+    <div class="head r">
+      <div>
+        <span class="eyebrow">Avis Google</span>
+        <h2>45 clients, 4,9 sur 5</h2>
+      </div>
+      <p class="lead">Ce que les clients citent le plus souvent&nbsp;: la rapidité de prise en charge, la qualité des finitions et le prix.</p>
+    </div>
+
+    <div class="avis-top r">
+      <span class="avis-score">4,9</span>
+      <div>
+        <div class="stars" style="font-size:1.1rem">★★★★★</div>
+        <div class="avis-meta">45 avis publiés sur Google</div>
+      </div>
+    </div>
+
+    <div class="avis-list">
+      <div class="avis r"><q>Travail impeccable, finitions aussi bien faites qu'en garage concessionnaire.</q><footer>Adrien — août 2026 · Google</footer></div>
+      <div class="avis r s1"><q>Prise en charge rapide et restitution du véhicule tout aussi efficace.</q><footer>Mégane — 2026 · Google</footer></div>
+      <div class="avis r s2"><q>Très bon travail pour le pare-choc arrière et les retouches. Je recommande vivement.</q><footer>Sarah — 2026 · Google</footer></div>
+    </div>
+  </div>
+</section>
+
+<section id="devis" style="background:var(--ink-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head r">
+      <div>
+        <span class="eyebrow">Demande de devis</span>
+        <h2>Décrivez le dégât</h2>
+      </div>
+      <p class="lead">Le message part sur le WhatsApp de l'atelier, déjà rédigé. Vous n'avez plus qu'à joindre la photo.</p>
+    </div>
+
+    <div class="devis r">
+      <div class="devis-form">
+        <div class="g2">
+          <div>
+            <label for="marque">Marque et modèle</label>
+            <input type="text" id="marque" value="Renault Clio" autocomplete="off">
+          </div>
+          <div>
+            <label for="annee">Année</label>
+            <input type="text" id="annee" value="2018" inputmode="numeric" autocomplete="off">
+          </div>
+        </div>
+        <div>
+          <label for="degat">Partie touchée</label>
+          <select id="degat">
+            <option>Pare-chocs avant</option>
+            <option selected>Pare-chocs arrière</option>
+            <option>Aile avant</option>
+            <option>Aile arrière</option>
+            <option>Portière</option>
+            <option>Capot</option>
+            <option>Hayon / coffre</option>
+            <option>Toit</option>
+            <option>Rayures / micro-rayures</option>
+            <option>Impacts de grêle</option>
+            <option>Optique ou pare-brise</option>
+            <option>Plusieurs éléments</option>
+          </select>
+        </div>
+        <div class="g2">
+          <div>
+            <label for="roule">Le véhicule roule&nbsp;?</label>
+            <select id="roule">
+              <option selected>Oui, il roule normalement</option>
+              <option>Oui, mais un élément frotte ou pend</option>
+              <option>Non, il ne roule plus</option>
+            </select>
+          </div>
+          <div>
+            <label for="assur">Passage par l'assurance&nbsp;?</label>
+            <select id="assur">
+              <option selected>Non, à ma charge</option>
+              <option>Oui, dossier assurance</option>
+              <option>Je ne sais pas encore</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="detail">Précisions</label>
+          <textarea id="detail" placeholder="Choc sur un poteau, rayure profonde, élément fissuré…">Choc sur un poteau de parking, le pare-chocs est fissuré sur le coin droit.</textarea>
+        </div>
+      </div>
+
+      <div class="devis-out">
+        <span class="eyebrow">Message prêt à envoyer</span>
+        <div class="preview" id="preview"></div>
+        <p class="photo-note"><strong>📷</strong> <span>Pensez à joindre la photo du dégât dans WhatsApp&nbsp;: c'est elle qui permet de chiffrer l'intervention.</span></p>
+        <a class="btn btn-wa" id="waLink" href="#" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
+        <a class="btn btn-ghost" href="tel:+33751190289">Appeler le 07 51 19 02 89</a>
+        <p style="font-size:.76rem;color:var(--muted);line-height:1.5">Rien n'est enregistré sur ce site&nbsp;: le message s'ouvre dans votre application WhatsApp, vous l'envoyez vous-même.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="infos">
+  <div class="wrap infos">
+    <div class="r">
+      <span class="eyebrow">Horaires</span>
+      <h2 style="margin-top:.6rem">Ouvert 6 jours sur 7</h2>
+      <div class="status" id="status"><i></i><span id="statusTxt">Horaires de l'atelier</span></div>
+      <table class="hours" id="hours">
+        <tbody>
+          <tr data-d="1"><td>Lundi</td><td>09:00 – 19:00</td></tr>
+          <tr data-d="2"><td>Mardi</td><td>09:00 – 19:00</td></tr>
+          <tr data-d="3"><td>Mercredi</td><td>09:00 – 19:00</td></tr>
+          <tr data-d="4"><td>Jeudi</td><td>09:00 – 19:00</td></tr>
+          <tr data-d="5"><td>Vendredi</td><td>09:00 – 19:00</td></tr>
+          <tr data-d="6"><td>Samedi</td><td>10:00 – 19:00</td></tr>
+          <tr data-d="0"><td>Dimanche</td><td>Fermé</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="r s1">
+      <span class="eyebrow">Coordonnées</span>
+      <h2 style="margin-top:.6rem">Venir à l'atelier</h2>
+      <div class="contact">
+        <div>
+          <span class="k">Adresse</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Carrosserie+Avenue%2C+160+Rue+du+Tuboeuf%2C+77170+Brie-Comte-Robert" target="_blank" rel="noopener">160 rue du Tubœuf<br>77170 Brie-Comte-Robert</a>
+        </div>
+        <div><span class="k">Téléphone</span><a href="tel:+33751190289">07 51 19 02 89</a></div>
+        <div><span class="k">WhatsApp</span><a href="https://wa.me/33751190289" target="_blank" rel="noopener">Écrire à l'atelier</a></div>
+        <div><span class="k">Instagram</span><a href="https://www.instagram.com/carrosserie.avenue77" target="_blank" rel="noopener">@carrosserie.avenue77</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="eyebrow" style="color:rgba(255,255,255,.72)">Estimation</span>
+    <h2 style="margin-top:.6rem">Un choc, une rayure, un pare-chocs fissuré&nbsp;?</h2>
+    <p>Envoyez la photo maintenant, vous saurez quoi faire avant de déplacer la voiture.</p>
+    <div class="cta-row">
+      <a class="btn btn-white" href="https://wa.me/33751190289?text=Bonjour%2C%20je%20vous%20envoie%20une%20photo%20d%27un%20d%C3%A9g%C3%A2t%20sur%20ma%20voiture%20pour%20une%20estimation." target="_blank" rel="noopener">Envoyer une photo</a>
+      <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.5);color:#fff" href="tel:+33751190289"><span class="mono">07 51 19 02 89</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot">
+    <p><strong>Carrosserie Avenue</strong> — atelier de carrosserie et peinture automobile, 160 rue du Tubœuf, 77170 Brie-Comte-Robert.<br>SARL au capital de 1 000 € · SIREN 930 816 723.</p>
+    <p><strong>Maquette de proposition.</strong> Ce site n'est pas encore le site officiel de l'atelier. Les informations proviennent d'annuaires publics et doivent être validées par le gérant avant mise en ligne.</p>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Contact rapide">
+  <a class="m-call" href="tel:+33751190289">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    Appeler
+  </a>
+  <a class="m-wa" href="https://wa.me/33751190289?text=Bonjour%2C%20je%20vous%20envoie%20une%20photo%20d%27un%20d%C3%A9g%C3%A2t%20sur%20ma%20voiture%20pour%20une%20estimation." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.7-.1 1.4z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- bandeau défilant ---------- */
+  var words = ["Pare-chocs","Ailes","Portières","Peinture","Raccords","Débosselage",
+               "Grêle","Rayures","Optiques","Pare-brise","Lustrage","Toutes marques"];
+  var h = words.map(function(w){ return '<span class="band-item">'+w+'</span>'; }).join('');
+  document.getElementById('band').innerHTML = h + h;
+
+  /* ---------- barre de progression ---------- */
+  var bar = document.getElementById('progress');
+  addEventListener('scroll', function(){
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+  }, {passive:true});
+
+  /* ---------- avant / après ---------- */
+  var ba = document.getElementById('ba');
+  var after = document.getElementById('baAfter');
+  var divi = document.getElementById('baDiv');
+  var dragging = false, intro = null;
+
+  function setX(pct){
+    pct = Math.max(2, Math.min(98, pct));
+    after.style.setProperty('--x', pct + '%');
+    divi.style.left = pct + '%';
+  }
+  function fromEvent(e){
+    var r = ba.getBoundingClientRect();
+    setX(((e.clientX - r.left) / r.width) * 100);
+  }
+  setX(50);
+
+  ba.addEventListener('pointerdown', function(e){
+    if(intro){ cancelAnimationFrame(intro); intro = null; }
+    dragging = true;
+    try{ ba.setPointerCapture(e.pointerId); }catch(err){}
+    fromEvent(e); e.preventDefault();
+  });
+  ba.addEventListener('pointermove', function(e){ if(dragging) fromEvent(e); });
+  ['pointerup','pointercancel'].forEach(function(ev){
+    ba.addEventListener(ev, function(){ dragging = false; });
+  });
+
+  function playIntro(){
+    if(reduce) return;
+    var start = null, dur = 2600, keys = [50, 86, 18, 50];
+    function step(ts){
+      if(!start) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      var seg = t * (keys.length - 1);
+      var i = Math.min(keys.length - 2, Math.floor(seg));
+      var f = seg - i;
+      var e = f < .5 ? 2*f*f : 1 - Math.pow(-2*f + 2, 2)/2;
+      setX(keys[i] + (keys[i+1] - keys[i]) * e);
+      if(t < 1){ intro = requestAnimationFrame(step); } else { intro = null; }
+    }
+    intro = requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var bio = new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){ setTimeout(playIntro, 900); bio.disconnect(); }
+    }, {threshold:.4});
+    bio.observe(ba);
+  } else { setTimeout(playIntro, 900); }
+
+  /* ---------- apparition au défilement ---------- */
+  var items = document.querySelectorAll('.r');
+  function revealAll(){ items.forEach(function(el){ el.classList.add('in'); }); }
+  if(reduce || !('IntersectionObserver' in window)){
+    revealAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    items.forEach(function(el){ io.observe(el); });
+    setTimeout(revealAll, 3000);
+  }
+
+  /* ---------- compteurs ---------- */
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = Number(el.dataset.count);
+    if(reduce){ el.textContent = target; return; }
+    setTimeout(function(){
+      var s = null;
+      function step(ts){
+        if(!s) s = ts;
+        var t = Math.min(1, (ts - s) / 1100);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+        if(t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, 700);
+  });
+
+  /* ---------- ouvert / fermé (heure de Paris) ---------- */
+  var now = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Paris'}));
+  var day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+  var openNow = (day >= 1 && day <= 5 && mins >= 540 && mins < 1140)
+             || (day === 6 && mins >= 600 && mins < 1140);
+  var st = document.getElementById('status'), stt = document.getElementById('statusTxt');
+  if(openNow){
+    st.classList.add('open');
+    stt.textContent = "Atelier ouvert en ce moment";
+  } else {
+    stt.textContent = day === 0 ? "Fermé — réouverture lundi 9 h" : "Fermé en ce moment";
+  }
+  var todayRow = document.querySelector('#hours tr[data-d="' + day + '"]');
+  if(todayRow) todayRow.classList.add('today');
+
+  /* ---------- message WhatsApp ---------- */
+  var preview = document.getElementById('preview');
+  var waLink = document.getElementById('waLink');
+  var PHONE = "33751190289";
+
+  function build(){
+    var v = function(id){ return document.getElementById(id).value.trim(); };
+    var msg = "Bonjour Carrosserie Avenue, je souhaite une estimation.\n";
+    msg += "\nVéhicule : " + (v('marque') || "—") + (v('annee') ? " (" + v('annee') + ")" : "");
+    msg += "\nPartie touchée : " + document.getElementById('degat').value;
+    msg += "\nÉtat : " + document.getElementById('roule').value;
+    msg += "\nAssurance : " + document.getElementById('assur').value;
+    if(v('detail')) msg += "\nPrécisions : " + v('detail');
+    msg += "\n\nJe joins la photo du dégât.";
+    preview.textContent = msg;
+    var caret = document.createElement('span');
+    caret.className = 'caret';
+    preview.appendChild(caret);
+    waLink.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
+  }
+  ["marque","annee","degat","roule","assur","detail"].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener('input', build);
+    el.addEventListener('change', build);
+  });
+  build();
+})();
+</script>
+</body>
+</html>
