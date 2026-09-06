@@ -778,11 +778,15 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   /* Certains contextes (aperçus intégrés, navigateurs embarqués) ne
      déclenchent pas l'événement scroll. On surveille donc la position
      à chaque image : c'est une simple comparaison, coût négligeable. */
-  var lastY = -1, lastW = innerWidth;
+  var lastY = -1, lastW = innerWidth, lastRail = -1;
   (function watch(){
     if(scrollY !== lastY || innerWidth !== lastW){
       lastY = scrollY; lastW = innerWidth;
       onScroll();
+    }
+    if(track && track.scrollLeft !== lastRail){
+      lastRail = track.scrollLeft;
+      railSync();
     }
     requestAnimationFrame(watch);
   })();
