@@ -93,8 +93,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:120;mix-blend-mode:difference
 #paint{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(120% 80% at 50% 0%,transparent 30%,rgba(7,8,11,.75) 78%),
-             linear-gradient(0deg,var(--void) 2%,transparent 40%);
+  background:radial-gradient(130% 95% at 50% 12%,transparent 44%,rgba(7,8,11,.55) 88%),
+             linear-gradient(0deg,var(--void) 1%,rgba(7,8,11,.35) 26%,transparent 52%);
 }
 .hero .wrap{position:relative;z-index:2}
 h1 .ln{display:block;overflow:hidden}
@@ -616,7 +616,7 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
       for(var i=0;i<n;i++){
         var c = cols[(Math.random()*cols.length)|0];
         ps.push({x:Math.random()*W, y:Math.random()*H, c:c,
-                 a:Math.random()*.16+.04, s:Math.random()*.7+.5, life:Math.random()*220+90});
+                 a:Math.random()*.30+.10, s:Math.random()*.8+.55, life:Math.random()*300+140});
       }
     }
     function ang(x,y,tt){
@@ -629,10 +629,10 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
       if(!vis){ requestAnimationFrame(frame); return; }
       t += 16;
       ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgba(7,8,11,0.055)';
+      ctx.fillStyle = 'rgba(7,8,11,0.032)';
       ctx.fillRect(0,0,W,H);
       ctx.globalCompositeOperation = 'lighter';
-      ctx.lineWidth = 1.1;
+      ctx.lineWidth = 1.35;
       for(var i=0;i<ps.length;i++){
         var p = ps[i], a = ang(p.x,p.y,t);
         var nx = p.x + Math.cos(a)*p.s*2.1, ny = p.y + Math.sin(a)*p.s*2.1;
@@ -652,22 +652,30 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
     }
   }
 
-  /* ---------- texte qui se décode ---------- */
-  var GL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&/\\<>*+';
+  /* ---------- texte qui se décode ----------
+     On ne pioche que dans les lettres du mot lui-même : la largeur
+     totale reste identique à chaque image, donc aucun débordement. */
   function scramble(el){
-    var final = el.dataset.txt || el.textContent, n = final.length, step = 0;
+    var fin = el.dataset.txt || el.textContent, n = fin.length, step = 0;
+    var pool = fin.split('').filter(function(c){ return c !== ' '; });
     var id = setInterval(function(){
-      var out = '';
+      var rest = pool.slice(), out = '';
       for(var i=0;i<n;i++){
-        var ch = final[i];
+        var ch = fin[i];
         if(ch === ' '){ out += ' '; continue; }
-        if(i < step) out += ch;
-        else out += GL[(Math.random()*GL.length)|0];
+        if(i < step){
+          out += ch;
+          var k = rest.indexOf(ch);
+          if(k > -1) rest.splice(k,1);
+        } else {
+          var j = (Math.random()*rest.length)|0;
+          out += rest.length ? rest.splice(j,1)[0] : ch;
+        }
       }
       el.textContent = out;
-      step += 0.55;
-      if(step >= n){ clearInterval(id); el.textContent = final; }
-    }, 34);
+      step += 0.5;
+      if(step >= n){ clearInterval(id); el.textContent = fin; }
+    }, 38);
   }
   var scs = document.querySelectorAll('.sc');
   if(reduce){
