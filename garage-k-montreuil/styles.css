@@ -1,0 +1,609 @@
+/* =========================================================
+   Garage k Montreuil — maquette
+   Univers : ruban de masquage et papier kraft, repris de la
+   photo de leur cabine de peinture.
+   Écrit pour le téléphone d'abord ; deux paliers seulement.
+   ========================================================= */
+
+@property --lueur-x { syntax: '<percentage>'; inherits: true; initial-value: 24%; }
+@property --lueur-y { syntax: '<percentage>'; inherits: true; initial-value: 18%; }
+
+:root{
+  /* papier */
+  --papier:      oklch(96% 0.014 85);
+  --papier-2:    oklch(92.5% 0.028 82);
+  --kraft:       oklch(85% 0.052 78);
+  --kraft-fonce: oklch(76% 0.068 74);
+
+  /* encre */
+  --encre:   oklch(26% 0.014 62);
+  --encre-2: oklch(47% 0.014 62);
+  --encre-3: oklch(62% 0.012 62);
+  --trait:   oklch(86% 0.022 76);
+
+  /* ruban de masquage */
+  --ruban:      oklch(56% 0.155 252);
+  --ruban-vif:  oklch(64% 0.148 250);
+  --ruban-pale: oklch(93% 0.038 250);
+
+  --vert: oklch(56% 0.135 150);
+  --wa:   oklch(62% 0.165 148);
+
+  /* mesures : un seul bord gauche pour toute la page */
+  --bande-max: 64rem;
+  --marge: 1.25rem;
+  --barre: 0px;
+
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+*{ box-sizing: border-box }
+
+html{
+  /* jamais sur body : ça en ferait un conteneur de défilement */
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  margin: 0;
+  padding-bottom: var(--barre);
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+p{ margin: 0 }
+img{ max-width: 100%; display: block }
+
+a{ color: var(--ruban) }
+:focus-visible{ outline: 2px solid var(--ruban); outline-offset: 3px; border-radius: 2px }
+
+/* un seul bord gauche, sections pleine largeur comprises */
+.bande{
+  padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2);
+}
+
+section{ padding-block: 3rem }
+
+/* ---------- titres ---------- */
+.titre,
+.titre-sec{
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.02;
+  margin: 0;
+  text-wrap: balance;
+}
+.titre{ font-size: clamp(2.05rem, 8.2vw, 3.9rem) }
+.titre-sec{ font-size: clamp(1.6rem, 5.6vw, 2.5rem); margin-top: .35rem }
+h3{ font-size: 1.08rem; font-weight: 700; margin: 0; letter-spacing: -.01em }
+
+.chapeau{
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+}
+.chapeau-sec{ color: var(--ruban) }
+
+/* =========================================================
+   bandeau maquette — un morceau de ruban en haut de page
+   ========================================================= */
+.maquette{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem max(var(--marge), (100% - var(--bande-max)) / 2);
+  background: var(--ruban);
+  color: #fff;
+  font-size: .72rem;
+  line-height: 1.35;
+}
+.maquette strong{ font-weight: 700 }
+.maquette-puce{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #fff; flex: none; opacity: .9;
+}
+.maquette-txt{ color: oklch(94% 0.03 250) }
+@media (max-width: 26rem){ .maquette-txt{ display: none } }
+
+/* =========================================================
+   en-tête
+   ========================================================= */
+.entete{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in oklab, var(--papier) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--trait);
+}
+.entete-in{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.4rem;
+}
+.marque{
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  text-decoration: none;
+  color: var(--encre);
+}
+.marque-k{
+  width: 1.9rem; height: 1.9rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--ruban);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-radius: 3px;
+  transform: rotate(-6deg);
+}
+.marque-nom{ font-weight: 700; letter-spacing: -.015em; font-size: 1.02rem }
+.marque-nom em{ font-style: normal; color: var(--encre-2); font-weight: 600 }
+.tel-haut{
+  margin-left: auto;
+  font-weight: 700;
+  font-size: .92rem;
+  text-decoration: none;
+  color: var(--encre);
+  white-space: nowrap;
+  padding: .45rem .7rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+}
+.tel-haut:hover{ border-color: var(--ruban); color: var(--ruban) }
+
+/* =========================================================
+   héros
+   ========================================================= */
+.heros{
+  position: relative;
+  padding-block: 2.25rem 2.5rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--papier-2), var(--papier) 72%);
+  border-bottom: 1px solid var(--trait);
+}
+
+/* lumière chaude qui dérive : boucle fermée, jamais alternate */
+.lueur{
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 34% at var(--lueur-x) var(--lueur-y),
+      oklch(88% 0.09 74 / .85), transparent 68%);
+  filter: blur(46px);
+  animation: derive 23s linear infinite;
+}
+/* la souris prend la main quand elle existe */
+html.souris .lueur{
+  animation: none;
+  --lueur-x: var(--mx, 24%);
+  --lueur-y: var(--my, 18%);
+  transition: --lueur-x .9s ease-out, --lueur-y .9s ease-out;
+}
+@keyframes derive{
+  0%   { --lueur-x: 22%; --lueur-y: 16% }
+  25%  { --lueur-x: 68%; --lueur-y: 30% }
+  50%  { --lueur-x: 54%; --lueur-y: 8%  }
+  75%  { --lueur-x: 16%; --lueur-y: 34% }
+  100% { --lueur-x: 22%; --lueur-y: 16% }
+}
+
+.heros-in{ position: relative; z-index: 1 }
+.chapeau + .titre{ margin-top: .9rem }
+
+/* le ruban se retire et découvre la ligne */
+.titre-l{ position: relative; display: block }
+.ruban{
+  position: absolute;
+  inset: .08em -.35rem .12em -.35rem;
+  background: var(--ruban);
+  border-radius: 2px;
+  transform-origin: 0 50%;
+  z-index: 2;
+}
+.ruban::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 40%, oklch(100% 0 0 / .28) 50%, transparent 60%);
+}
+.ruban-a{ animation: retire .62s cubic-bezier(.72,0,.24,1) .18s forwards }
+.ruban-b{ animation: retire .62s cubic-bezier(.72,0,.24,1) .34s forwards }
+@keyframes retire{ to{ transform: scaleX(0) } }
+
+.titre em{ font-style: normal; color: var(--ruban) }
+
+.intro{
+  margin-top: 1.05rem;
+  font-size: 1.06rem;
+  color: var(--encre-2);
+  max-width: 34rem;
+}
+
+.note-avis{
+  display: flex;
+  align-items: baseline;
+  gap: .45rem;
+  margin-top: 1.15rem;
+  font-size: .92rem;
+  color: var(--encre-2);
+  flex-wrap: wrap;
+}
+.note-avis strong{ font-size: 1.15rem; color: var(--encre) }
+.etoiles{ color: var(--kraft-fonce); letter-spacing: .08em }
+
+.fleche{ margin-top: 1.6rem }
+.fleche span{
+  display: block;
+  width: 1px; height: 2.1rem;
+  background: linear-gradient(180deg, var(--trait), transparent);
+  margin-left: .4rem;
+}
+
+/* =========================================================
+   l'outil : décrire le dégât
+   ========================================================= */
+.chiffrage{ padding-top: 2rem }
+.carte-outil{
+  background: var(--papier);
+  border: 1px solid var(--trait);
+  border-radius: 14px;
+  padding: 1.25rem 1.1rem 1.35rem;
+  box-shadow: 0 1px 0 var(--papier-2), 0 14px 34px -26px oklch(30% 0.03 70 / .55);
+  position: relative;
+}
+/* petit morceau de ruban qui tient la carte */
+.carte-outil::before{
+  content: "";
+  position: absolute;
+  top: -.7rem; left: 1.4rem;
+  width: 5.2rem; height: 1.4rem;
+  background: color-mix(in oklab, var(--ruban) 82%, white);
+  transform: rotate(-3.5deg);
+  border-radius: 2px;
+  opacity: .95;
+}
+.outil-titre{
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -.015em;
+  margin-bottom: 1.1rem;
+  padding-top: .4rem;
+}
+
+.groupe{ border: 0; padding: 0; margin: 0 0 1.15rem }
+.groupe legend{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--encre-2);
+  margin-bottom: .6rem;
+  padding: 0;
+}
+.groupe .no{
+  width: 1.35rem; height: 1.35rem;
+  display: grid; place-items: center;
+  background: var(--ruban-pale);
+  color: var(--ruban);
+  border-radius: 50%;
+  font-size: .72rem;
+  flex: none;
+}
+
+.puces{ display: flex; flex-wrap: wrap; gap: .45rem }
+.puce{
+  font-family: inherit;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--encre);
+  background: var(--papier-2);
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  padding: .62rem .9rem;
+  min-height: 2.75rem;          /* confortable au pouce */
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .12s ease;
+}
+.puce:hover{ border-color: var(--kraft-fonce) }
+.puce:active{ transform: scale(.97) }
+.puce[aria-pressed="true"]{
+  background: var(--ruban);
+  border-color: var(--ruban);
+  color: #fff;
+}
+
+.fiche{
+  margin-top: 1.2rem;
+  background: var(--papier-2);
+  border: 1px dashed var(--kraft-fonce);
+  border-radius: 10px;
+  padding: .85rem .9rem;
+}
+.fiche-tag{
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+  margin-bottom: .35rem;
+}
+.fiche-txt{
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--encre);
+  white-space: pre-line;
+}
+
+.bouton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+  margin-top: .9rem;
+  min-height: 3.25rem;
+  padding: .9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 0;
+  transition: filter .2s ease, transform .12s ease;
+}
+.bouton:active{ transform: scale(.985) }
+.bouton svg{ width: 1.15rem; height: 1.15rem; flex: none }
+.bouton-wa{ background: var(--wa); color: #fff }
+.bouton-wa:hover{ filter: brightness(1.06) }
+
+.note-outil{
+  margin-top: .7rem;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--encre-3);
+}
+
+/* =========================================================
+   prestations
+   ========================================================= */
+.travaux{ background: var(--papier-2); border-block: 1px solid var(--trait) }
+.liste{ list-style: none; margin: 1.6rem 0 0; padding: 0 }
+.liste li{
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: .9rem;
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--trait);
+}
+.liste li:last-child{ border-bottom: 1px solid var(--trait) }
+.liste .no{
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ruban);
+  padding-top: .15rem;
+}
+.liste p{ margin-top: .25rem; font-size: .94rem; color: var(--encre-2) }
+
+/* =========================================================
+   avis
+   ========================================================= */
+.note-bloc{
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--trait);
+}
+.note-chiffre strong{ font-size: 3rem; font-weight: 800; letter-spacing: -.03em; line-height: 1 }
+.note-chiffre span{ color: var(--encre-3); font-weight: 600 }
+.etoiles-g{ font-size: 1.05rem; color: var(--kraft-fonce) }
+.note-src{ font-size: .86rem; margin-left: auto }
+.note-src a{ color: var(--encre-2) }
+
+.citations{ display: grid; gap: 1.3rem; margin-top: 1.4rem }
+.citations blockquote{ margin: 0; padding-left: 1rem; border-left: 3px solid var(--ruban-pale) }
+.citations p{ font-size: 1.05rem; line-height: 1.45 }
+.citations p::before{ content: "« " }
+.citations p::after{ content: " »" }
+.citations cite{
+  display: block;
+  margin-top: .45rem;
+  font-style: normal;
+  font-size: .78rem;
+  color: var(--encre-3);
+}
+
+/* =========================================================
+   atelier
+   ========================================================= */
+.atelier{ background: var(--papier-2); border-block: 1px solid var(--trait) }
+.vues{ display: grid; gap: 1rem; margin-top: 1.5rem }
+.vue{
+  margin: 0;
+  background: var(--papier);
+  border: 1px solid var(--trait);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.vue img{
+  width: 100%;
+  height: auto;
+  clip-path: inset(0 0 12% 0);
+  transition: clip-path 1s cubic-bezier(.2,.75,.2,1);
+}
+.vue.vu img{ clip-path: inset(0 0 0 0) }
+.vue figcaption{
+  padding: .8rem .9rem;
+  font-size: .84rem;
+  line-height: 1.5;
+  color: var(--encre-2);
+  border-top: 1px solid var(--trait);
+}
+.vue figcaption strong{ color: var(--encre) }
+
+/* =========================================================
+   infos
+   ========================================================= */
+.etat{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .9rem;
+  padding: .35rem .7rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--encre-2);
+}
+.etat i{ width: 7px; height: 7px; border-radius: 50%; background: var(--encre-3); flex: none }
+.etat.ouvert{ border-color: color-mix(in oklab, var(--vert) 45%, var(--trait)); color: var(--vert) }
+.etat.ouvert i{ background: var(--vert) }
+
+.heures{ width: 100%; border-collapse: collapse; margin-top: 1rem }
+.heures th,
+.heures td{ padding: .6rem 0; border-bottom: 1px solid var(--trait); font-size: .94rem; font-weight: 400 }
+.heures th{ text-align: left }
+.heures td{ text-align: right; color: var(--encre-2); font-variant-numeric: tabular-nums }
+.heures tr.jour th,
+.heures tr.jour td{ color: var(--ruban); font-weight: 700 }
+
+.coord{ list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 1rem }
+.cle{
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+  margin-bottom: .1rem;
+}
+.coord a{ font-size: 1.02rem; font-weight: 600; text-decoration: none; color: var(--encre) }
+.coord a:hover{ color: var(--ruban) }
+
+/* =========================================================
+   pied
+   ========================================================= */
+.pied{
+  background: var(--kraft);
+  border-top: 1px solid var(--kraft-fonce);
+  padding-block: 1.8rem;
+  font-size: .8rem;
+  line-height: 1.6;
+  color: oklch(38% 0.03 70);
+}
+.pied strong{ color: oklch(28% 0.03 70) }
+.pied-note{ margin-top: .8rem; max-width: 46rem }
+
+/* =========================================================
+   barre du bas — pouce
+   ========================================================= */
+.barre-bas{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  background: var(--papier);
+  border-top: 1px solid var(--trait);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.barre-bas a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-height: 3.4rem;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--encre);
+}
+.barre-bas svg{ width: 1.05rem; height: 1.05rem; flex: none }
+.barre-bas .bas-wa{ background: var(--wa); color: #fff }
+:root{ --barre: calc(3.4rem + env(safe-area-inset-bottom)) }
+
+/* =========================================================
+   apparitions — seulement si JS répond
+   ========================================================= */
+.js .app{ opacity: 0; transform: translateY(14px) }
+.js .app.vu{
+  opacity: 1;
+  transform: none;
+  transition: opacity .7s cubic-bezier(.2,.75,.2,1), transform .7s cubic-bezier(.2,.75,.2,1);
+}
+
+/* =========================================================
+   palier 1 — tablette (48rem)
+   ========================================================= */
+@media (min-width: 48rem){
+  :root{ --marge: 2rem; --barre: 0px }
+  body{ font-size: 1.09rem }
+  section{ padding-block: 4.5rem }
+
+  .heros{ padding-block: 3.5rem 4rem }
+  .intro{ font-size: 1.14rem }
+
+  .barre-bas{ display: none }
+
+  .carte-outil{ padding: 1.75rem 1.6rem 1.9rem }
+  .puce{ font-size: .95rem }
+
+  .liste li{ grid-template-columns: 3rem 1fr 1.1fr; gap: 1.5rem; align-items: baseline }
+  .liste li p{ grid-column: 3; margin-top: 0 }
+
+  .vues{ grid-template-columns: 1.35fr .65fr; gap: 1.2rem }
+  .vue-a img{ aspect-ratio: 4 / 3; object-fit: cover }
+  .vue-b img{ aspect-ratio: 3 / 4; object-fit: cover }
+  .vue{ display: flex; flex-direction: column }
+  .vue img{ flex: 1; min-height: 0 }
+
+  .citations{ grid-template-columns: 1fr 1fr; gap: 1.8rem }
+  .infos-in{ display: grid; grid-template-columns: 1fr 1fr; gap: 3rem }
+}
+
+/* =========================================================
+   palier 2 — ordinateur (64rem)
+   ========================================================= */
+@media (min-width: 64rem){
+  section{ padding-block: 5.5rem }
+  .heros{ padding-block: 4.5rem 5rem }
+  .heros-in{ max-width: 46rem }
+  .intro{ font-size: 1.2rem }
+
+  .chiffrage{ padding-top: 3.5rem }
+  .carte-outil{ padding: 2.1rem 2rem 2.2rem }
+  .bouton{ width: auto; min-width: 22rem }
+
+  .liste li{ grid-template-columns: 3.5rem 1fr 1.2fr }
+}
+
+/* =========================================================
+   mouvement réduit
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto }
+  *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important }
+  .ruban{ display: none }
+  .lueur{ opacity: .5 }
+  .vue img{ clip-path: none }
+  .js .app{ opacity: 1; transform: none }
+}
