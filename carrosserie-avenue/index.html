@@ -199,6 +199,17 @@ h1 em{font-style:normal;color:var(--red)}
   background:linear-gradient(0deg,rgba(8,9,12,.92),rgba(8,9,12,.7) 45%,transparent);
 }
 
+.hero-cta{display:grid;gap:.6rem;margin-top:1.4rem}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;
+  margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line);
+}
+.hero-stats b{display:block;font-family:"Archivo Black",sans-serif;font-size:1.3rem;line-height:1.1}
+.hero-stats small{
+  display:block;font-family:"Space Mono",monospace;font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-top:.15rem;
+}
+
 /* ---------------- bandeau ---------------- */
 .band{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding-block:.8rem}
 .band-track{display:flex;width:max-content;animation:slide 30s linear infinite}
