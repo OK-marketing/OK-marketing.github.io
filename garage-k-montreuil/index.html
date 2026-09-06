@@ -732,6 +732,18 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   addEventListener('resize', onScroll, {passive:true});
   onScroll();
 
+  /* Certains contextes (aperçus intégrés, navigateurs embarqués) ne
+     déclenchent pas l'événement scroll. On surveille donc la position
+     à chaque image : c'est une simple comparaison, coût négligeable. */
+  var lastY = -1, lastW = innerWidth;
+  (function watch(){
+    if(scrollY !== lastY || innerWidth !== lastW){
+      lastY = scrollY; lastW = innerWidth;
+      onScroll();
+    }
+    requestAnimationFrame(watch);
+  })();
+
   /* ---------- spot sur les cartes ---------- */
   document.querySelectorAll('.card').forEach(function(c){
     c.addEventListener('pointermove', function(e){
