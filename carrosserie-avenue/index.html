@@ -157,29 +157,44 @@ h1 em{font-style:normal;color:var(--red)}
 .stars{color:var(--red);letter-spacing:.1em;font-size:.9rem}
 .rate-row b{color:var(--text);font-family:"Archivo Black",sans-serif;font-size:1.05rem}
 
-/* ---------------- photo principale ---------------- */
+/* ---------------- comparateur avant / après ---------------- */
 .shot-wrap{margin-top:1.4rem;position:relative}
-.shot{
+.ba{
   position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:8px;
-  border:1px solid var(--line-2);background:var(--ink-2);
+  border:1px solid var(--line-2);background:#14161A;touch-action:pan-y;
+  -webkit-user-select:none;user-select:none;
 }
-.shot img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  animation:kenburns 20s ease-in-out infinite alternate;
+.ba svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ba-after{clip-path:inset(0 0 0 var(--p,50%));transition:clip-path .85s cubic-bezier(.4,0,.2,1)}
+.ba-div{
+  position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;background:#F4F4F1;
+  transform:translateX(-1px);pointer-events:none;box-shadow:0 0 14px rgba(0,0,0,.65);
+  transition:left .85s cubic-bezier(.4,0,.2,1);
 }
-@keyframes kenburns{0%{transform:scale(1.01)}100%{transform:scale(1.08)}}
-.shot::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(205deg,rgba(255,46,77,.13),transparent 46%),
-             linear-gradient(0deg,rgba(8,9,12,.62),transparent 44%);
+.ba-knob{
+  position:absolute;top:50%;left:var(--p,50%);width:44px;height:44px;margin:-22px 0 0 -22px;
+  border-radius:50%;background:#F4F4F1;color:#14161A;display:grid;place-items:center;
+  font-size:.95rem;font-weight:700;pointer-events:none;box-shadow:0 4px 18px rgba(0,0,0,.55);
+  transition:left .85s cubic-bezier(.4,0,.2,1);
 }
-.shot-cap{
-  position:absolute;left:.7rem;bottom:.7rem;z-index:2;max-width:calc(100% - 1.4rem);
-  font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--text);background:rgba(8,9,12,.66);border:1px solid var(--line-2);
-  padding:.34rem .58rem;border-radius:3px;line-height:1.5;
+.ba.drag .ba-after,.ba.drag .ba-div,.ba.drag .ba-knob{transition:none}
+.ba-tag{
+  position:absolute;top:.7rem;z-index:3;font-family:"Space Mono",monospace;font-size:.58rem;
+  letter-spacing:.12em;text-transform:uppercase;padding:.3rem .55rem;border-radius:3px;
+  background:rgba(8,9,12,.74);border:1px solid var(--line-2);
 }
-.shot-cap b{color:var(--red);font-weight:700}
+.ba-tag-l{left:.7rem;color:#FF6A5A}
+.ba-tag-r{right:.7rem;color:#5FE08C}
+.ba-range{
+  position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;z-index:4;
+  cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent;
+}
+.ba-hint{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.6rem;
+  font-family:"Space Mono",monospace;font-size:.58rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);
+}
+.ba-hint i{display:block;width:22px;height:1px;background:var(--line-2)}
 
 /* ---------------- galerie atelier ---------------- */
 .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}
@@ -479,12 +494,130 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
       </div>
 
       <div class="shot-wrap fade-up d2">
-        <div class="shot">
-          <img src="photos/atelier-reparation.jpg" width="1100" height="825"
-               alt="Véhicule rouge en cours de réparation, pare-chocs arrière déposé, devant la cabine de peinture de l'atelier"
-               fetchpriority="high" decoding="async">
-          <span class="shot-cap"><b>En atelier</b> — pare-chocs arrière déposé, avant remontage et peinture</span>
+        <div class="ba" id="ba">
+          <span class="ba-tag ba-tag-l">Avant</span>
+          <span class="ba-tag ba-tag-r">Après</span>
+
+          <svg viewBox="0 0 800 600" role="img" aria-label="Aile arrière enfoncée, rayée, avec un feu fissuré et un pare-chocs craquelé">
+            <defs>
+              <linearGradient id="wingBad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#A83B3C"/><stop offset="100%" stop-color="#75282A"/>
+              </linearGradient>
+              <linearGradient id="bumpBad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#93312F"/><stop offset="100%" stop-color="#661F22"/>
+              </linearGradient>
+            </defs>
+
+            <rect width="800" height="600" fill="#14161A"/>
+            <rect y="548" width="800" height="52" fill="#191C21"/>
+            <line y1="548" x2="800" y2="548" stroke="#22262C" stroke-width="2"/>
+            <ellipse cx="400" cy="550" rx="316" ry="13" fill="#000" opacity=".45"/>
+
+            <rect x="70" y="150" width="660" height="242" rx="26" fill="url(#wingBad)"/>
+            <rect x="70" y="406" width="660" height="118" rx="22" fill="url(#bumpBad)"/>
+            <line x1="96" y1="344" x2="704" y2="344" stroke="#5E2022" stroke-width="3" opacity=".8"/>
+
+            <rect x="520" y="190" width="180" height="96" rx="14" fill="#B4322F" stroke="#5E2022" stroke-width="2"/>
+            <g fill="#8E2724" opacity=".85">
+              <rect x="536" y="206" width="44" height="64" rx="6"/>
+              <rect x="588" y="206" width="44" height="64" rx="6"/>
+              <rect x="640" y="206" width="44" height="64" rx="6"/>
+            </g>
+
+            <!-- enfoncement -->
+            <ellipse cx="292" cy="268" rx="134" ry="88" fill="#5E1F22"/>
+            <ellipse cx="292" cy="268" rx="97" ry="61" fill="#491719"/>
+            <ellipse cx="288" cy="264" rx="53" ry="31" fill="#361113"/>
+            <g stroke="#280C0E" stroke-width="3" stroke-linecap="round">
+              <path d="M292 268 172 214M292 268 192 318M292 268 292 178M292 268 402 223M292 268 412 310M292 268 278 354"/>
+            </g>
+            <path d="M260 254l30-10 16 16-26 14z" fill="#A2A8AF"/>
+            <path d="M304 280l22 6-6 14-20-6z" fill="#8C9299"/>
+
+            <!-- rayures profondes -->
+            <g stroke="#DCE1E7" stroke-width="3.4" stroke-linecap="round" opacity=".92">
+              <path d="M432 336l124-14M438 352l152-16M452 366l98-10M470 322l72-8"/>
+            </g>
+            <path d="M498 340l62-8 4 12-64 8z" fill="#A2A8AF" opacity=".8"/>
+
+            <!-- pare-chocs craquelé -->
+            <path d="M446 406l18 34-13 26 21 30-8 28" fill="none" stroke="#180A0B" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M472 442l28 11-7 27-26-11z" fill="#101216"/>
+            <path d="M446 406l18 34-13 26 21 30-8 28" fill="none" stroke="#7A282A" stroke-width="1.6"/>
+
+            <!-- feu cassé -->
+            <path d="M700 232v54h-78l32-28 16 8z" fill="#101216"/>
+            <g stroke="#2A0E10" stroke-width="2.8" fill="none">
+              <path d="M556 190l28 42-14 30 24 24"/>
+              <path d="M636 190l-18 44 22 28"/>
+            </g>
+
+            <!-- annotations -->
+            <g font-family="Space Mono, monospace" font-size="19" fill="#FF6A5A" font-weight="700">
+              <circle cx="292" cy="268" r="38" fill="none" stroke="#FF6A5A" stroke-width="2.4" stroke-dasharray="6 6"/>
+              <path d="M292 230 236 112" stroke="#FF6A5A" stroke-width="1.8"/>
+              <text x="236" y="98" text-anchor="middle">ENFONCEMENT</text>
+              <circle cx="646" cy="252" r="30" fill="none" stroke="#FF6A5A" stroke-width="2.4" stroke-dasharray="6 6"/>
+              <path d="M646 222 634 112" stroke="#FF6A5A" stroke-width="1.8"/>
+              <text x="634" y="98" text-anchor="middle">FEU FISSURÉ</text>
+            </g>
+          </svg>
+
+          <svg class="ba-after" viewBox="0 0 800 600" role="img" aria-label="La même aile arrière réparée, peinte et polie, feu neuf et pare-chocs intact">
+            <defs>
+              <linearGradient id="wingOk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF4356"/><stop offset="55%" stop-color="#E02234"/>
+                <stop offset="100%" stop-color="#B01727"/>
+              </linearGradient>
+              <linearGradient id="bumpOk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#E5273A"/><stop offset="100%" stop-color="#9E1524"/>
+              </linearGradient>
+              <linearGradient id="lampOk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FF6B58"/><stop offset="100%" stop-color="#D42B22"/>
+              </linearGradient>
+            </defs>
+
+            <rect width="800" height="600" fill="#14161A"/>
+            <rect y="548" width="800" height="52" fill="#191C21"/>
+            <line y1="548" x2="800" y2="548" stroke="#22262C" stroke-width="2"/>
+            <ellipse cx="400" cy="550" rx="316" ry="13" fill="#000" opacity=".45"/>
+            <ellipse cx="400" cy="556" rx="270" ry="10" fill="#FF3B4E" opacity=".16"/>
+
+            <rect x="70" y="150" width="660" height="242" rx="26" fill="url(#wingOk)"/>
+            <rect x="70" y="406" width="660" height="118" rx="22" fill="url(#bumpOk)"/>
+            <line x1="96" y1="344" x2="704" y2="344" stroke="#FF8A96" stroke-width="2.5" opacity=".45"/>
+
+            <polygon points="128,392 306,150 402,150 224,392" fill="#FFFFFF" opacity=".085"/>
+            <polygon points="430,392 528,258 560,258 462,392" fill="#FFFFFF" opacity=".05"/>
+            <rect x="70" y="150" width="660" height="10" rx="5" fill="#FFFFFF" opacity=".16"/>
+
+            <rect x="520" y="190" width="180" height="96" rx="14" fill="url(#lampOk)" stroke="#FFB3A6" stroke-width="2"/>
+            <g fill="#FFFFFF" opacity=".3">
+              <rect x="536" y="206" width="44" height="64" rx="6"/>
+              <rect x="588" y="206" width="44" height="64" rx="6"/>
+              <rect x="640" y="206" width="44" height="64" rx="6"/>
+            </g>
+            <rect x="520" y="190" width="180" height="8" rx="4" fill="#FFFFFF" opacity=".45"/>
+
+            <g fill="#FFFFFF">
+              <path d="M300 210l7 17 17 7-17 7-7 17-7-17-17-7 17-7z" opacity=".9"/>
+              <path d="M470 300l5 12 12 5-12 5-5 12-5-12-12-5 12-5z" opacity=".7"/>
+              <path d="M180 452l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" opacity=".55"/>
+            </g>
+
+            <g font-family="Space Mono, monospace" font-size="19" fill="#5FE08C" font-weight="700">
+              <circle cx="646" cy="238" r="30" fill="none" stroke="#5FE08C" stroke-width="2.4" stroke-dasharray="6 6" opacity=".55"/>
+              <text x="560" y="98" text-anchor="middle">REMIS À NEUF</text>
+              <path d="M560 112 622 210" stroke="#5FE08C" stroke-width="1.8" opacity=".7"/>
+            </g>
+          </svg>
+
+          <div class="ba-div"></div>
+          <div class="ba-knob" aria-hidden="true">↔</div>
+          <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50"
+                 aria-label="Comparer l'avant et l'après de la réparation">
         </div>
+        <p class="ba-hint"><i></i> Glissez pour comparer <i></i></p>
       </div>
     </div>
   </div>
@@ -524,6 +657,11 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
     </div>
     <div class="gal">
       <figure class="r">
+        <img src="photos/atelier-reparation.jpg" width="1100" height="825" loading="lazy" decoding="async"
+             alt="Véhicule rouge en cours de réparation, pare-chocs arrière déposé, devant la cabine de peinture">
+        <figcaption>Pare-chocs arrière déposé</figcaption>
+      </figure>
+      <figure class="r s1">
         <img class="pos-r" src="photos/vehicule-fini.jpg" width="760" height="570" loading="lazy" decoding="async"
              alt="Break rouge lustré, prêt à être rendu à son propriétaire">
         <figcaption>Prêt à être rendu</figcaption>
@@ -743,6 +881,36 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
     var max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
   }, {passive:true});
+
+  /* ---------- comparateur avant / après ---------- */
+  var ba = document.getElementById('ba'), rng = document.getElementById('baRange');
+  if(ba && rng){
+    var timers = [];
+    var setP = function(v){
+      v = Math.max(0, Math.min(100, v));
+      ba.style.setProperty('--p', v + '%');
+      if(+rng.value !== v) rng.value = v;
+    };
+    var stopDemo = function(){ timers.forEach(clearTimeout); timers = []; };
+    var grab = function(){ ba.classList.add('drag'); stopDemo(); };
+    setP(50);
+    rng.addEventListener('input', function(){ grab(); setP(+rng.value); });
+    rng.addEventListener('pointerdown', grab);
+    rng.addEventListener('keydown', grab);
+
+    if(!reduce && 'IntersectionObserver' in window){
+      var bio = new IntersectionObserver(function(en){
+        if(!en[0].isIntersecting) return;
+        bio.disconnect();
+        [[420, 86], [1400, 14], [2500, 52]].forEach(function(step){
+          timers.push(setTimeout(function(){
+            if(!ba.classList.contains('drag')) setP(step[1]);
+          }, step[0]));
+        });
+      }, {threshold:.35});
+      bio.observe(ba);
+    }
+  }
 
   /* ---------- apparition au défilement ---------- */
   var items = document.querySelectorAll('.r');
