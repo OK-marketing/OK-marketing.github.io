@@ -658,11 +658,13 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   function scramble(el){
     var fin = el.dataset.txt || el.textContent, n = fin.length;
     var pool = fin.split('').filter(function(c){ return c !== ' '; });
-    var DUR = 900, t0 = null;
-    requestAnimationFrame(function tick(ts){
-      if(t0 === null) t0 = ts;
-      var p = Math.min(1, (ts - t0) / DUR), step = p * n;
-      if(p >= 1){ el.textContent = fin; return; }
+    var DUR = 900, t0 = performance.now(), done = false;
+    function finish(){ if(done) return; done = true; el.textContent = fin; }
+    setTimeout(finish, DUR + 500);
+    requestAnimationFrame(function tick(){
+      if(done) return;
+      var p = Math.min(1, (performance.now() - t0) / DUR), step = p * n;
+      if(p >= 1){ finish(); return; }
       var rest = pool.slice(), out = '';
       for(var i=0;i<n;i++){
         var ch = fin[i];
