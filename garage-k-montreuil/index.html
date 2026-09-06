@@ -148,17 +148,27 @@ section{position:relative}
 .shead h2{margin-top:1rem;max-width:16ch}
 
 /* ============ rail horizontal ============ */
-.rail{height:340vh}
-@media (max-width:900px){.rail{height:auto}}
-.rail-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-@media (max-width:900px){.rail-pin{position:static;height:auto;padding-block:1rem}}
+.rail{padding-block:clamp(4rem,10vw,9rem)}
 .rail-head{padding-inline:clamp(1rem,4vw,3rem);margin-bottom:2rem}
-.rail-track{display:flex;gap:1.2rem;padding-inline:clamp(1rem,4vw,3rem);will-change:transform}
-@media (max-width:900px){
-  .rail-track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;
-    transform:none !important;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .rail-track::-webkit-scrollbar{display:none}
+.rail-track{
+  display:flex;gap:1.2rem;padding:.4rem clamp(1rem,4vw,3rem) 1.6rem;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;
 }
+.rail-track::-webkit-scrollbar{display:none}
+.rail-foot{display:flex;align-items:center;gap:1.2rem;padding-inline:clamp(1rem,4vw,3rem)}
+.rail-bar{flex:1;height:2px;background:var(--edge);position:relative;border-radius:2px;overflow:hidden}
+.rail-bar i{position:absolute;left:0;top:0;bottom:0;width:25%;background:linear-gradient(90deg,var(--iris),var(--cyan));
+  border-radius:2px;transition:transform .3s cubic-bezier(.2,.8,.3,1),width .3s ease}
+.rail-btn{
+  width:52px;height:52px;flex:none;border-radius:50%;border:1px solid var(--edge-2);
+  background:rgba(18,21,28,.6);color:var(--white);cursor:pointer;display:grid;place-items:center;
+  transition:background .3s ease,border-color .3s ease,transform .3s ease;
+}
+.rail-btn:hover{background:var(--iris);border-color:transparent;transform:scale(1.06)}
+.rail-btn:disabled{opacity:.3;cursor:default;transform:none;background:rgba(18,21,28,.6);border-color:var(--edge)}
+.rail-btn svg{width:19px;height:19px}
+@media (max-width:700px){.rail-btn{display:none}}
 .card{
   flex:0 0 min(400px,78vw);scroll-snap-align:center;border:1px solid var(--edge);
   border-radius:20px;padding:1.8rem;background:linear-gradient(165deg,var(--panel),var(--void-2));
@@ -369,7 +379,7 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
 </div>
 
 <section class="rail" id="reprend">
-  <div class="rail-pin">
+  <div>
     <div class="rail-head wrap">
       <span class="tag">Prestations</span>
       <h2 class="disp sc" data-txt="Ce qu'on reprend" style="margin-top:.8rem">Ce qu'on reprend</h2>
@@ -411,6 +421,16 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
         <div class="bars"><i></i><i></i><i></i><i></i></div>
         <p>Voiture immobilisée, contrôle technique demain, départ prévu&nbsp;: dites-le en appelant, l'atelier s'organise quand il le peut.</p>
       </article>
+    </div>
+
+    <div class="rail-foot">
+      <button class="rail-btn" id="railPrev" type="button" aria-label="Prestation précédente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="rail-btn" id="railNext" type="button" aria-label="Prestation suivante">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="rail-bar"><i id="railBar"></i></div>
     </div>
   </div>
 </section>
@@ -710,15 +730,39 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
     });
   }
 
-  /* ---------- rail horizontal ---------- */
-  var rail = document.querySelector('.rail'), track = document.getElementById('track');
-  function railScroll(){
-    if(!rail || !track || innerWidth <= 900) return;
-    var r = rail.getBoundingClientRect();
-    var total = rail.offsetHeight - innerHeight;
-    var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
-    var dist = track.scrollWidth - innerWidth + 48;
-    track.style.transform = 'translate3d(' + (-dist * p) + 'px,0,0)';
+  /* ---------- rail horizontal ----------
+     Défilement natif : fonctionne au doigt, à la molette, au clavier
+     et par les deux boutons. Ne dépend d'aucun événement de page. */
+  var track = document.getElementById('track');
+  var railBar = document.getElementById('railBar');
+  var railPrev = document.getElementById('railPrev');
+  var railNext = document.getElementById('railNext');
+
+  function railSync(){
+    if(!track || !railBar) return;
+    var max = track.scrollWidth - track.clientWidth;
+    var p = max > 4 ? track.scrollLeft / max : 0;
+    var vis = track.clientWidth / track.scrollWidth;
+    railBar.style.width = Math.max(12, Math.min(100, vis * 100)) + '%';
+    railBar.style.transform = 'translateX(' + (p * (100 / Math.max(vis, .12) - 100)) + '%)';
+    if(railPrev) railPrev.disabled = track.scrollLeft < 8;
+    if(railNext) railNext.disabled = track.scrollLeft > max - 8;
+  }
+  function railStep(dir){
+    if(!track) return;
+    var card = track.querySelector('.card');
+    var w = card ? card.getBoundingClientRect().width + 19 : 320;
+    track.scrollBy({left: dir * w, behavior: 'smooth'});
+    setTimeout(railSync, 420);
+    setTimeout(railSync, 900);
+  }
+  if(track){
+    track.addEventListener('scroll', railSync, {passive:true});
+    if(railPrev) railPrev.addEventListener('click', function(){ railStep(-1); });
+    if(railNext) railNext.addEventListener('click', function(){ railStep(1); });
+    railSync();
+    setTimeout(railSync, 600);
+    addEventListener('resize', railSync, {passive:true});
   }
 
   /* ---------- progression ---------- */
@@ -726,7 +770,6 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   function onScroll(){
     var m = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = 'scaleX(' + (m > 0 ? scrollY/m : 0) + ')';
-    railScroll();
   }
   addEventListener('scroll', onScroll, {passive:true});
   addEventListener('resize', onScroll, {passive:true});
@@ -756,18 +799,27 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   /* ---------- teinte ---------- */
   var sw = document.getElementById('swatch'), lab = document.getElementById('swatchLab');
   var steps = [].slice.call(document.querySelectorAll('.step'));
-  if(sw && steps.length && 'IntersectionObserver' in window){
-    var tio = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        steps.forEach(function(s){ s.classList.toggle('act', s === e.target); });
-        sw.style.setProperty('--sw', e.target.dataset.c);
-        lab.textContent = e.target.dataset.l;
-      });
-    }, {rootMargin:'-45% 0px -45% 0px'});
-    steps.forEach(function(s){ tio.observe(s); });
-    sw.style.setProperty('--sw', steps[0].dataset.c);
-    lab.textContent = steps[0].dataset.l;
+  if(sw && steps.length){
+    var showStep = function(el){
+      steps.forEach(function(s){ s.classList.toggle('act', s === el); });
+      sw.style.setProperty('--sw', el.dataset.c);
+      lab.textContent = el.dataset.l;
+    };
+    showStep(steps[0]);
+
+    /* l'étape suit le défilement… */
+    if('IntersectionObserver' in window){
+      var tio = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting) showStep(e.target); });
+      }, {rootMargin:'-45% 0px -45% 0px'});
+      steps.forEach(function(s){ tio.observe(s); });
+    }
+    /* …et répond aussi au survol et au clic, pour rester manœuvrable */
+    steps.forEach(function(s){
+      s.style.cursor = 'pointer';
+      s.addEventListener('pointerenter', function(){ showStep(s); });
+      s.addEventListener('click', function(){ showStep(s); });
+    });
   }
 
   /* ---------- compteurs à rouleau ---------- */
@@ -800,8 +852,12 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
   } else {
     var oio = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ odo(e.target); oio.unobserve(e.target); } });
-    }, {threshold:.5});
+    }, {threshold:.35});
     odos.forEach(function(e){ oio.observe(e); });
+    /* filet : si l'observateur ne se déclenche jamais, on affiche quand même */
+    setTimeout(function(){
+      odos.forEach(function(e){ if(!e.children.length) odo(e); });
+    }, 2600);
   }
 
   /* ---------- apparitions ---------- */
