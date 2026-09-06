@@ -629,13 +629,13 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
       if(!vis){ requestAnimationFrame(frame); return; }
       t += 16;
       ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgba(7,8,11,0.032)';
+      ctx.fillStyle = 'rgba(7,8,11,0.021)';
       ctx.fillRect(0,0,W,H);
       ctx.globalCompositeOperation = 'lighter';
-      ctx.lineWidth = 1.35;
+      ctx.lineWidth = 1.5;
       for(var i=0;i<ps.length;i++){
         var p = ps[i], a = ang(p.x,p.y,t);
-        var nx = p.x + Math.cos(a)*p.s*2.1, ny = p.y + Math.sin(a)*p.s*2.1;
+        var nx = p.x + Math.cos(a)*p.s*1.05, ny = p.y + Math.sin(a)*p.s*1.05;
         ctx.strokeStyle = 'rgba('+p.c[0]+','+p.c[1]+','+p.c[2]+','+p.a+')';
         ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(nx,ny); ctx.stroke();
         p.x = nx; p.y = ny; p.life--;
