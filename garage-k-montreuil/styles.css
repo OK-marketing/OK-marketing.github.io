@@ -442,8 +442,8 @@ h3{ font-family: var(--titre); font-size: 1.1rem; font-weight: 600; margin: 0 }
 @media (min-width: 64rem){
   section{ padding-block: 5.5rem }
   .heros{ padding-block: 4rem 0 }
-  .heros-in{ max-width: 34rem }
-  .atelier-scene{ margin-top: -4rem }
+  .heros-in{ max-width: 44rem }
+  .atelier-scene{ margin-top: 2.5rem }
   .intro{ font-size: 1.2rem }
   .chiffrage{ padding-top: 3.5rem }
   .carte-outil{ padding: 2.1rem 2rem 2.2rem }
