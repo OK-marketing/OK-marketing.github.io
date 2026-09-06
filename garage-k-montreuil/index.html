@@ -656,9 +656,13 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
      On ne pioche que dans les lettres du mot lui-même : la largeur
      totale reste identique à chaque image, donc aucun débordement. */
   function scramble(el){
-    var fin = el.dataset.txt || el.textContent, n = fin.length, step = 0;
+    var fin = el.dataset.txt || el.textContent, n = fin.length;
     var pool = fin.split('').filter(function(c){ return c !== ' '; });
-    var id = setInterval(function(){
+    var DUR = 900, t0 = null;
+    requestAnimationFrame(function tick(ts){
+      if(t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / DUR), step = p * n;
+      if(p >= 1){ el.textContent = fin; return; }
       var rest = pool.slice(), out = '';
       for(var i=0;i<n;i++){
         var ch = fin[i];
@@ -673,9 +677,8 @@ footer.site{border-top:1px solid var(--edge);padding-block:2.4rem;color:var(--gr
         }
       }
       el.textContent = out;
-      step += 0.5;
-      if(step >= n){ clearInterval(id); el.textContent = fin; }
-    }, 38);
+      requestAnimationFrame(tick);
+    });
   }
   var scs = document.querySelectorAll('.sc');
   if(reduce){
