@@ -85,7 +85,10 @@ header{position:fixed;top:0;left:0;right:0;z-index:120;mix-blend-mode:difference
 .nav a.nl{font-size:.82rem;color:#fff;text-decoration:none;opacity:.65;transition:opacity .3s ease}
 .nav a.nl:hover{opacity:1}
 @media (max-width:900px){.nav a.nl{display:none}}
-.nav .tel{font-size:.82rem;color:#fff;text-decoration:none;font-weight:600;letter-spacing:.02em}
+.brand{white-space:nowrap}
+.nav .tel{font-size:.82rem;color:#fff;text-decoration:none;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+/* la barre fixe du bas porte déjà l'appel : inutile de le répéter en haut */
+@media (max-width:900px){.nav .tel{display:none}}
 
 /* ============ hero ============ */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
@@ -103,6 +106,11 @@ h1 .sc{display:block}
   margin-top:clamp(1.6rem,3vw,2.4rem);align-items:end}
 @media (max-width:860px){.hero-sub{grid-template-columns:1fr;gap:1.4rem}}
 .meta{display:flex;gap:2.2rem;flex-wrap:wrap}
+@media (max-width:520px){
+  .meta{gap:1.1rem;justify-content:space-between}
+  .meta b{font-size:1.25rem}
+  .meta span{font-size:.55rem;letter-spacing:.1em}
+}
 .meta div{display:grid;gap:.1rem}
 .meta b{font-family:"Syne",sans-serif;font-weight:800;font-size:1.5rem;line-height:1}
 .meta span{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
