@@ -1,47 +1,52 @@
 /* =========================================================
    Garage k Montreuil — maquette
-   Univers : ruban de masquage et papier kraft, repris de la
-   photo de leur cabine de peinture.
-   Écrit pour le téléphone d'abord ; deux paliers seulement.
+   Atelier de nuit. La pièce est déposée, poncée, masquée,
+   repeinte, remontée — en boucle, et la teinte change à
+   chaque tour.
+   Téléphone d'abord. Deux paliers : 48rem et 64rem.
    ========================================================= */
 
-@property --lueur-x { syntax: '<percentage>'; inherits: true; initial-value: 24%; }
-@property --lueur-y { syntax: '<percentage>'; inherits: true; initial-value: 18%; }
+@property --teinte        { syntax: '<color>'; inherits: true; initial-value: #C8402F; }
+@property --teinte-clair  { syntax: '<color>'; inherits: true; initial-value: #E8664F; }
+@property --teinte-fonce  { syntax: '<color>'; inherits: true; initial-value: #7E2018; }
 
 :root{
-  /* papier */
-  --papier:      oklch(96% 0.014 85);
-  --papier-2:    oklch(92.5% 0.028 82);
-  --kraft:       oklch(85% 0.052 78);
-  --kraft-fonce: oklch(76% 0.068 74);
+  --nuit:    #0A0B0D;
+  --nuit-2:  #0E1015;
+  --plaque:  #14171D;
+  --plaque-2:#1A1E25;
+  --trait:   #232830;
+  --trait-2: #333A45;
 
-  /* encre */
-  --encre:   oklch(26% 0.014 62);
-  --encre-2: oklch(47% 0.014 62);
-  --encre-3: oklch(62% 0.012 62);
-  --trait:   oklch(86% 0.022 76);
+  --craie:   #F1F3F6;
+  --craie-2: #9AA2AF;
+  --craie-3: #6E7683;
 
-  /* ruban de masquage */
-  --ruban:      oklch(56% 0.155 252);
-  --ruban-vif:  oklch(64% 0.148 250);
-  --ruban-pale: oklch(93% 0.038 250);
+  --wa: #25D366;
+  --vert: #45D48A;
 
-  --vert: oklch(56% 0.135 150);
-  --wa:   oklch(62% 0.165 148);
-
-  /* mesures : un seul bord gauche pour toute la page */
-  --bande-max: 64rem;
+  --bande-max: 66rem;
   --marge: 1.25rem;
-  --barre: 0px;
+  --barre: calc(3.4rem + env(safe-area-inset-bottom));
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --titre: "Chakra Petch", var(--sans);
+
+  /* la teinte du jour tourne : rouge, bleu, cuivre, turquoise */
+  animation: teintes 48s steps(1, end) infinite;
+}
+@keyframes teintes{
+  0%   { --teinte:#C8402F; --teinte-clair:#E8664F; --teinte-fonce:#7E2018 }
+  25%  { --teinte:#2E62C8; --teinte-clair:#5A8CE8; --teinte-fonce:#17357E }
+  50%  { --teinte:#C08A2E; --teinte-clair:#E5B356; --teinte-fonce:#7A5416 }
+  75%  { --teinte:#1E9E92; --teinte-clair:#48C7B8; --teinte-fonce:#0E5A53 }
+  100% { --teinte:#C8402F; --teinte-clair:#E8664F; --teinte-fonce:#7E2018 }
 }
 
 *{ box-sizing: border-box }
 
 html{
-  /* jamais sur body : ça en ferait un conteneur de défilement */
-  overflow-x: clip;
+  overflow-x: clip;              /* jamais sur body */
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -49,8 +54,8 @@ html{
 body{
   margin: 0;
   padding-bottom: var(--barre);
-  background: var(--papier);
-  color: var(--encre);
+  background: var(--nuit);
+  color: var(--craie);
   font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -59,551 +64,401 @@ body{
 
 p{ margin: 0 }
 img{ max-width: 100%; display: block }
+a{ color: var(--teinte-clair) }
+:focus-visible{ outline: 2px solid var(--teinte-clair); outline-offset: 3px; border-radius: 2px }
 
-a{ color: var(--ruban) }
-:focus-visible{ outline: 2px solid var(--ruban); outline-offset: 3px; border-radius: 2px }
-
-/* un seul bord gauche, sections pleine largeur comprises */
-.bande{
-  padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2);
-}
-
+.bande{ padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2) }
 section{ padding-block: 3rem }
 
-/* ---------- titres ---------- */
-.titre,
-.titre-sec{
-  font-weight: 800;
-  letter-spacing: -0.022em;
-  line-height: 1.02;
+.titre, .titre-sec{
+  font-family: var(--titre);
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.04;
   margin: 0;
   text-wrap: balance;
 }
-.titre{ font-size: clamp(2.05rem, 8.2vw, 3.9rem) }
-.titre-sec{ font-size: clamp(1.6rem, 5.6vw, 2.5rem); margin-top: .35rem }
-h3{ font-size: 1.08rem; font-weight: 700; margin: 0; letter-spacing: -.01em }
+.titre{ font-size: clamp(2rem, 7.6vw, 3.7rem) }
+.titre em{ font-style: normal; color: var(--teinte-clair) }
+.titre-sec{ font-size: clamp(1.55rem, 5.2vw, 2.4rem); margin-top: .35rem }
+h3{ font-family: var(--titre); font-size: 1.1rem; font-weight: 600; margin: 0 }
 
 .chapeau{
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--encre-3);
+  font-size: .68rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--craie-3);
 }
-.chapeau-sec{ color: var(--ruban) }
+.chapeau-sec{ color: var(--teinte-clair) }
 
-/* =========================================================
-   bandeau maquette — un morceau de ruban en haut de page
-   ========================================================= */
+/* ================= bandeau maquette ================= */
 .maquette{
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+  display: flex; align-items: center; gap: .5rem;
   padding: .5rem max(var(--marge), (100% - var(--bande-max)) / 2);
-  background: var(--ruban);
-  color: #fff;
-  font-size: .72rem;
-  line-height: 1.35;
+  background: var(--plaque-2);
+  border-bottom: 1px solid var(--trait);
+  color: var(--craie-2);
+  font-size: .72rem; line-height: 1.35;
 }
-.maquette strong{ font-weight: 700 }
-.maquette-puce{
-  width: 7px; height: 7px; border-radius: 50%;
-  background: #fff; flex: none; opacity: .9;
-}
-.maquette-txt{ color: oklch(94% 0.03 250) }
+.maquette strong{ color: var(--craie) }
+.maquette-puce{ width: 7px; height: 7px; border-radius: 50%; background: var(--teinte); flex: none }
 @media (max-width: 26rem){ .maquette-txt{ display: none } }
 
-/* =========================================================
-   en-tête
-   ========================================================= */
+/* ================= en-tête ================= */
 .entete{
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: color-mix(in oklab, var(--papier) 88%, transparent);
-  backdrop-filter: blur(10px);
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in oklab, var(--nuit) 86%, transparent);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--trait);
 }
-.entete-in{
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-height: 3.4rem;
-}
-.marque{
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-  text-decoration: none;
-  color: var(--encre);
-}
+.entete-in{ display: flex; align-items: center; gap: 1rem; min-height: 3.4rem }
+.marque{ display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--craie) }
 .marque-k{
-  width: 1.9rem; height: 1.9rem;
-  flex: none;
-  display: grid;
-  place-items: center;
-  background: var(--ruban);
-  color: #fff;
-  font-weight: 800;
-  font-size: 1.05rem;
-  border-radius: 3px;
-  transform: rotate(-6deg);
+  width: 1.95rem; height: 1.95rem; flex: none;
+  display: grid; place-items: center;
+  background: var(--teinte); color: #0A0B0D;
+  font-family: var(--titre); font-weight: 700; font-size: 1.05rem;
+  border-radius: 4px; transform: rotate(-6deg);
 }
-.marque-nom{ font-weight: 700; letter-spacing: -.015em; font-size: 1.02rem }
-.marque-nom em{ font-style: normal; color: var(--encre-2); font-weight: 600 }
+.marque-nom{ font-family: var(--titre); font-weight: 600; font-size: 1.02rem }
+.marque-nom em{ font-style: normal; color: var(--craie-2) }
 .tel-haut{
-  margin-left: auto;
-  font-weight: 700;
-  font-size: .92rem;
-  text-decoration: none;
-  color: var(--encre);
-  white-space: nowrap;
-  padding: .45rem .7rem;
-  border: 1px solid var(--trait);
-  border-radius: 999px;
+  margin-left: auto; font-weight: 600; font-size: .92rem;
+  text-decoration: none; color: var(--craie); white-space: nowrap;
+  padding: .45rem .75rem; border: 1px solid var(--trait-2); border-radius: 999px;
 }
-.tel-haut:hover{ border-color: var(--ruban); color: var(--ruban) }
+.tel-haut:hover{ border-color: var(--teinte); color: var(--teinte-clair) }
 
-/* =========================================================
-   héros
-   ========================================================= */
+/* ================= héros ================= */
 .heros{
-  position: relative;
-  padding-block: 2.25rem 2.5rem;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, var(--papier-2), var(--papier) 72%);
+  padding-block: 2.25rem 0;
+  background: linear-gradient(180deg, var(--nuit-2), var(--nuit) 60%);
   border-bottom: 1px solid var(--trait);
 }
-
-/* lumière chaude qui dérive : boucle fermée, jamais alternate */
-.lueur{
-  position: absolute;
-  inset: -30%;
-  pointer-events: none;
-  background:
-    radial-gradient(38% 34% at var(--lueur-x) var(--lueur-y),
-      oklch(88% 0.09 74 / .85), transparent 68%);
-  filter: blur(46px);
-  animation: derive 23s linear infinite;
-}
-/* la souris prend la main quand elle existe */
-html.souris .lueur{
-  animation: none;
-  --lueur-x: var(--mx, 24%);
-  --lueur-y: var(--my, 18%);
-  transition: --lueur-x .9s ease-out, --lueur-y .9s ease-out;
-}
-@keyframes derive{
-  0%   { --lueur-x: 22%; --lueur-y: 16% }
-  25%  { --lueur-x: 68%; --lueur-y: 30% }
-  50%  { --lueur-x: 54%; --lueur-y: 8%  }
-  75%  { --lueur-x: 16%; --lueur-y: 34% }
-  100% { --lueur-x: 22%; --lueur-y: 16% }
-}
-
-.heros-in{ position: relative; z-index: 1 }
-.chapeau + .titre{ margin-top: .9rem }
-
-/* le ruban se retire et découvre la ligne */
-.titre-l{ position: relative; display: block }
-.ruban{
-  position: absolute;
-  inset: .08em -.35rem .12em -.35rem;
-  background: var(--ruban);
-  border-radius: 2px;
-  transform-origin: 0 50%;
-  z-index: 2;
-}
-.ruban::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 40%, oklch(100% 0 0 / .28) 50%, transparent 60%);
-}
-.ruban-a{ animation: retire .62s cubic-bezier(.72,0,.24,1) .18s forwards }
-.ruban-b{ animation: retire .62s cubic-bezier(.72,0,.24,1) .34s forwards }
-@keyframes retire{ to{ transform: scaleX(0) } }
-
-.titre em{ font-style: normal; color: var(--ruban) }
-
-.intro{
-  margin-top: 1.05rem;
-  font-size: 1.06rem;
-  color: var(--encre-2);
-  max-width: 34rem;
-}
-
+.chapeau + .titre{ margin-top: .8rem }
+.intro{ margin-top: 1rem; font-size: 1.05rem; color: var(--craie-2); max-width: 36rem }
 .note-avis{
-  display: flex;
-  align-items: baseline;
-  gap: .45rem;
-  margin-top: 1.15rem;
-  font-size: .92rem;
-  color: var(--encre-2);
-  flex-wrap: wrap;
+  display: flex; align-items: baseline; gap: .45rem; flex-wrap: wrap;
+  margin-top: 1.1rem; font-size: .92rem; color: var(--craie-2);
 }
-.note-avis strong{ font-size: 1.15rem; color: var(--encre) }
-.etoiles{ color: var(--kraft-fonce); letter-spacing: .08em }
+.note-avis strong{ font-size: 1.15rem; color: var(--craie) }
+.etoiles{ color: var(--teinte-clair); letter-spacing: .08em }
 
-.fleche{ margin-top: 1.6rem }
-.fleche span{
-  display: block;
-  width: 1px; height: 2.1rem;
-  background: linear-gradient(180deg, var(--trait), transparent);
-  margin-left: .4rem;
+/* ================= la scène d'atelier ================= */
+.atelier-scene{ margin-top: 1.6rem }
+.scene{ width: 100%; height: auto; display: block }
+
+/* --- cadence commune : 12 s --- */
+.piece,
+.ponceuse, .poussiere, .pistolet,
+.laque, .brille, .bosse, .ruban, .boulon, .etape, .ombre{
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
-/* =========================================================
-   l'outil : décrire le dégât
-   ========================================================= */
-.chiffrage{ padding-top: 2rem }
+/* la pièce se soulève pendant la dépose, redescend à la repose */
+.piece{ animation-name: piece }
+@keyframes piece{
+  0%, 8%   { transform: translate(0,0) rotate(0deg) }
+  20%, 80% { transform: translate(0,-14px) rotate(-1.2deg) }
+  94%, 100%{ transform: translate(0,0) rotate(0deg) }
+}
+.ombre{ animation-name: ombre }
+@keyframes ombre{
+  0%, 8%   { opacity: .55 }
+  20%, 80% { opacity: .3 }
+  94%, 100%{ opacity: .55 }
+}
+
+/* la bosse disparaît sous le ponçage */
+.bosse{ animation-name: bosse }
+@keyframes bosse{
+  0%, 22%  { opacity: 1 }
+  36%      { opacity: 0 }
+  93%      { opacity: 0 }
+  100%     { opacity: 1 }
+}
+
+/* la laque arrive en vague, de gauche à droite */
+.laque{ animation-name: laque }
+@keyframes laque{
+  0%, 52%  { clip-path: inset(0 100% 0 0) }
+  70%, 96% { clip-path: inset(0 0 0 0) }
+  100%     { clip-path: inset(0 100% 0 0) }
+}
+/* le brillant passe une fois la laque posée */
+.brille{ animation-name: brille; opacity: 0 }
+@keyframes brille{
+  0%, 70%  { transform: translateX(0); opacity: 0 }
+  72%      { opacity: .9 }
+  84%      { transform: translateX(620px); opacity: .9 }
+  86%, 100%{ transform: translateX(620px); opacity: 0 }
+}
+
+/* les rubans de masquage */
+.ruban{ fill: #2E6FD0; animation-name: ruban; opacity: 0 }
+.ruban-b{ animation-delay: .25s }
+@keyframes ruban{
+  0%, 38%  { opacity: 0; transform: translateX(-140px) }
+  46%, 84% { opacity: .95; transform: translateX(0) }
+  90%, 100%{ opacity: 0; transform: translateX(160px) }
+}
+
+/* les boulons se dévissent puis se revissent */
+.boulon{ transform-box: fill-box; transform-origin: center; animation-name: boulon }
+.b2{ animation-delay: .12s } .b3{ animation-delay: .24s } .b4{ animation-delay: .36s }
+@keyframes boulon{
+  0%, 6%   { opacity: 1; transform: rotate(0deg) scale(1) }
+  16%      { opacity: 0; transform: rotate(-220deg) scale(.7) }
+  86%      { opacity: 0; transform: rotate(-220deg) scale(.7) }
+  96%, 100%{ opacity: 1; transform: rotate(0deg) scale(1) }
+}
+
+/* la ponceuse traverse la pièce */
+.ponceuse{ animation-name: ponceuse; opacity: 0 }
+@keyframes ponceuse{
+  0%, 21%  { transform: translate(250px, 400px); opacity: 0 }
+  24%      { opacity: 1 }
+  33%      { transform: translate(640px, 360px); opacity: 1 }
+  37%, 100%{ transform: translate(640px, 360px); opacity: 0 }
+}
+.poussiere{ fill: #8B94A2; animation-name: poussiere; opacity: 0 }
+@keyframes poussiere{
+  0%, 22%  { transform: translate(280px, 400px); opacity: 0 }
+  26%      { opacity: .85 }
+  34%      { transform: translate(560px, 320px); opacity: .5 }
+  37%, 100%{ transform: translate(600px, 290px); opacity: 0 }
+}
+
+/* le pistolet passe et pulvérise */
+.pistolet{ animation-name: pistolet; opacity: 0 }
+@keyframes pistolet{
+  0%, 50%  { transform: translate(790px, 300px); opacity: 0 }
+  54%      { opacity: 1 }
+  56%      { transform: translate(770px, 230px) }
+  68%      { transform: translate(770px, 420px); opacity: 1 }
+  72%, 100%{ transform: translate(770px, 420px); opacity: 0 }
+}
+.jet{ animation: jet 1.1s ease-in-out infinite; opacity: .8 }
+@keyframes jet{ 0%,100%{ opacity: .45 } 50%{ opacity: .9 } }
+
+/* étincelles de finition */
+.etincelles{ fill: #FFF4D8 }
+.etin{ transform-box: fill-box; transform-origin: center; animation: etin 12s ease-in-out infinite; opacity: 0 }
+.e1{ transform: translate(300px, 250px) }
+.e2{ transform: translate(520px, 420px); animation-delay: .5s }
+.e3{ transform: translate(430px, 200px); animation-delay: .9s }
+@keyframes etin{
+  0%, 74%  { opacity: 0 }
+  78%      { opacity: 1 }
+  84%, 100%{ opacity: 0 }
+}
+
+/* le nom de l'étape */
+.etape{
+  font-family: var(--titre); font-weight: 700; font-size: 26px;
+  letter-spacing: .28em; text-anchor: middle;
+  fill: var(--craie-3); opacity: 0;
+}
+.t1{ animation-name: e1n } .t2{ animation-name: e2n } .t3{ animation-name: e3n }
+.t4{ animation-name: e4n } .t5{ animation-name: e5n }
+@keyframes e1n{ 0%,6%{opacity:0} 10%,17%{opacity:1} 21%,100%{opacity:0} }
+@keyframes e2n{ 0%,21%{opacity:0} 25%,33%{opacity:1} 37%,100%{opacity:0} }
+@keyframes e3n{ 0%,38%{opacity:0} 42%,47%{opacity:1} 50%,100%{opacity:0} }
+@keyframes e4n{ 0%,51%{opacity:0} 55%,69%{opacity:1} 73%,100%{opacity:0} }
+@keyframes e5n{ 0%,84%{opacity:0} 88%,95%{opacity:1} 99%,100%{opacity:0} }
+
+.lampe{ animation: lampe 9s ease-in-out infinite }
+@keyframes lampe{ 0%,100%{ opacity: .75 } 50%{ opacity: 1 } }
+
+/* ================= l'outil ================= */
+.chiffrage{ padding-top: 2.5rem }
 .carte-outil{
-  background: var(--papier);
+  background: linear-gradient(170deg, var(--plaque), var(--nuit-2));
   border: 1px solid var(--trait);
-  border-radius: 14px;
-  padding: 1.25rem 1.1rem 1.35rem;
-  box-shadow: 0 1px 0 var(--papier-2), 0 14px 34px -26px oklch(30% 0.03 70 / .55);
+  border-radius: 16px;
+  padding: 1.3rem 1.1rem 1.4rem;
   position: relative;
 }
-/* petit morceau de ruban qui tient la carte */
 .carte-outil::before{
-  content: "";
-  position: absolute;
-  top: -.7rem; left: 1.4rem;
-  width: 5.2rem; height: 1.4rem;
-  background: color-mix(in oklab, var(--ruban) 82%, white);
-  transform: rotate(-3.5deg);
-  border-radius: 2px;
-  opacity: .95;
+  content: ""; position: absolute; top: -.7rem; left: 1.4rem;
+  width: 5.2rem; height: 1.4rem; background: #2E6FD0;
+  transform: rotate(-3.5deg); border-radius: 2px; opacity: .9;
 }
 .outil-titre{
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -.015em;
-  margin-bottom: 1.1rem;
-  padding-top: .4rem;
+  font-family: var(--titre); font-weight: 700; font-size: 1.2rem;
+  margin-bottom: 1.1rem; padding-top: .4rem;
 }
-
 .groupe{ border: 0; padding: 0; margin: 0 0 1.15rem }
 .groupe legend{
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--encre-2);
-  margin-bottom: .6rem;
-  padding: 0;
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .74rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--craie-2); margin-bottom: .6rem; padding: 0;
 }
 .groupe .no{
-  width: 1.35rem; height: 1.35rem;
-  display: grid; place-items: center;
-  background: var(--ruban-pale);
-  color: var(--ruban);
-  border-radius: 50%;
-  font-size: .72rem;
-  flex: none;
+  width: 1.35rem; height: 1.35rem; display: grid; place-items: center;
+  background: color-mix(in oklab, var(--teinte) 25%, transparent);
+  color: var(--teinte-clair); border-radius: 50%; font-size: .72rem; flex: none;
 }
-
 .puces{ display: flex; flex-wrap: wrap; gap: .45rem }
 .puce{
-  font-family: inherit;
-  font-size: .92rem;
-  font-weight: 600;
-  color: var(--encre);
-  background: var(--papier-2);
-  border: 1px solid var(--trait);
-  border-radius: 999px;
-  padding: .62rem .9rem;
-  min-height: 2.75rem;          /* confortable au pouce */
-  cursor: pointer;
+  font-family: inherit; font-size: .92rem; font-weight: 600;
+  color: var(--craie); background: var(--plaque-2);
+  border: 1px solid var(--trait-2); border-radius: 999px;
+  padding: .62rem .9rem; min-height: 2.75rem; cursor: pointer;
   transition: background .18s ease, border-color .18s ease, color .18s ease, transform .12s ease;
 }
-.puce:hover{ border-color: var(--kraft-fonce) }
+.puce:hover{ border-color: var(--teinte) }
 .puce:active{ transform: scale(.97) }
-.puce[aria-pressed="true"]{
-  background: var(--ruban);
-  border-color: var(--ruban);
-  color: #fff;
-}
+.puce[aria-pressed="true"]{ background: var(--teinte); border-color: var(--teinte); color: #0A0B0D }
 
 .fiche{
-  margin-top: 1.2rem;
-  background: var(--papier-2);
-  border: 1px dashed var(--kraft-fonce);
-  border-radius: 10px;
-  padding: .85rem .9rem;
+  margin-top: 1.2rem; background: var(--nuit);
+  border: 1px dashed var(--trait-2); border-radius: 10px; padding: .85rem .9rem;
 }
 .fiche-tag{
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--encre-3);
-  margin-bottom: .35rem;
+  font-size: .66rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--craie-3); margin-bottom: .35rem;
 }
-.fiche-txt{
-  font-size: .95rem;
-  line-height: 1.55;
-  color: var(--encre);
-  white-space: pre-line;
-}
+.fiche-txt{ font-size: .95rem; line-height: 1.55; color: var(--craie); white-space: pre-line }
 
 .bouton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  width: 100%;
-  margin-top: .9rem;
-  min-height: 3.25rem;
-  padding: .9rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 999px;
-  border: 0;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  width: 100%; margin-top: .9rem; min-height: 3.25rem; padding: .9rem 1.2rem;
+  font-size: 1rem; font-weight: 700; text-decoration: none;
+  border-radius: 999px; border: 0;
   transition: filter .2s ease, transform .12s ease;
 }
 .bouton:active{ transform: scale(.985) }
 .bouton svg{ width: 1.15rem; height: 1.15rem; flex: none }
-.bouton-wa{ background: var(--wa); color: #fff }
-.bouton-wa:hover{ filter: brightness(1.06) }
+.bouton-wa{ background: var(--wa); color: #06301A }
+.bouton-wa:hover{ filter: brightness(1.08) }
+.note-outil{ margin-top: .7rem; font-size: .8rem; line-height: 1.5; color: var(--craie-3) }
 
-.note-outil{
-  margin-top: .7rem;
-  font-size: .8rem;
-  line-height: 1.5;
-  color: var(--encre-3);
-}
-
-/* =========================================================
-   prestations
-   ========================================================= */
-.travaux{ background: var(--papier-2); border-block: 1px solid var(--trait) }
+/* ================= prestations ================= */
+.travaux{ background: var(--nuit-2); border-block: 1px solid var(--trait) }
 .liste{ list-style: none; margin: 1.6rem 0 0; padding: 0 }
 .liste li{
-  display: grid;
-  grid-template-columns: 2.4rem 1fr;
-  gap: .9rem;
-  padding: 1.05rem 0;
-  border-top: 1px solid var(--trait);
+  display: grid; grid-template-columns: 2.4rem 1fr; gap: .9rem;
+  padding: 1.05rem 0; border-top: 1px solid var(--trait);
 }
 .liste li:last-child{ border-bottom: 1px solid var(--trait) }
-.liste .no{
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--ruban);
-  padding-top: .15rem;
-}
-.liste p{ margin-top: .25rem; font-size: .94rem; color: var(--encre-2) }
+.liste .no{ font-family: var(--titre); font-size: .82rem; font-weight: 700; color: var(--teinte-clair); padding-top: .2rem }
+.liste p{ margin-top: .25rem; font-size: .94rem; color: var(--craie-2) }
 
-/* =========================================================
-   avis
-   ========================================================= */
+/* ================= avis ================= */
 .note-bloc{
-  display: flex;
-  align-items: baseline;
-  gap: .7rem;
-  flex-wrap: wrap;
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid var(--trait);
+  display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap;
+  padding-bottom: 1.2rem; border-bottom: 1px solid var(--trait);
 }
-.note-chiffre strong{ font-size: 3rem; font-weight: 800; letter-spacing: -.03em; line-height: 1 }
-.note-chiffre span{ color: var(--encre-3); font-weight: 600 }
-.etoiles-g{ font-size: 1.05rem; color: var(--kraft-fonce) }
+.note-chiffre strong{ font-family: var(--titre); font-size: 3rem; font-weight: 700; line-height: 1 }
+.note-chiffre span{ color: var(--craie-3) }
+.etoiles-g{ font-size: 1.05rem; color: var(--teinte-clair) }
 .note-src{ font-size: .86rem; margin-left: auto }
-.note-src a{ color: var(--encre-2) }
-
+.note-src a{ color: var(--craie-2) }
 .citations{ display: grid; gap: 1.3rem; margin-top: 1.4rem }
-.citations blockquote{ margin: 0; padding-left: 1rem; border-left: 3px solid var(--ruban-pale) }
+.citations blockquote{ margin: 0; padding-left: 1rem; border-left: 3px solid var(--trait-2) }
 .citations p{ font-size: 1.05rem; line-height: 1.45 }
-.citations p::before{ content: "« " }
-.citations p::after{ content: " »" }
-.citations cite{
-  display: block;
-  margin-top: .45rem;
-  font-style: normal;
-  font-size: .78rem;
-  color: var(--encre-3);
-}
+.citations p::before{ content: "« " } .citations p::after{ content: " »" }
+.citations cite{ display: block; margin-top: .45rem; font-style: normal; font-size: .78rem; color: var(--craie-3) }
 
-/* =========================================================
-   atelier
-   ========================================================= */
-.atelier{ background: var(--papier-2); border-block: 1px solid var(--trait) }
-.vues{ display: grid; gap: 1rem; margin-top: 1.5rem }
-.vue{
-  margin: 0;
-  background: var(--papier);
-  border: 1px solid var(--trait);
-  border-radius: 12px;
-  overflow: hidden;
-}
-.vue img{
-  width: 100%;
-  height: auto;
-  clip-path: inset(0 0 12% 0);
-  transition: clip-path 1s cubic-bezier(.2,.75,.2,1);
-}
-.vue.vu img{ clip-path: inset(0 0 0 0) }
-.vue figcaption{
-  padding: .8rem .9rem;
-  font-size: .84rem;
-  line-height: 1.5;
-  color: var(--encre-2);
-  border-top: 1px solid var(--trait);
-}
-.vue figcaption strong{ color: var(--encre) }
-
-/* =========================================================
-   infos
-   ========================================================= */
+/* ================= infos ================= */
 .etat{
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  margin-top: .9rem;
-  padding: .35rem .7rem;
-  border: 1px solid var(--trait);
-  border-radius: 999px;
-  font-size: .78rem;
-  font-weight: 600;
-  color: var(--encre-2);
+  display: inline-flex; align-items: center; gap: .45rem; margin-top: .9rem;
+  padding: .35rem .7rem; border: 1px solid var(--trait-2); border-radius: 999px;
+  font-size: .78rem; font-weight: 600; color: var(--craie-2);
 }
-.etat i{ width: 7px; height: 7px; border-radius: 50%; background: var(--encre-3); flex: none }
+.etat i{ width: 7px; height: 7px; border-radius: 50%; background: var(--craie-3); flex: none }
 .etat.ouvert{ border-color: color-mix(in oklab, var(--vert) 45%, var(--trait)); color: var(--vert) }
 .etat.ouvert i{ background: var(--vert) }
-
 .heures{ width: 100%; border-collapse: collapse; margin-top: 1rem }
-.heures th,
-.heures td{ padding: .6rem 0; border-bottom: 1px solid var(--trait); font-size: .94rem; font-weight: 400 }
+.heures th, .heures td{ padding: .6rem 0; border-bottom: 1px solid var(--trait); font-size: .94rem; font-weight: 400 }
 .heures th{ text-align: left }
-.heures td{ text-align: right; color: var(--encre-2); font-variant-numeric: tabular-nums }
-.heures tr.jour th,
-.heures tr.jour td{ color: var(--ruban); font-weight: 700 }
-
+.heures td{ text-align: right; color: var(--craie-2); font-variant-numeric: tabular-nums }
+.heures tr.jour th, .heures tr.jour td{ color: var(--teinte-clair); font-weight: 700 }
 .coord{ list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 1rem }
-.cle{
-  display: block;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--encre-3);
-  margin-bottom: .1rem;
-}
-.coord a{ font-size: 1.02rem; font-weight: 600; text-decoration: none; color: var(--encre) }
-.coord a:hover{ color: var(--ruban) }
+.cle{ display: block; font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--craie-3); margin-bottom: .1rem }
+.coord a{ font-family: var(--titre); font-size: 1.05rem; font-weight: 600; text-decoration: none; color: var(--craie) }
+.coord a:hover{ color: var(--teinte-clair) }
 
-/* =========================================================
-   pied
-   ========================================================= */
-.pied{
-  background: var(--kraft);
-  border-top: 1px solid var(--kraft-fonce);
-  padding-block: 1.8rem;
-  font-size: .8rem;
-  line-height: 1.6;
-  color: oklch(38% 0.03 70);
-}
-.pied strong{ color: oklch(28% 0.03 70) }
+/* ================= photos ================= */
+.atelier-vues{ background: var(--nuit-2); border-top: 1px solid var(--trait) }
+.vues{ display: grid; gap: 1rem; margin-top: 1.5rem }
+.vue{ margin: 0; background: var(--plaque); border: 1px solid var(--trait); border-radius: 12px; overflow: hidden }
+.vue img{ width: 100%; height: auto; clip-path: inset(0 0 12% 0); transition: clip-path 1s cubic-bezier(.2,.75,.2,1) }
+.vue.vu img{ clip-path: inset(0 0 0 0) }
+.vue figcaption{ padding: .8rem .9rem; font-size: .84rem; line-height: 1.5; color: var(--craie-2); border-top: 1px solid var(--trait) }
+.vue figcaption strong{ color: var(--craie) }
+
+/* ================= pied ================= */
+.pied{ background: var(--nuit); border-top: 1px solid var(--trait); padding-block: 1.8rem; font-size: .8rem; line-height: 1.6; color: var(--craie-3) }
+.pied strong{ color: var(--craie-2) }
 .pied-note{ margin-top: .8rem; max-width: 46rem }
 
-/* =========================================================
-   barre du bas — pouce
-   ========================================================= */
+/* ================= barre du bas ================= */
 .barre-bas{
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 50;
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  background: var(--papier);
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: grid; grid-template-columns: 1fr 1.25fr;
+  background: color-mix(in oklab, var(--nuit) 92%, transparent);
+  backdrop-filter: blur(12px);
   border-top: 1px solid var(--trait);
   padding-bottom: env(safe-area-inset-bottom);
 }
 .barre-bas a{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .45rem;
-  min-height: 3.4rem;
-  font-size: .95rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--encre);
+  display: flex; align-items: center; justify-content: center; gap: .45rem;
+  min-height: 3.4rem; font-size: .95rem; font-weight: 700;
+  text-decoration: none; color: var(--craie);
 }
 .barre-bas svg{ width: 1.05rem; height: 1.05rem; flex: none }
-.barre-bas .bas-wa{ background: var(--wa); color: #fff }
-:root{ --barre: calc(3.4rem + env(safe-area-inset-bottom)) }
+.barre-bas .bas-wa{ background: var(--wa); color: #06301A }
 
-/* =========================================================
-   apparitions — seulement si JS répond
-   ========================================================= */
+/* ================= apparitions ================= */
 .js .app{ opacity: 0; transform: translateY(14px) }
 .js .app.vu{
-  opacity: 1;
-  transform: none;
+  opacity: 1; transform: none;
   transition: opacity .7s cubic-bezier(.2,.75,.2,1), transform .7s cubic-bezier(.2,.75,.2,1);
 }
 
-/* =========================================================
-   palier 1 — tablette (48rem)
-   ========================================================= */
+/* ================= palier 1 : 48rem ================= */
 @media (min-width: 48rem){
   :root{ --marge: 2rem; --barre: 0px }
   body{ font-size: 1.09rem }
   section{ padding-block: 4.5rem }
-
-  .heros{ padding-block: 3.5rem 4rem }
+  .heros{ padding-block: 3.25rem 0 }
   .intro{ font-size: 1.14rem }
-
   .barre-bas{ display: none }
-
-  .carte-outil{ padding: 1.75rem 1.6rem 1.9rem }
-  .puce{ font-size: .95rem }
-
+  .atelier-scene{ margin-top: 2rem }
+  .carte-outil{ padding: 1.8rem 1.6rem 1.9rem }
   .liste li{ grid-template-columns: 3rem 1fr 1.1fr; gap: 1.5rem; align-items: baseline }
   .liste li p{ grid-column: 3; margin-top: 0 }
-
   .vues{ grid-template-columns: 1.35fr .65fr; gap: 1.2rem }
-  .vue-a img{ aspect-ratio: 4 / 3; object-fit: cover }
-  .vue-b img{ aspect-ratio: 3 / 4; object-fit: cover }
   .vue{ display: flex; flex-direction: column }
-  .vue img{ flex: 1; min-height: 0 }
-
+  .vue img{ flex: 1; min-height: 0; object-fit: cover }
+  .vue-a img{ aspect-ratio: 4 / 3 } .vue-b img{ aspect-ratio: 3 / 4 }
   .citations{ grid-template-columns: 1fr 1fr; gap: 1.8rem }
   .infos-in{ display: grid; grid-template-columns: 1fr 1fr; gap: 3rem }
 }
 
-/* =========================================================
-   palier 2 — ordinateur (64rem)
-   ========================================================= */
+/* ================= palier 2 : 64rem ================= */
 @media (min-width: 64rem){
   section{ padding-block: 5.5rem }
-  .heros{ padding-block: 4.5rem 5rem }
-  .heros-in{ max-width: 46rem }
+  .heros{ padding-block: 4rem 0 }
+  .heros-in{ max-width: 34rem }
+  .atelier-scene{ margin-top: -4rem }
   .intro{ font-size: 1.2rem }
-
   .chiffrage{ padding-top: 3.5rem }
   .carte-outil{ padding: 2.1rem 2rem 2.2rem }
   .bouton{ width: auto; min-width: 22rem }
-
   .liste li{ grid-template-columns: 3.5rem 1fr 1.2fr }
 }
 
-/* =========================================================
-   mouvement réduit
-   ========================================================= */
+/* ================= mouvement réduit ================= */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto }
   *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important }
-  .ruban{ display: none }
-  .lueur{ opacity: .5 }
+  .laque{ clip-path: inset(0 0 0 0) }
+  .bosse, .ponceuse, .poussiere, .pistolet, .etincelles, .brille{ opacity: 0 }
+  .ruban{ opacity: .95 }
+  .t4{ opacity: 1 }
   .vue img{ clip-path: none }
   .js .app{ opacity: 1; transform: none }
 }

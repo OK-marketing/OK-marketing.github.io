@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr" class="p-01">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#f6f1e7">
+<meta name="theme-color" content="#0a0b0d">
 <title>Garage k Montreuil — Carrosserie et peinture à Montreuil</title>
 <meta name="description" content="Carrosserie, peinture et mécanique à Montreuil. Décrivez le dégât en deux touches, le message part sur WhatsApp déjà rédigé. Ouvert du lundi au samedi, 8 h – 19 h.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Garage k Montreuil">
-<meta property="og:title" content="Garage k Montreuil — Montrez le dégât, on vous répond">
+<meta property="og:title" content="Garage k Montreuil — La pièce repart comme neuve">
 <meta property="og:description" content="Carrosserie et peinture à Montreuil. 5,0 sur 42 avis Google.">
 <meta property="og:url" content="https://ok-marketing.github.io/garage-k-montreuil/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23f6f1e7%22/><rect x=%2214%22 y=%2238%22 width=%2272%22 height=%2224%22 rx=%223%22 fill=%22%232f6fd0%22 transform=%22rotate(-8 50 50)%22/></svg>">
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a0b0d%22/><rect x=%2222%22 y=%2228%22 width=%2256%22 height=%2244%22 rx=%228%22 fill=%22none%22 stroke=%22%23e8503a%22 stroke-width=%229%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=2">
 <script>
   document.documentElement.classList.add('js');
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -43,41 +46,161 @@
 
 <main id="haut">
 
-  <!-- ============ héros ============ -->
+  <!-- ================= héros : l'atelier au travail ================= -->
   <section class="heros">
-    <div class="lueur" aria-hidden="true"></div>
     <div class="bande heros-in">
 
       <p class="chapeau">Carrosserie &amp; peinture — Montreuil (93)</p>
 
-      <h1 class="titre">
-        <span class="titre-l">
-          <span class="ruban ruban-a" aria-hidden="true"></span>
-          Montrez le dégât.
-        </span>
-        <span class="titre-l">
-          <span class="ruban ruban-b" aria-hidden="true"></span>
-          <em>On vous répond.</em>
-        </span>
-      </h1>
+      <h1 class="titre">La pièce repart <em>comme neuve</em>.</h1>
 
-      <p class="intro">Un choc de parking, une aile froissée, un pare-chocs fendu. Décrivez-le en deux touches&nbsp;: le message part sur WhatsApp déjà rédigé, avec ce qu'il faut pour vous répondre du premier coup.</p>
+      <p class="intro">Déposée, redressée, poncée, masquée, repeinte au code exact de votre voiture, puis remontée. Le raccord ne doit pas se voir&nbsp;— c'est tout le métier.</p>
 
       <p class="note-avis">
         <span class="etoiles" aria-hidden="true">★★★★★</span>
         <strong>5,0</strong>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=Garage+k+Montreuil%2C+274+Bd+Th%C3%A9ophile+Sueur%2C+93100+Montreuil" target="_blank" rel="noopener">sur 42 avis Google</a>
       </p>
+    </div>
 
-      <p class="fleche" aria-hidden="true"><span></span></p>
+    <!-- l'atelier : dépose, ponçage, masquage, peinture, repose -->
+    <div class="atelier-scene">
+      <svg class="scene" viewBox="0 0 900 620" role="img"
+           aria-label="Une portière de voiture est déposée, poncée, masquée, repeinte puis remontée, en boucle">
+        <defs>
+          <linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#252A33"/>
+            <stop offset="55%" stop-color="#1A1E25"/>
+            <stop offset="100%" stop-color="#12151B"/>
+          </linearGradient>
+          <linearGradient id="gLaque" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--teinte-clair)"/>
+            <stop offset="52%" stop-color="var(--teinte)"/>
+            <stop offset="100%" stop-color="var(--teinte-fonce)"/>
+          </linearGradient>
+          <linearGradient id="gBrille" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="45%" stop-color="#fff" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="gJet" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="var(--teinte)" stop-opacity=".75"/>
+            <stop offset="100%" stop-color="var(--teinte)" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="gLampe" cx="50%" cy="0%" r="70%">
+            <stop offset="0%" stop-color="#CFE0FF" stop-opacity=".16"/>
+            <stop offset="100%" stop-color="#CFE0FF" stop-opacity="0"/>
+          </radialGradient>
+
+          <clipPath id="capPanneau">
+            <rect x="200" y="140" width="500" height="360" rx="26"/>
+          </clipPath>
+        </defs>
+
+        <!-- fond d'atelier -->
+        <rect width="900" height="620" fill="#0A0B0D"/>
+        <g stroke="#14171D" stroke-width="1.4">
+          <line x1="0" y1="150" x2="900" y2="150"/><line x1="0" y1="300" x2="900" y2="300"/>
+          <line x1="0" y1="450" x2="900" y2="450"/>
+          <line x1="150" y1="0" x2="150" y2="620"/><line x1="450" y1="0" x2="450" y2="620"/>
+          <line x1="750" y1="0" x2="750" y2="620"/>
+        </g>
+        <rect width="900" height="300" fill="url(#gLampe)" class="lampe"/>
+        <line x1="60" y1="556" x2="840" y2="556" stroke="#1B1F27" stroke-width="2"/>
+        <ellipse class="ombre" cx="450" cy="556" rx="250" ry="14" fill="#000" opacity=".55"/>
+
+        <!-- établi -->
+        <g stroke="#1E232B" stroke-width="3" fill="none">
+          <path d="M120 556 L120 600M780 556 L780 600"/>
+        </g>
+
+        <!-- ================= la pièce ================= -->
+        <g class="piece">
+
+          <!-- tôle nue -->
+          <rect class="tole" x="200" y="140" width="500" height="360" rx="26"
+                fill="url(#gMetal)" stroke="#39404C" stroke-width="2"/>
+
+          <!-- laque : la couleur arrive en vague -->
+          <g clip-path="url(#capPanneau)">
+            <rect class="laque" x="200" y="140" width="500" height="360" rx="26" fill="url(#gLaque)"/>
+            <rect class="brille" x="120" y="120" width="120" height="400" fill="url(#gBrille)"/>
+          </g>
+
+          <!-- bosse, effacée par le ponçage -->
+          <g class="bosse" clip-path="url(#capPanneau)">
+            <ellipse cx="360" cy="400" rx="96" ry="58" fill="#0C0E12" opacity=".92"/>
+            <ellipse cx="360" cy="400" rx="62" ry="35" fill="#07080A"/>
+            <g stroke="#050608" stroke-width="3" stroke-linecap="round" opacity=".9">
+              <path d="M360 400 268 366M360 400 292 442M360 400 372 340M360 400 450 380M360 400 434 434"/>
+            </g>
+            <path d="M330 386l26-9 14 14-22 12z" fill="#7E8794" opacity=".8"/>
+          </g>
+
+          <!-- vitre, pli, poignée -->
+          <rect class="vitre" x="240" y="175" width="420" height="122" rx="16" fill="#08090C" stroke="#333A45" stroke-width="2"/>
+          <path class="pli" d="M222 372 L678 356" stroke="#4A5261" stroke-width="2.5" fill="none" opacity=".75"/>
+          <rect class="poignee" x="548" y="326" width="94" height="24" rx="12" fill="#2B313B" stroke="#454D5A" stroke-width="1.6"/>
+
+          <!-- rubans de masquage -->
+          <g class="rubans">
+            <rect class="ruban ruban-h" x="196" y="150" width="508" height="22" rx="3"/>
+            <rect class="ruban ruban-b" x="196" y="470" width="508" height="22" rx="3"/>
+          </g>
+
+          <!-- boulons -->
+          <g class="boulons" fill="#39404C" stroke="#565F6E" stroke-width="2">
+            <g class="boulon b1"><circle cx="228" cy="172" r="11"/><path d="M221 172h14M228 165v14" stroke="#0A0B0D" stroke-width="3"/></g>
+            <g class="boulon b2"><circle cx="672" cy="172" r="11"/><path d="M665 172h14M672 165v14" stroke="#0A0B0D" stroke-width="3"/></g>
+            <g class="boulon b3"><circle cx="228" cy="468" r="11"/><path d="M221 468h14M228 461v14" stroke="#0A0B0D" stroke-width="3"/></g>
+            <g class="boulon b4"><circle cx="672" cy="468" r="11"/><path d="M665 468h14M672 461v14" stroke="#0A0B0D" stroke-width="3"/></g>
+          </g>
+        </g>
+
+        <!-- ================= outils ================= -->
+
+        <!-- ponceuse -->
+        <g class="ponceuse">
+          <rect x="-70" y="-34" width="140" height="58" rx="12" fill="#20252E" stroke="#4B5462" stroke-width="2"/>
+          <rect x="-58" y="18" width="116" height="12" rx="5" fill="#3B434F"/>
+          <rect x="-26" y="-52" width="52" height="22" rx="8" fill="#2A313B" stroke="#4B5462" stroke-width="1.6"/>
+        </g>
+        <g class="poussiere">
+          <circle cx="0" cy="0" r="3.4"/><circle cx="16" cy="-12" r="2.6"/><circle cx="-14" cy="-8" r="2.2"/>
+          <circle cx="8" cy="-24" r="3"/><circle cx="-22" cy="-20" r="2.4"/><circle cx="26" cy="-4" r="2"/>
+        </g>
+
+        <!-- pistolet -->
+        <g class="pistolet">
+          <path d="M0 0 L54 -14 L54 22 L0 12 Z" fill="#242A34" stroke="#525B69" stroke-width="2"/>
+          <rect x="12" y="12" width="20" height="46" rx="6" fill="#2C333E" stroke="#525B69" stroke-width="1.8"/>
+          <circle cx="26" cy="-24" r="16" fill="#20262F" stroke="#525B69" stroke-width="2"/>
+          <path class="jet" d="M-6 4 L-150 -34 L-150 46 Z" fill="url(#gJet)"/>
+        </g>
+
+        <!-- étincelles -->
+        <g class="etincelles">
+          <path class="etin e1" d="M0 -12 L3.4 -3.4 L12 0 L3.4 3.4 L0 12 L-3.4 3.4 L-12 0 L-3.4 -3.4 Z"/>
+          <path class="etin e2" d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z"/>
+          <path class="etin e3" d="M0 -7 L2 -2 L7 0 L2 2 L0 7 L-2 2 L-7 0 L-2 -2 Z"/>
+        </g>
+
+        <!-- étape en cours -->
+        <g class="etapes">
+          <text class="etape t1" x="450" y="590">DÉPOSE</text>
+          <text class="etape t2" x="450" y="590">PONÇAGE</text>
+          <text class="etape t3" x="450" y="590">MASQUAGE</text>
+          <text class="etape t4" x="450" y="590">PEINTURE</text>
+          <text class="etape t5" x="450" y="590">REPOSE</text>
+        </g>
+      </svg>
     </div>
   </section>
 
-  <!-- ============ le chiffrage : l'outil ============ -->
+  <!-- ================= l'outil ================= -->
   <section class="chiffrage" id="chiffrer">
     <div class="bande">
       <div class="carte-outil">
-
         <p class="outil-titre">Décrivez le dégât</p>
 
         <fieldset class="groupe">
@@ -121,7 +244,7 @@
     </div>
   </section>
 
-  <!-- ============ prestations ============ -->
+  <!-- ================= prestations ================= -->
   <section class="travaux" id="travaux">
     <div class="bande">
       <p class="chapeau chapeau-sec app">Ce qu'on répare</p>
@@ -129,7 +252,7 @@
 
       <ol class="liste">
         <li class="app"><span class="no">01</span><div><h3>Tôlerie</h3><p>Ailes, portières, custodes et panneaux froissés. Redressés quand la tôle le permet, remplacés sinon.</p></div></li>
-        <li class="app"><span class="no">02</span><div><h3>Peinture</h3><p>Teinte préparée au code du véhicule, application en cabine, vernis et polissage. Le raccord doit disparaître.</p></div></li>
+        <li class="app"><span class="no">02</span><div><h3>Peinture</h3><p>Teinte préparée au code du véhicule, application en cabine, vernis et polissage.</p></div></li>
         <li class="app"><span class="no">03</span><div><h3>Pare-chocs</h3><p>Réparation des plastiques plutôt que remplacement systématique quand la structure est saine.</p></div></li>
         <li class="app"><span class="no">04</span><div><h3>Optiques et vitrage</h3><p>Feux, rétroviseurs, vitres, et réglage des jeux de carrosserie après remontage.</p></div></li>
         <li class="app"><span class="no">05</span><div><h3>Mécanique courante</h3><p>Vidange, freinage, amortisseurs, courroies — au même endroit que la carrosserie.</p></div></li>
@@ -138,7 +261,7 @@
     </div>
   </section>
 
-  <!-- ============ avis ============ -->
+  <!-- ================= avis ================= -->
   <section class="avis" id="avis">
     <div class="bande">
       <div class="note-bloc app">
@@ -162,28 +285,7 @@
     </div>
   </section>
 
-  <!-- ============ atelier ============ -->
-  <section class="atelier" id="atelier">
-    <div class="bande">
-      <p class="chapeau chapeau-sec app">L'atelier</p>
-      <h2 class="titre-sec app">Deux photos, prises sur place</h2>
-
-      <div class="vues">
-        <figure class="vue vue-a app">
-          <img src="photos/cabine.jpg" width="1400" height="1050" loading="lazy" decoding="async"
-               alt="Voiture masquée de film bleu et de papier dans la cabine de peinture, pare-chocs avant fraîchement peint">
-          <figcaption><strong>En cabine.</strong> Tout ce qui ne doit pas recevoir de peinture est masqué — c'est ce ruban bleu qui a donné son allure à cette page.</figcaption>
-        </figure>
-        <figure class="vue vue-b app">
-          <img src="photos/rendu.jpg" width="1040" height="1387" loading="lazy" decoding="async"
-               alt="Berline grise lavée, garée devant l'entrée de l'atelier, prête à être rendue">
-          <figcaption><strong>Prête à rendre.</strong> Lavée avant restitution.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ infos ============ -->
+  <!-- ================= infos ================= -->
   <section class="infos" id="infos">
     <div class="bande infos-in">
       <div class="app">
@@ -218,6 +320,26 @@
     </div>
   </section>
 
+  <!-- ================= photos, tout en bas ================= -->
+  <section class="atelier-vues" id="atelier">
+    <div class="bande">
+      <p class="chapeau chapeau-sec app">L'atelier</p>
+      <h2 class="titre-sec app">Deux photos prises sur place</h2>
+      <div class="vues">
+        <figure class="vue vue-a app">
+          <img src="photos/cabine.jpg" width="1400" height="1050" loading="lazy" decoding="async"
+               alt="Voiture masquée de film bleu dans la cabine de peinture, pare-chocs avant fraîchement peint">
+          <figcaption><strong>En cabine.</strong> Masquage complet avant la mise en teinte.</figcaption>
+        </figure>
+        <figure class="vue vue-b app">
+          <img src="photos/rendu.jpg" width="1040" height="1387" loading="lazy" decoding="async"
+               alt="Berline grise lavée, garée devant l'entrée de l'atelier, prête à être rendue">
+          <figcaption><strong>Prête à rendre.</strong> Lavée avant restitution.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="pied">
@@ -238,6 +360,6 @@
   </a>
 </nav>
 
-<script src="app.js?v=1" defer></script>
+<script src="app.js?v=2" defer></script>
 </body>
 </html>
