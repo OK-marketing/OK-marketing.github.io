@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;700&family=Space+Mono&display=swap">
 
 <style>
 /* =========================================================
@@ -157,61 +157,46 @@ h1 em{font-style:normal;color:var(--red)}
 .stars{color:var(--red);letter-spacing:.1em;font-size:.9rem}
 .rate-row b{color:var(--text);font-family:"Archivo Black",sans-serif;font-size:1.05rem}
 
-/* ---------------- avant / après ---------------- */
-.ba-wrap{margin-top:1.4rem;position:relative}
-.ba{
-  position:relative;width:100%;aspect-ratio:800/520;overflow:hidden;border-radius:8px;
+/* ---------------- photo principale ---------------- */
+.shot-wrap{margin-top:1.4rem;position:relative}
+.shot{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:8px;
   border:1px solid var(--line-2);background:var(--ink-2);
-  touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none;
 }
-.ba-layer{position:absolute;inset:0}
-.ba-layer svg{width:100%;height:100%;display:block}
-.ba-after{clip-path:inset(0 0 0 var(--x,50%))}
-.ba-div{
-  position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;
-  box-shadow:0 0 14px rgba(255,255,255,.55);z-index:3;pointer-events:none;
+.shot img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  animation:kenburns 20s ease-in-out infinite alternate;
 }
-.ba-knob{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:46px;height:46px;border-radius:50%;background:#fff;color:var(--ink);
-  display:grid;place-items:center;font-size:.9rem;font-weight:700;
-  box-shadow:0 4px 18px rgba(0,0,0,.5);
+@keyframes kenburns{0%{transform:scale(1.01)}100%{transform:scale(1.08)}}
+.shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(205deg,rgba(255,46,77,.13),transparent 46%),
+             linear-gradient(0deg,rgba(8,9,12,.62),transparent 44%);
 }
-.ba-knob::before{content:"‹ ›";font-family:"Archivo",sans-serif;letter-spacing:-.05em}
-.ba-tag{
-  position:absolute;top:.6rem;z-index:2;font-family:"Space Mono",monospace;font-size:.62rem;
-  letter-spacing:.14em;text-transform:uppercase;padding:.3rem .55rem;border-radius:3px;
-  background:rgba(8,9,12,.72);border:1px solid var(--line-2);backdrop-filter:blur(6px);
+.shot-cap{
+  position:absolute;left:.7rem;bottom:.7rem;z-index:2;max-width:calc(100% - 1.4rem);
+  font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text);background:rgba(8,9,12,.66);border:1px solid var(--line-2);
+  padding:.34rem .58rem;border-radius:3px;line-height:1.5;
 }
-.ba-tag-l{left:.6rem;color:var(--muted)}
-.ba-tag-r{right:.6rem;color:var(--red);border-color:rgba(255,46,77,.45)}
-.ba-hint{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.6rem;
-  font-family:"Space Mono",monospace;font-size:.63rem;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--muted);
-}
-.ba-hint i{display:block;width:26px;height:1px;background:var(--line-2);position:relative;overflow:hidden}
-.ba-hint i::after{content:"";position:absolute;inset:0;background:var(--red);animation:hintRun 2s ease-in-out infinite}
-@keyframes hintRun{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.shot-cap b{color:var(--red);font-weight:700}
 
-.gloss{animation:glossRun 5s cubic-bezier(.5,0,.5,1) infinite}
-@keyframes glossRun{0%,55%{transform:translateX(-420px) skewX(-16deg)}100%{transform:translateX(980px) skewX(-16deg)}}
-.spark{animation:sparkle 2.6s ease-in-out infinite}
-.spark:nth-of-type(2){animation-delay:.5s}
-.spark:nth-of-type(3){animation-delay:1.1s}
-@keyframes sparkle{0%,100%{opacity:0;transform:scale(.4)}45%{opacity:1;transform:scale(1)}}
-.tail-glow{animation:tailPulse 3.2s ease-in-out infinite}
-@keyframes tailPulse{0%,100%{opacity:.55}50%{opacity:1}}
-
-.hero-cta{display:grid;gap:.6rem;margin-top:1.4rem}
-.hero-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;
-  margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--line);
+/* ---------------- galerie atelier ---------------- */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem}
+.gal figure{
+  margin:0;position:relative;overflow:hidden;border-radius:6px;
+  border:1px solid var(--line);aspect-ratio:1/1;
 }
-.hero-stats b{display:block;font-family:"Archivo Black",sans-serif;font-size:1.3rem;line-height:1.1}
-.hero-stats small{
-  display:block;font-family:"Space Mono",monospace;font-size:.58rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted);margin-top:.15rem;
+.gal img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1);
+}
+.gal figure:hover img{transform:scale(1.06)}
+.gal .pos-r{object-position:72% 50%}
+.gal figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.4rem .75rem .65rem;
+  font-size:.82rem;color:var(--text);line-height:1.35;
+  background:linear-gradient(0deg,rgba(8,9,12,.92),rgba(8,9,12,.7) 45%,transparent);
 }
 
 /* ---------------- bandeau ---------------- */
@@ -401,7 +386,7 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
 
   .hero{padding-top:3rem;padding-bottom:2.5rem}
   .hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:3rem;align-items:center}
-  .ba-wrap{margin-top:0}
+  .shot-wrap{margin-top:0}
   .hero .lead{margin-top:1.1rem}
   .hero-stats{grid-template-columns:repeat(3,auto);justify-content:start;gap:2.2rem}
 
@@ -444,6 +429,7 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
     <span class="tagline">Brie-Comte-Robert · 77</span>
     <nav>
       <a class="nl" href="#prestations">Prestations</a>
+      <a class="nl" href="#atelier">L'atelier</a>
       <a class="nl" href="#etapes">Comment ça marche</a>
       <a class="nl" href="#devis">Devis</a>
       <a class="btn btn-red btn-sm" href="tel:+33751190289"><span class="mono">07 51 19 02 89</span></a>
@@ -481,111 +467,13 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
         </div>
       </div>
 
-      <div class="ba-wrap fade-up d2">
-        <div class="ba" id="ba" role="group" aria-label="Comparaison avant et après réparation">
-          <span class="ba-tag ba-tag-l">Avant</span>
-          <span class="ba-tag ba-tag-r">Après</span>
-
-          <div class="ba-layer ba-before">
-            <svg viewBox="0 0 800 520" role="img" aria-label="Aile arrière enfoncée et rayée avant réparation">
-              <defs>
-                <clipPath id="panelClip">
-                  <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"/>
-                </clipPath>
-                <linearGradient id="dullPaint" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#495160"/>
-                  <stop offset="55%" stop-color="#3A4150"/>
-                  <stop offset="100%" stop-color="#2A303B"/>
-                </linearGradient>
-                <radialGradient id="dentGrad" cx="50%" cy="45%">
-                  <stop offset="0%" stop-color="#171B22" stop-opacity=".92"/>
-                  <stop offset="70%" stop-color="#171B22" stop-opacity=".38"/>
-                  <stop offset="100%" stop-color="#171B22" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="glossBand" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-                  <stop offset="45%" stop-color="#fff" stop-opacity=".38"/>
-                  <stop offset="55%" stop-color="#fff" stop-opacity=".38"/>
-                  <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="candy" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#FF4A63"/>
-                  <stop offset="48%" stop-color="#E31338"/>
-                  <stop offset="100%" stop-color="#8E0A22"/>
-                </linearGradient>
-              </defs>
-
-              <rect width="800" height="520" fill="#0F1116"/>
-              <g clip-path="url(#panelClip)">
-                <rect width="800" height="520" fill="url(#dullPaint)"/>
-                <ellipse cx="300" cy="290" rx="150" ry="92" fill="url(#dentGrad)"/>
-                <path d="M190 300 q110 -66 218 -10" fill="none" stroke="#20252E" stroke-width="5" opacity=".8"/>
-                <path d="M208 330 q100 -52 190 -6" fill="none" stroke="#20252E" stroke-width="3.5" opacity=".6"/>
-                <g stroke="#C9D2DE" stroke-width="2.5" opacity=".55" stroke-linecap="round">
-                  <line x1="440" y1="250" x2="620" y2="212"/>
-                  <line x1="452" y1="272" x2="640" y2="232"/>
-                  <line x1="468" y1="296" x2="600" y2="266"/>
-                  <line x1="446" y1="316" x2="588" y2="288"/>
-                </g>
-                <g stroke="#8A94A4" stroke-width="1.4" opacity=".5">
-                  <line x1="500" y1="340" x2="660" y2="310"/>
-                  <line x1="516" y1="358" x2="628" y2="336"/>
-                </g>
-                <g fill="#1B2029" opacity=".85">
-                  <circle cx="576" cy="248" r="5"/><circle cx="604" cy="272" r="3.4"/>
-                  <circle cx="548" cy="292" r="2.6"/><circle cx="628" cy="256" r="2.2"/>
-                </g>
-              </g>
-
-              <path d="M240 452 a160 160 0 0 1 320 0 Z" fill="#0B0D11"/>
-              <path d="M240 452 a160 160 0 0 1 320 0" fill="none" stroke="#525A68" stroke-width="3"/>
-              <path d="M282 452 a118 118 0 0 1 236 0 Z" fill="#15171C"/>
-              <line x1="150" y1="104" x2="150" y2="446" stroke="#20252E" stroke-width="5"/>
-              <line x1="153" y1="104" x2="153" y2="446" stroke="#59616F" stroke-width="1"/>
-              <path d="M60 268 C 260 244, 540 236, 770 246" fill="none" stroke="#20252E" stroke-width="3" opacity=".7"/>
-              <rect x="628" y="128" width="130" height="66" rx="10" fill="#3A2028" stroke="#4A2530" stroke-width="2"/>
-              <rect x="644" y="146" width="98" height="30" rx="6" fill="#4A2530"/>
-              <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"
-                    fill="none" stroke="#525A68" stroke-width="2.5"/>
-            </svg>
-          </div>
-
-          <div class="ba-layer ba-after" id="baAfter">
-            <svg viewBox="0 0 800 520" role="img" aria-label="La même aile réparée, peinte et lustrée">
-              <rect width="800" height="520" fill="#0F1116"/>
-              <g clip-path="url(#panelClip)">
-                <rect width="800" height="520" fill="url(#candy)"/>
-                <ellipse cx="300" cy="170" rx="230" ry="26" fill="#fff" opacity=".17"/>
-                <ellipse cx="560" cy="352" rx="180" ry="16" fill="#fff" opacity=".09"/>
-                <path d="M60 232 C 280 206, 560 200, 780 212 L 780 226 C 560 214, 280 220, 60 246 Z" fill="#fff" opacity=".13"/>
-                <rect class="gloss" x="0" y="-60" width="150" height="640" fill="url(#glossBand)"/>
-              </g>
-
-              <path d="M240 452 a160 160 0 0 1 320 0 Z" fill="#0B0D11"/>
-              <path d="M240 452 a160 160 0 0 1 320 0" fill="none" stroke="#FF6B80" stroke-width="3"/>
-              <path d="M282 452 a118 118 0 0 1 236 0 Z" fill="#15171C"/>
-              <line x1="150" y1="104" x2="150" y2="446" stroke="#7E0A1E" stroke-width="5"/>
-              <line x1="153" y1="104" x2="153" y2="446" stroke="#FF8A9C" stroke-width="1.2" opacity=".8"/>
-              <path d="M60 268 C 260 244, 540 236, 770 246" fill="none" stroke="#FF8A9C" stroke-width="2" opacity=".55"/>
-
-              <rect x="628" y="128" width="130" height="66" rx="10" fill="#2A0910" stroke="#FF6B80" stroke-width="2"/>
-              <rect class="tail-glow" x="644" y="146" width="98" height="30" rx="6" fill="#FF2E4D"/>
-              <rect class="tail-glow" x="652" y="152" width="82" height="16" rx="4" fill="#FFB3BF" opacity=".8"/>
-
-              <g fill="#fff">
-                <path class="spark" d="M470 210 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7 z"/>
-                <path class="spark" d="M250 340 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5 z"/>
-                <path class="spark" d="M660 300 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z"/>
-              </g>
-
-              <path d="M40 120 C 200 96, 560 82, 762 96 L 772 372 Q 776 442 706 446 L 92 446 Q 44 446 42 402 Z"
-                    fill="none" stroke="#FF6B80" stroke-width="2.5"/>
-            </svg>
-          </div>
-
-          <div class="ba-div" id="baDiv"><span class="ba-knob"></span></div>
+      <div class="shot-wrap fade-up d2">
+        <div class="shot">
+          <img src="photos/atelier-reparation.jpg" width="1100" height="825"
+               alt="Véhicule rouge en cours de réparation, pare-chocs arrière déposé, devant la cabine de peinture de l'atelier"
+               fetchpriority="high" decoding="async">
+          <span class="shot-cap"><b>En atelier</b> — pare-chocs arrière déposé, avant remontage et peinture</span>
         </div>
-        <p class="ba-hint"><i></i> Glissez pour comparer <i></i></p>
       </div>
     </div>
   </div>
@@ -610,6 +498,35 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
       <article class="svc r"><span class="n">04</span><h3>Débosselage</h3><p>Petits chocs, impacts de grêle et enfoncements repris sans toucher à la peinture d'origine quand c'est possible.</p></article>
       <article class="svc r s1"><span class="n">05</span><h3>Optiques &amp; vitrage</h3><p>Remplacement de feux, de rétroviseurs, de pare-brise et de vitres latérales.</p></article>
       <article class="svc r s2"><span class="n">06</span><h3>Lustrage &amp; rénovation</h3><p>Polissage de la carrosserie, effacement des micro-rayures, rénovation des optiques ternis.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="atelier">
+  <div class="wrap">
+    <div class="head r">
+      <div>
+        <span class="eyebrow">L'atelier</span>
+        <h2>Derrière la porte</h2>
+      </div>
+      <p class="lead">Cabine de peinture, poste de travail et accueil. Trois photos de l'atelier, sans mise en scène.</p>
+    </div>
+    <div class="gal">
+      <figure class="r">
+        <img class="pos-r" src="photos/vehicule-fini.jpg" width="760" height="570" loading="lazy" decoding="async"
+             alt="Break rouge lustré, prêt à être rendu à son propriétaire">
+        <figcaption>Prêt à être rendu</figcaption>
+      </figure>
+      <figure class="r s1">
+        <img src="photos/cabine-peinture.jpg" width="760" height="570" loading="lazy" decoding="async"
+             alt="Cabine de peinture de l'atelier, bâchée et prête pour une mise en teinte">
+        <figcaption>La cabine de peinture</figcaption>
+      </figure>
+      <figure class="r s2">
+        <img src="photos/accueil.jpg" width="760" height="570" loading="lazy" decoding="async"
+             alt="Bureau d'accueil de la carrosserie">
+        <figcaption>L'accueil</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -784,7 +701,7 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
 <footer class="site">
   <div class="wrap foot">
     <p><strong>Carrosserie Avenue</strong> — atelier de carrosserie et peinture automobile, 160 rue du Tubœuf, 77170 Brie-Comte-Robert.<br>SARL au capital de 1 000 € · SIREN 930 816 723.</p>
-    <p><strong>Maquette de proposition.</strong> Ce site n'est pas encore le site officiel de l'atelier. Les informations proviennent d'annuaires publics et doivent être validées par le gérant avant mise en ligne.</p>
+    <p><strong>Maquette de proposition.</strong> Ce site n'est pas encore le site officiel de l'atelier. Les informations et les photos proviennent de la fiche Google publique du garage : elles appartiennent à l'atelier et doivent être validées, complétées ou remplacées par le gérant avant mise en ligne.</p>
   </div>
 </footer>
 
@@ -815,56 +732,6 @@ footer.site{background:var(--ink-2);border-top:1px solid var(--line);padding-blo
     var max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
   }, {passive:true});
-
-  /* ---------- avant / après ---------- */
-  var ba = document.getElementById('ba');
-  var after = document.getElementById('baAfter');
-  var divi = document.getElementById('baDiv');
-  var dragging = false, intro = null;
-
-  function setX(pct){
-    pct = Math.max(2, Math.min(98, pct));
-    after.style.setProperty('--x', pct + '%');
-    divi.style.left = pct + '%';
-  }
-  function fromEvent(e){
-    var r = ba.getBoundingClientRect();
-    setX(((e.clientX - r.left) / r.width) * 100);
-  }
-  setX(50);
-
-  ba.addEventListener('pointerdown', function(e){
-    if(intro){ cancelAnimationFrame(intro); intro = null; }
-    dragging = true;
-    try{ ba.setPointerCapture(e.pointerId); }catch(err){}
-    fromEvent(e); e.preventDefault();
-  });
-  ba.addEventListener('pointermove', function(e){ if(dragging) fromEvent(e); });
-  ['pointerup','pointercancel'].forEach(function(ev){
-    ba.addEventListener(ev, function(){ dragging = false; });
-  });
-
-  function playIntro(){
-    if(reduce) return;
-    var start = null, dur = 2600, keys = [50, 86, 18, 50];
-    function step(ts){
-      if(!start) start = ts;
-      var t = Math.min(1, (ts - start) / dur);
-      var seg = t * (keys.length - 1);
-      var i = Math.min(keys.length - 2, Math.floor(seg));
-      var f = seg - i;
-      var e = f < .5 ? 2*f*f : 1 - Math.pow(-2*f + 2, 2)/2;
-      setX(keys[i] + (keys[i+1] - keys[i]) * e);
-      if(t < 1){ intro = requestAnimationFrame(step); } else { intro = null; }
-    }
-    intro = requestAnimationFrame(step);
-  }
-  if('IntersectionObserver' in window){
-    var bio = new IntersectionObserver(function(en){
-      if(en[0].isIntersecting){ setTimeout(playIntro, 900); bio.disconnect(); }
-    }, {threshold:.4});
-    bio.observe(ba);
-  } else { setTimeout(playIntro, 900); }
 
   /* ---------- apparition au défilement ---------- */
   var items = document.querySelectorAll('.r');
