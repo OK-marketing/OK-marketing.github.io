@@ -187,13 +187,12 @@ h1 em{font-style:normal;color:var(--green)}
 }
 .wl-key{animation:wlkey 9s ease-in-out infinite}
 @keyframes wlkey{
-  0%,4%{opacity:.2}
-  10%{opacity:1}
+  0%,4%{opacity:.2;stroke:var(--amber)}
+  10%{opacity:1;stroke:var(--amber)}
   18%{opacity:.4}
-  30%{opacity:1}
-  46%{opacity:1}
-  58%{opacity:1}
-  100%{opacity:1}
+  30%{opacity:1;stroke:var(--amber)}
+  40%,56%{opacity:1;stroke:var(--red)}
+  72%,100%{opacity:1;stroke:var(--green)}
 }
 .ok-ring{
   stroke-dasharray:150;stroke-dashoffset:150;
@@ -438,7 +437,7 @@ footer.site{background:var(--bg-2);border-top:1px solid var(--line);padding-bloc
           <g transform="translate(0,318)" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.6">
             <g class="wl wl-key" stroke="#FFB020">
               <rect x="112" y="-16" width="46" height="34" rx="7" stroke="#262C1F" fill="#0C0E0C"/>
-              <path d="M124 6v-10h4v-4h6v4h4l4 4v6z" stroke="#FFB020"/>
+              <path d="M124 6v-10h4v-4h6v4h4l4 4v6z"/>
               <path d="M144 -4h4"/>
             </g>
             <g class="wl" stroke="#FFB020">
