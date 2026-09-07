@@ -93,7 +93,7 @@ a{ color: var(--rouge-clair) }
 .tel-haut:hover{ background: var(--rouge-clair) }
 
 /* ================= héros ================= */
-.heros{ position: relative }
+.heros{ position: relative; padding-block: 0 }
 
 .atelier{ position: relative; background: var(--bitume) }
 .scene{ width: 100%; height: auto; display: block }
