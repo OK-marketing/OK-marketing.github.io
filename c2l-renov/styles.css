@@ -1,23 +1,25 @@
 /* =========================================================
    C2L Rénov — maquette
-   Palette relevée sur leur propre camion : vert sauge sur
-   plâtre pâle. Le sujet, c'est la surface : la pièce du
-   haut se refait sous le doigt du visiteur.
+   Tons chauds : sable, plâtre, terre cuite, chêne.
+   Le mur du haut se refait tout seul — fissuré, rebouché,
+   enduit, poncé, peint — et le carrelage se pose au fil
+   du défilement, de haut en bas.
    Téléphone d'abord. Deux paliers : 48rem et 64rem.
    ========================================================= */
 
 :root{
-  --mur:     #E4EAE6;   /* plâtre teinté eucalyptus */
-  --mur-2:   #D6DEDA;
-  --joint:   #B7C1BB;
-  --craie:   #FBFCFB;
-  --encre:   #16211F;
-  --encre-2: #4A5754;
-  --sauge:   #6E9490;   /* la couleur du camion */
-  --sauge-f: #3F5D59;
-  --menthe:  #CDE6DE;
-  --wa:      #1FA855;
-  --vert:    #2E7D4F;
+  --sable:    #E8DCC8;   /* le fond de page */
+  --sable-2:  #DCCDB4;
+  --platre:   #F4ECDD;   /* enduit frais */
+  --joint:    #C9B99F;
+  --joint-2:  #B7A488;
+  --terre:    #A85B3C;   /* terre cuite, l'accent */
+  --terre-f:  #82412A;
+  --bois:     #C08E56;
+  --encre:    #2A2018;   /* brun très foncé, jamais du noir */
+  --encre-2:  #5C4C3E;
+  --wa:       #1FA855;
+  --vert:     #4E7A46;
 
   --bande-max: 64rem;
   --marge: 1.15rem;
@@ -38,7 +40,7 @@ html{
 body{
   margin: 0;
   padding-bottom: var(--barre);
-  background: var(--mur);
+  background: var(--sable);
   color: var(--encre);
   font-family: var(--sans);
   font-size: 1.0625rem;
@@ -48,17 +50,17 @@ body{
 
 p{ margin: 0 }
 img{ max-width: 100%; display: block }
-a{ color: var(--sauge-f) }
-:focus-visible{ outline: 2px solid var(--sauge-f); outline-offset: 3px }
+a{ color: var(--terre-f) }
+:focus-visible{ outline: 2px solid var(--terre); outline-offset: 3px }
 
 .bande{ padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2) }
-section{ padding-block: 3rem }
+section{ padding-block: 3rem; position: relative }
 
 .titre, .titre-2{
   font-family: var(--titre); font-weight: 800;
   letter-spacing: -.02em; line-height: 1.02; margin: 0; text-wrap: balance;
 }
-.titre{ font-size: clamp(2.05rem, 8vw, 4rem) }
+.titre{ font-size: clamp(2.3rem, 9vw, 4.4rem) }
 .titre-2{ font-size: clamp(1.5rem, 5.5vw, 2.3rem) }
 h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 
@@ -66,59 +68,158 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 .maquette{
   display: flex; align-items: center; gap: .5rem;
   padding: .5rem max(var(--marge), (100% - var(--bande-max)) / 2);
-  background: var(--encre); color: #C4CFCB;
+  background: var(--encre); color: #C8B79E;
   font-size: .72rem; line-height: 1.35;
 }
-.maquette strong{ color: var(--craie) }
-.maquette-puce{ width: 7px; height: 7px; border-radius: 50%; background: var(--sauge); flex: none }
+.maquette strong{ color: var(--platre) }
+.maquette-puce{ width: 7px; height: 7px; border-radius: 50%; background: var(--terre); flex: none }
 @media (max-width: 26rem){ .maquette-txt{ display: none } }
 
 /* ================= en-tête ================= */
 .entete{
   position: sticky; top: 0; z-index: 40;
-  background: color-mix(in oklab, var(--mur) 88%, transparent);
+  background: color-mix(in oklab, var(--sable) 90%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--joint);
 }
 .entete-in{ display: flex; align-items: center; gap: 1rem; min-height: 3.5rem }
 .marque{ display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--encre) }
 .marque-signe{ display: grid; grid-template-columns: 11px 11px; gap: 3px; flex: none }
-.marque-signe i{ display: block; width: 11px; height: 11px; background: var(--sauge) }
+.marque-signe i{ display: block; width: 11px; height: 11px; background: var(--terre) }
 .marque-signe i:nth-child(2){ background: var(--encre); grid-column: 2; grid-row: 2 }
 .marque-nom{ font-family: var(--titre); font-weight: 800; font-size: 1.22rem; letter-spacing: -.01em }
 .tel-haut{
-  margin-left: auto; background: var(--encre); color: var(--craie);
+  margin-left: auto; background: var(--encre); color: var(--platre);
   font-weight: 700; font-size: .9rem; text-decoration: none;
   padding: .5rem .8rem; border-radius: 3px; white-space: nowrap;
 }
-.tel-haut:hover{ background: var(--sauge-f) }
+.tel-haut:hover{ background: var(--terre-f) }
 
 /* ================= ouverture ================= */
 .ouverture{ padding-block: 2rem 3.5rem }
 .situe{ font-size: .88rem; color: var(--encre-2); margin-bottom: .8rem }
-.intro{ margin-top: 1.1rem; font-size: 1.06rem; color: var(--encre-2); max-width: 40ch }
+.intro{ margin-top: 1.1rem; font-size: 1.06rem; color: var(--encre-2); max-width: 42ch }
 
-/* ================= la pièce ================= */
-.piece-cadre{
+/* ================= le mur, 13 s ================= */
+.mur-cadre{
   margin-top: 1.8rem; position: relative;
-  border: 1px solid var(--joint); border-radius: 4px; overflow: hidden;
-  background: var(--mur-2);
-  box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
+  border: 1px solid var(--joint-2); border-radius: 4px; overflow: hidden;
+  background: var(--sable-2);
 }
-.piece{ width: 100%; height: auto; display: block }
-.piece-etat{
-  position: absolute; left: .6rem; bottom: .6rem;
-  background: color-mix(in oklab, var(--encre) 86%, transparent);
-  color: var(--craie); font-size: .74rem; font-weight: 600;
-  padding: .3rem .6rem; border-radius: 3px;
+.mur{ width: 100%; height: auto; display: block }
+
+.defauts, .rebouche path, .enduit, .peint,
+.couteau, .taloche, .cale, .poussiere, .rouleau, .etape{
+  animation-duration: 13s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
-/* les carreaux se posent l'un après l'autre */
-.js .tuile{ opacity: 0; animation: poser .34s cubic-bezier(.2,.8,.3,1) forwards }
-@keyframes poser{ from{ opacity: 0; transform: translateY(9px) } to{ opacity: 1; transform: none } }
-.js .lame{ opacity: 0; animation: glisser .38s cubic-bezier(.2,.8,.3,1) forwards }
-@keyframes glisser{ from{ opacity: 0; transform: translateX(-16px) } to{ opacity: 1; transform: none } }
-#objet{ transition: opacity .3s ease }
+/* les fissures et les trous disparaissent sous l'enduit de rebouchage */
+.defauts{ animation-name: defauts }
+@keyframes defauts{ 0%, 20%{ opacity: 1 } 24%, 100%{ opacity: 0 } }
+
+/* chaque rebouchage arrive à son tour */
+.rebouche path{ opacity: 0; animation-name: rebouche }
+.r1{ animation-delay: .0s }  .r2{ animation-delay: .32s } .r3{ animation-delay: .64s }
+.r4{ animation-delay: .96s } .r5{ animation-delay: 1.2s } .r6{ animation-delay: 1.44s }
+@keyframes rebouche{
+  0%,  8%  { opacity: 0 }
+  13%      { opacity: 1 }
+  92%      { opacity: 1 }
+  96%, 100%{ opacity: 0 }
+}
+
+/* l'enduit est tiré de gauche à droite */
+.enduit{ animation-name: enduit }
+@keyframes enduit{
+  0%,  26% { clip-path: inset(0 100% 0 0) }
+  44%, 92% { clip-path: inset(0 0 0 0) }
+  96%, 100%{ clip-path: inset(0 100% 0 0) }
+}
+
+/* la peinture descend du plafond vers la plinthe */
+.peint{ animation-name: peint }
+@keyframes peint{
+  0%,  60% { clip-path: inset(0 0 100% 0) }
+  80%, 93% { clip-path: inset(0 0 0 0) }
+  96%, 100%{ clip-path: inset(0 0 100% 0) }
+}
+
+/* le couteau à enduire passe sur chaque défaut */
+.couteau{ opacity: 0; animation-name: couteau }
+@keyframes couteau{
+  0%,  7%  { transform: translate(120px, 90px); opacity: 0 }
+  10%      { opacity: 1 }
+  14%      { transform: translate(150px, 250px) }
+  18%      { transform: translate(400px, 150px) }
+  21%      { transform: translate(540px, 250px); opacity: 1 }
+  24%, 100%{ transform: translate(560px, 260px); opacity: 0 }
+}
+
+/* la taloche tire l'enduit */
+.taloche{ opacity: 0; animation-name: taloche }
+@keyframes taloche{
+  0%,  25% { transform: translate(-40px, 180px); opacity: 0 }
+  28%      { opacity: 1 }
+  44%      { transform: translate(600px, 210px); opacity: 1 }
+  47%, 100%{ transform: translate(640px, 210px); opacity: 0 }
+}
+
+/* la cale à poncer, et la poussière qui monte */
+.cale{ opacity: 0; animation-name: cale }
+@keyframes cale{
+  0%,  47% { transform: translate(500px, 120px); opacity: 0 }
+  50%      { opacity: 1 }
+  57%      { transform: translate(140px, 250px); opacity: 1 }
+  60%, 100%{ transform: translate(120px, 260px); opacity: 0 }
+}
+.poussiere{ opacity: 0; animation-name: poussiere }
+@keyframes poussiere{
+  0%,  48% { transform: translate(460px, 140px); opacity: 0 }
+  52%      { opacity: .9 }
+  57%      { transform: translate(240px, 190px); opacity: .5 }
+  60%, 100%{ transform: translate(180px, 170px); opacity: 0 }
+}
+
+/* le rouleau descend avec la peinture */
+.rouleau{ opacity: 0; animation-name: rouleau }
+@keyframes rouleau{
+  0%,  59% { transform: translate(300px, -10px); opacity: 0 }
+  62%      { opacity: 1 }
+  80%      { transform: translate(300px, 400px); opacity: 1 }
+  83%, 100%{ transform: translate(300px, 430px); opacity: 0 }
+}
+
+/* le nom de l'étape */
+.etape{
+  font-family: var(--titre); font-weight: 800; font-size: 22px;
+  letter-spacing: .12em; text-anchor: middle; fill: var(--encre);
+  opacity: 0; paint-order: stroke; stroke: rgba(244,236,221,.85); stroke-width: 6px;
+}
+.e1{ animation-name: n1 } .e2{ animation-name: n2 } .e3{ animation-name: n3 }
+.e4{ animation-name: n4 } .e5{ animation-name: n5 }
+@keyframes n1{ 0%,2%{opacity:0} 5%,16%{opacity:1} 20%,100%{opacity:0} }
+@keyframes n2{ 0%,20%{opacity:0} 23%,24%{opacity:1} 26%,100%{opacity:0} }
+@keyframes n3{ 0%,27%{opacity:0} 30%,42%{opacity:1} 46%,100%{opacity:0} }
+@keyframes n4{ 0%,48%{opacity:0} 51%,57%{opacity:1} 60%,100%{opacity:0} }
+@keyframes n5{ 0%,61%{opacity:0} 64%,90%{opacity:1} 94%,100%{opacity:0} }
+
+/* ================= le carrelage qui se pose au défilement ================= */
+.pose{
+  position: absolute; top: 0; left: 0; right: 0; height: 14px;
+  display: flex; gap: 3px; overflow: hidden; pointer-events: none;
+}
+.pose i{
+  display: block; flex: 1 1 auto; height: 14px; background: var(--joint);
+  transform: translateY(-16px); opacity: 0;
+}
+.js .pose-va i{
+  animation: carreau .42s cubic-bezier(.2,.85,.3,1) forwards;
+}
+@keyframes carreau{ to{ transform: none; opacity: 1 } }
+.pose i:nth-child(3n){ background: var(--bois) }
+.pose i:nth-child(4n){ background: var(--terre) }
 
 /* ================= les choix ================= */
 .choix{ margin-top: 1.8rem }
@@ -130,20 +231,20 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 .puces{ display: flex; flex-wrap: wrap; gap: .4rem }
 .puce{
   font-family: inherit; font-size: .94rem; font-weight: 600; color: var(--encre);
-  background: var(--craie); border: 1px solid var(--joint); border-radius: 999px;
+  background: var(--platre); border: 1px solid var(--joint-2); border-radius: 999px;
   padding: .6rem .95rem; min-height: 2.75rem; cursor: pointer;
   transition: background .16s ease, border-color .16s ease, color .16s ease;
 }
-.puce:hover{ border-color: var(--sauge) }
-.puce[aria-pressed="true"]{ background: var(--encre); border-color: var(--encre); color: var(--craie) }
+.puce:hover{ border-color: var(--terre) }
+.puce[aria-pressed="true"]{ background: var(--encre); border-color: var(--encre); color: var(--platre) }
 
 .sortie{
-  margin-top: 1.6rem; background: var(--craie);
-  border: 1px solid var(--joint); border-radius: 4px; padding: 1rem;
+  margin-top: 1.6rem; background: var(--platre);
+  border: 1px solid var(--joint-2); border-radius: 4px; padding: 1rem;
 }
 .sortie-txt{
   font-size: .95rem; line-height: 1.55; color: var(--encre-2);
-  white-space: pre-line; padding-left: .8rem; border-left: 3px solid var(--sauge);
+  white-space: pre-line; padding-left: .8rem; border-left: 3px solid var(--terre);
 }
 .bouton{
   display: flex; align-items: center; justify-content: center; gap: .5rem;
@@ -157,10 +258,10 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 
 .note-avis{ display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; margin-top: 1.5rem; font-size: .92rem; color: var(--encre-2) }
 .note-avis strong{ color: var(--encre); font-size: 1.1rem }
-.etoiles{ color: var(--sauge-f); letter-spacing: .08em }
+.etoiles{ color: var(--terre); letter-spacing: .08em }
 
 /* ================= métiers ================= */
-.metiers{ background: var(--craie); border-block: 1px solid var(--joint) }
+.metiers{ background: var(--platre); border-block: 1px solid var(--joint) }
 .sous{ margin-top: .6rem; color: var(--encre-2) }
 .liste{ list-style: none; margin: 1.6rem 0 0; padding: 0 }
 .liste li{ padding: 1.15rem 0; border-top: 1px solid var(--joint) }
@@ -176,41 +277,41 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 .source-avis{ margin-top: 1.6rem; font-size: .84rem; color: var(--encre-2) }
 
 /* ================= infos ================= */
-.infos{ background: var(--craie); border-block: 1px solid var(--joint) }
+.infos{ background: var(--platre); border-block: 1px solid var(--joint) }
 .etat{
   display: inline-flex; align-items: center; gap: .45rem; margin-top: 1rem;
-  padding: .35rem .7rem; border: 1px solid var(--joint); border-radius: 999px;
-  font-size: .8rem; font-weight: 700; color: var(--encre-2); background: var(--mur);
+  padding: .35rem .7rem; border: 1px solid var(--joint-2); border-radius: 999px;
+  font-size: .8rem; font-weight: 700; color: var(--encre-2); background: var(--sable);
 }
-.etat i{ width: 8px; height: 8px; border-radius: 50%; background: var(--joint); flex: none }
-.etat.ouvert{ border-color: color-mix(in oklab, var(--vert) 40%, var(--joint)); color: var(--vert) }
+.etat i{ width: 8px; height: 8px; border-radius: 50%; background: var(--joint-2); flex: none }
+.etat.ouvert{ border-color: color-mix(in oklab, var(--vert) 45%, var(--joint)); color: var(--vert) }
 .etat.ouvert i{ background: var(--vert) }
 .heures{ width: 100%; border-collapse: collapse; margin-top: 1.1rem }
 .heures th, .heures td{ padding: .6rem 0; border-bottom: 1px solid var(--joint); font-size: .95rem; font-weight: 400 }
 .heures th{ text-align: left }
 .heures td{ text-align: right; color: var(--encre-2); font-variant-numeric: tabular-nums }
-.heures tr.jour th, .heures tr.jour td{ color: var(--sauge-f); font-weight: 700 }
+.heures tr.jour th, .heures tr.jour td{ color: var(--terre-f); font-weight: 700 }
 .coord{ list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .9rem }
 .coord a{ font-family: var(--titre); font-weight: 600; font-size: 1.14rem; text-decoration: none; color: var(--encre); line-height: 1.25 }
-.coord a:hover{ color: var(--sauge-f) }
+.coord a:hover{ color: var(--terre-f) }
 .zone{ margin-top: 1.1rem; font-size: .88rem; color: var(--encre-2) }
 
 /* ================= photos ================= */
 .grille{ display: grid; gap: .8rem; margin-top: 1.6rem }
-.grille figure{ margin: 0; background: var(--craie); border: 1px solid var(--joint); border-radius: 4px; overflow: hidden }
+.grille figure{ margin: 0; background: var(--platre); border: 1px solid var(--joint); border-radius: 4px; overflow: hidden }
 .grille img{ width: 100%; height: auto }
 .grille figcaption{ padding: .7rem .85rem; font-size: .84rem; color: var(--encre-2) }
 
 /* ================= pied ================= */
-.pied{ background: var(--encre); color: #9BA8A4; padding-block: 2rem; font-size: .8rem; line-height: 1.6 }
-.pied strong{ color: var(--craie) }
+.pied{ background: var(--encre); color: #A6947C; padding-block: 2rem; font-size: .8rem; line-height: 1.6 }
+.pied strong{ color: var(--platre) }
 .pied-note{ margin-top: .85rem; max-width: 48rem }
 
 /* ================= barre du bas ================= */
 .barre-bas{
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
   display: grid; grid-template-columns: 1fr 1.35fr;
-  border-top: 1px solid var(--joint); background: var(--craie);
+  border-top: 1px solid var(--joint-2); background: var(--platre);
   padding-bottom: env(safe-area-inset-bottom);
 }
 .barre-bas a{
@@ -220,6 +321,12 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 }
 .barre-bas .bas-wa{ background: var(--wa); color: #fff }
 .barre-bas svg{ width: 1.05rem; height: 1.05rem; flex: none }
+
+/* la pièce du bas : les carreaux se posent aussi au doigt */
+.js .tuile{ opacity: 0; animation: poser .34s cubic-bezier(.2,.8,.3,1) forwards }
+@keyframes poser{ from{ opacity: 0; transform: translateY(9px) } to{ opacity: 1; transform: none } }
+.js .lame{ opacity: 0; animation: glisser .38s cubic-bezier(.2,.8,.3,1) forwards }
+@keyframes glisser{ from{ opacity: 0; transform: translateX(-16px) } to{ opacity: 1; transform: none } }
 
 /* ================= palier 1 : 48rem ================= */
 @media (min-width: 48rem){
@@ -235,6 +342,7 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
   .citations{ grid-template-columns: repeat(3, 1fr); gap: 2rem }
   .infos-in{ display: grid; grid-template-columns: 1fr 1fr; gap: 3rem }
   .grille{ grid-template-columns: 1fr 1fr; gap: 1rem }
+  .pose{ height: 18px } .pose i{ height: 18px }
 }
 
 /* ================= palier 2 : 64rem ================= */
@@ -242,7 +350,6 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
   section{ padding-block: 5.5rem }
   .intro{ font-size: 1.16rem }
   .grille{ grid-template-columns: repeat(4, 1fr) }
-  .grille .t3, .grille .t4{ grid-row: span 1 }
   .liste li{ grid-template-columns: 16rem 1fr }
 }
 
@@ -250,5 +357,11 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto }
   *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important }
+  .defauts{ opacity: 0 }
+  .enduit{ clip-path: inset(0 0 0 0) }
+  .peint{ clip-path: inset(0 0 0 0) }
+  .couteau, .taloche, .cale, .poussiere, .rouleau{ opacity: 0 }
+  .e5{ opacity: 1 }
+  .pose i{ transform: none; opacity: 1 }
   .js .tuile, .js .lame{ opacity: 1 }
 }

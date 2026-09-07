@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#E4EAE6">
+<meta name="theme-color" content="#E8DCC8">
 <title>C2L Rénov — Carreleur, plaquiste et peintre à Roissy-en-Brie</title>
 <meta name="description" content="Carrelage, placo, peinture et revêtements de sol en Seine-et-Marne. Dites en deux touches ce que vous voulez refaire, le message part sur WhatsApp déjà écrit.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="C2L Rénov">
-<meta property="og:title" content="C2L Rénov — On refait la pièce, pas seulement le sol">
+<meta property="og:title" content="C2L Rénov — Du mur fissuré au mur fini">
 <meta property="og:description" content="Carreleur, plaquiste et peintre à Roissy-en-Brie. 5,0 sur 32 avis Google.">
 <meta property="og:url" content="https://ok-marketing.github.io/c2l-renov/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%2316211F%22/><rect x=%2216%22 y=%2216%22 width=%2232%22 height=%2232%22 fill=%22%236E9490%22/><rect x=%2252%22 y=%2252%22 width=%2232%22 height=%2232%22 fill=%22%236E9490%22/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232A2018%22/><rect x=%2214%22 y=%2214%22 width=%2234%22 height=%2234%22 fill=%22%23C98A5E%22/><rect x=%2252%22 y=%2252%22 width=%2234%22 height=%2234%22 fill=%22%23C98A5E%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="styles.css?v=2">
 <script>
   document.documentElement.classList.add('js');
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -49,45 +49,130 @@
   <section class="ouverture">
     <div class="bande">
       <p class="situe">Carreleur, plaquiste et peintre — Roissy-en-Brie, Seine-et-Marne</p>
-      <h1 class="titre">On refait la pièce,<br>pas seulement le sol.</h1>
-      <p class="intro">Carrelage, parquet, placo, enduit, peinture. Une seule entreprise du premier coup de disqueuse à la dernière couche&nbsp;— vous n'avez pas trois artisans à faire venir.</p>
+      <h1 class="titre">Du mur fissuré<br>au mur fini.</h1>
+      <p class="intro">Rebouchage, enduit, ponçage, peinture, carrelage. Une seule entreprise du premier grattage à la dernière couche&nbsp;— vous n'avez pas trois artisans à faire venir.</p>
     </div>
 
-    <!-- ================= la pièce qui se refait ================= -->
+    <!-- ================= le mur qui se refait tout seul ================= -->
     <div class="bande">
-      <div class="piece-cadre">
-        <svg class="piece" id="piece" viewBox="0 0 600 420" role="img"
-             aria-label="Coin de pièce dont le sol et le mur changent selon ce que vous choisissez">
+      <div class="mur-cadre">
+        <svg class="mur" viewBox="0 0 600 400" role="img"
+             aria-label="Un mur fissuré est rebouché, enduit, poncé puis peint, en boucle">
           <defs>
-            <clipPath id="capMur"><rect x="0" y="0" width="600" height="252"/></clipPath>
-            <clipPath id="capSol"><path d="M0 252 H600 V420 H0 Z"/></clipPath>
-            <linearGradient id="jour" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#fff" stop-opacity=".5"/>
-              <stop offset="60%" stop-color="#fff" stop-opacity="0"/>
+            <linearGradient id="gVieux" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C3AE90"/>
+              <stop offset="60%" stop-color="#B49C7C"/>
+              <stop offset="100%" stop-color="#A18869"/>
+            </linearGradient>
+            <linearGradient id="gEnduit" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E9DCC5"/>
+              <stop offset="100%" stop-color="#DCCBAE"/>
+            </linearGradient>
+            <linearGradient id="gPeint" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F6EEE0"/>
+              <stop offset="100%" stop-color="#EBDFCB"/>
+            </linearGradient>
+            <linearGradient id="gJour" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff" stop-opacity=".34"/>
+              <stop offset="55%" stop-color="#fff" stop-opacity="0"/>
             </linearGradient>
           </defs>
 
-          <!-- mur -->
-          <g clip-path="url(#capMur)">
-            <rect id="murFond" x="0" y="0" width="600" height="252" fill="#DDE4E0"/>
-            <g id="murMotif"></g>
-            <rect x="0" y="0" width="600" height="252" fill="url(#jour)" pointer-events="none"/>
+          <!-- 1. le mur d'origine : fissures, trous, peinture qui cloque -->
+          <rect width="600" height="400" fill="url(#gVieux)"/>
+          <g class="salissures">
+            <ellipse cx="120" cy="86" rx="78" ry="46" fill="#9C8465" opacity=".5"/>
+            <ellipse cx="470" cy="300" rx="96" ry="52" fill="#9C8465" opacity=".42"/>
+            <ellipse cx="300" cy="200" rx="150" ry="80" fill="#AB9375" opacity=".3"/>
+          </g>
+          <!-- peinture écaillée -->
+          <g class="ecailles" fill="#CFBB9C">
+            <path d="M60 250 l44 -14 l30 18 l-16 26 l-40 6 z"/>
+            <path d="M392 96 l52 -10 l22 24 l-30 22 l-40 -12 z"/>
+            <path d="M232 320 l40 -8 l14 20 l-34 16 z"/>
           </g>
 
-          <!-- plinthe -->
-          <rect x="0" y="246" width="600" height="8" fill="#FBFCFB"/>
-
-          <!-- sol -->
-          <g clip-path="url(#capSol)">
-            <rect id="solFond" x="0" y="252" width="600" height="168" fill="#CBD3CE"/>
-            <g id="solMotif"></g>
+          <!-- 2. les défauts, effacés par le rebouchage -->
+          <g class="defauts">
+            <g class="fissure f1" stroke="#5E4B36" fill="none" stroke-linecap="round">
+              <path d="M96 20 l14 54 l-20 42 l24 58 l-12 46 l18 62 l-8 48 l14 50"
+                    stroke-width="5"/>
+              <path d="M110 74 l34 22 M114 174 l-30 26 M124 282 l32 20" stroke-width="3"/>
+            </g>
+            <g class="fissure f2" stroke="#5E4B36" fill="none" stroke-linecap="round">
+              <path d="M470 0 l-16 46 l22 40 l-14 44 l20 38" stroke-width="4.5"/>
+              <path d="M476 86 l30 -18 M462 174 l-28 22" stroke-width="2.6"/>
+            </g>
+            <g class="fissure f3" stroke="#5E4B36" fill="none" stroke-linecap="round">
+              <path d="M250 400 l10 -52 l-16 -40 l18 -44" stroke-width="4"/>
+              <path d="M254 300 l-30 -16" stroke-width="2.4"/>
+            </g>
+            <!-- trous -->
+            <g class="trou t1" fill="#4E3D2C">
+              <path d="M330 130 l26 -12 l22 16 l-6 26 l-28 8 l-18 -20 z"/>
+            </g>
+            <g class="trou t2" fill="#4E3D2C">
+              <path d="M164 214 l20 -10 l16 14 l-8 20 l-22 4 z"/>
+            </g>
+            <g class="trou t3" fill="#4E3D2C">
+              <path d="M520 236 l22 -8 l14 16 l-10 18 l-22 -2 z"/>
+            </g>
           </g>
 
-          <!-- objet de la pièce -->
-          <g id="objet" fill="none" stroke="#16211F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></g>
+          <!-- 3. les rebouchages, qui apparaissent un par un -->
+          <g class="rebouche" fill="#E6D9C2">
+            <path class="r1" d="M84 8 l30 4 l6 60 l-14 48 l20 60 l-14 48 l18 64 l-10 50 l12 46 l-32 4 l-14 -52 l10 -50 l-18 -62 l12 -46 l-22 -58 l18 -42 z"/>
+            <path class="r2" d="M446 0 l34 0 l-12 48 l22 40 l-16 46 l20 38 l-30 8 l-20 -44 l14 -44 l-22 -42 z"/>
+            <path class="r3" d="M232 400 l34 0 l10 -54 l-18 -42 l20 -46 l-30 -8 l-20 52 l16 42 z"/>
+            <path class="r4" d="M318 116 l44 -18 l30 22 l-8 38 l-40 14 l-28 -30 z"/>
+            <path class="r5" d="M154 204 l32 -16 l24 20 l-10 30 l-34 8 z"/>
+            <path class="r6" d="M510 226 l34 -12 l20 22 l-14 28 l-34 -2 z"/>
+          </g>
+
+          <!-- 4. l'enduit, tiré de gauche à droite -->
+          <rect class="enduit" width="600" height="400" fill="url(#gEnduit)"/>
+
+          <!-- 5. la peinture, passée du haut vers le bas -->
+          <rect class="peint" width="600" height="400" fill="url(#gPeint)"/>
+
+          <!-- lumière -->
+          <rect width="600" height="400" fill="url(#gJour)" pointer-events="none"/>
+
+          <!-- ================= les outils ================= -->
+          <!-- couteau à enduire -->
+          <g class="couteau">
+            <rect x="-52" y="-6" width="52" height="12" rx="2" fill="#3A2C1E"/>
+            <path d="M0 -14 L34 -9 L34 9 L0 14 Z" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
+          </g>
+          <!-- taloche -->
+          <g class="taloche">
+            <rect x="-6" y="-52" width="14" height="104" rx="3" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
+            <rect x="-26" y="-16" width="22" height="32" rx="6" fill="#3A2C1E"/>
+          </g>
+          <!-- cale à poncer -->
+          <g class="cale">
+            <rect x="-34" y="-16" width="68" height="32" rx="4" fill="#D8B36A" stroke="#A6853F" stroke-width="1.6"/>
+            <rect x="-20" y="-30" width="40" height="16" rx="5" fill="#3A2C1E"/>
+          </g>
+          <g class="poussiere" fill="#EDE3D0">
+            <circle cx="0" cy="0" r="4"/><circle cx="18" cy="-14" r="3"/><circle cx="-16" cy="-10" r="2.6"/>
+            <circle cx="8" cy="-26" r="3.4"/><circle cx="-24" cy="-22" r="2.4"/>
+          </g>
+          <!-- rouleau -->
+          <g class="rouleau">
+            <rect x="-70" y="-13" width="140" height="26" rx="13" fill="#E2D3B6" stroke="#B9A180" stroke-width="2"/>
+            <path d="M0 13 v26 h-8" stroke="#3A2C1E" stroke-width="7" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- l'étape en cours -->
+          <g class="etapes">
+            <text class="etape e1" x="300" y="376">MUR D'ORIGINE</text>
+            <text class="etape e2" x="300" y="376">REBOUCHAGE</text>
+            <text class="etape e3" x="300" y="376">ENDUIT</text>
+            <text class="etape e4" x="300" y="376">PONÇAGE</text>
+            <text class="etape e5" x="300" y="376">PEINTURE</text>
+          </g>
         </svg>
-
-        <p class="piece-etat" id="pieceEtat">Salle de bains &middot; carrelage</p>
       </div>
     </div>
 
@@ -136,6 +221,7 @@
 
   <!-- ================= les métiers ================= -->
   <section class="metiers">
+    <div class="pose" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Quatre métiers, un seul interlocuteur</h2>
       <p class="sous">Ce qui est écrit sur le camion, et ce qui se fait sur le chantier.</p>
@@ -162,6 +248,7 @@
 
   <!-- ================= avis ================= -->
   <section class="avis">
+    <div class="pose" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Trente-deux avis, aucune étoile perdue</h2>
       <div class="citations">
@@ -184,6 +271,7 @@
 
   <!-- ================= infos ================= -->
   <section class="infos">
+    <div class="pose" aria-hidden="true"></div>
     <div class="bande infos-in">
       <div>
         <h2 class="titre-2">Joignable tôt</h2>
@@ -217,6 +305,7 @@
 
   <!-- ================= photos ================= -->
   <section class="travaux">
+    <div class="pose" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Un chantier, du début à la fin</h2>
       <div class="grille">
@@ -264,6 +353,6 @@
   </a>
 </nav>
 
-<script src="app.js?v=1" defer></script>
+<script src="app.js?v=2" defer></script>
 </body>
 </html>

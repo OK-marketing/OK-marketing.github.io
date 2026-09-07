@@ -201,6 +201,34 @@
   refaire();
 
   /* ---------------------------------------------------------
+     le carrelage se pose en tête de chaque section,
+     au moment où elle arrive à l'écran
+     --------------------------------------------------------- */
+  var bandes = document.querySelectorAll('.pose');
+  Array.prototype.forEach.call(bandes, function (b) {
+    var n = 26;
+    for (var i = 0; i < n; i++) {
+      var t = document.createElement('i');
+      t.style.animationDelay = (i * 34) + 'ms';
+      b.appendChild(t);
+    }
+  });
+  function poserTout() {
+    Array.prototype.forEach.call(bandes, function (b) { b.classList.add('pose-va'); });
+  }
+  if (!('IntersectionObserver' in window)) {
+    poserTout();
+  } else {
+    var oi = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('pose-va'); oi.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    Array.prototype.forEach.call(bandes, function (b) { oi.observe(b); });
+    setTimeout(poserTout, 4000);
+  }
+
+  /* ---------------------------------------------------------
      ouvert ou fermé, à l'heure de Paris
      --------------------------------------------------------- */
   try {
