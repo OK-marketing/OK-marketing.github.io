@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#E4EAE6">
+<title>C2L Rénov — Carreleur, plaquiste et peintre à Roissy-en-Brie</title>
+<meta name="description" content="Carrelage, placo, peinture et revêtements de sol en Seine-et-Marne. Dites en deux touches ce que vous voulez refaire, le message part sur WhatsApp déjà écrit.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="C2L Rénov">
+<meta property="og:title" content="C2L Rénov — On refait la pièce, pas seulement le sol">
+<meta property="og:description" content="Carreleur, plaquiste et peintre à Roissy-en-Brie. 5,0 sur 32 avis Google.">
+<meta property="og:url" content="https://ok-marketing.github.io/c2l-renov/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%2316211F%22/><rect x=%2216%22 y=%2216%22 width=%2232%22 height=%2232%22 fill=%22%236E9490%22/><rect x=%2252%22 y=%2252%22 width=%2232%22 height=%2232%22 fill=%22%236E9490%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<link rel="stylesheet" href="styles.css?v=1">
+<script>
+  document.documentElement.classList.add('js');
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  setTimeout(function () {
+    if (!window.pagePrete) document.documentElement.classList.remove('js');
+  }, 2500);
+</script>
+</head>
+<body>
+
+<div class="maquette" role="note">
+  <span class="maquette-puce"></span>
+  <strong>Maquette</strong>
+  <span class="maquette-txt">Page privée, non référencée — ce n'est pas le site officiel.</span>
+</div>
+
+<header class="entete">
+  <div class="bande entete-in">
+    <a class="marque" href="#haut">
+      <span class="marque-signe" aria-hidden="true"><i></i><i></i></span>
+      <span class="marque-nom">C2L&nbsp;Rénov</span>
+    </a>
+    <a class="tel-haut" href="tel:+33628706921">06 28 70 69 21</a>
+  </div>
+</header>
+
+<main id="haut">
+
+  <section class="ouverture">
+    <div class="bande">
+      <p class="situe">Carreleur, plaquiste et peintre — Roissy-en-Brie, Seine-et-Marne</p>
+      <h1 class="titre">On refait la pièce,<br>pas seulement le sol.</h1>
+      <p class="intro">Carrelage, parquet, placo, enduit, peinture. Une seule entreprise du premier coup de disqueuse à la dernière couche&nbsp;— vous n'avez pas trois artisans à faire venir.</p>
+    </div>
+
+    <!-- ================= la pièce qui se refait ================= -->
+    <div class="bande">
+      <div class="piece-cadre">
+        <svg class="piece" id="piece" viewBox="0 0 600 420" role="img"
+             aria-label="Coin de pièce dont le sol et le mur changent selon ce que vous choisissez">
+          <defs>
+            <clipPath id="capMur"><rect x="0" y="0" width="600" height="252"/></clipPath>
+            <clipPath id="capSol"><path d="M0 252 H600 V420 H0 Z"/></clipPath>
+            <linearGradient id="jour" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff" stop-opacity=".5"/>
+              <stop offset="60%" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- mur -->
+          <g clip-path="url(#capMur)">
+            <rect id="murFond" x="0" y="0" width="600" height="252" fill="#DDE4E0"/>
+            <g id="murMotif"></g>
+            <rect x="0" y="0" width="600" height="252" fill="url(#jour)" pointer-events="none"/>
+          </g>
+
+          <!-- plinthe -->
+          <rect x="0" y="246" width="600" height="8" fill="#FBFCFB"/>
+
+          <!-- sol -->
+          <g clip-path="url(#capSol)">
+            <rect id="solFond" x="0" y="252" width="600" height="168" fill="#CBD3CE"/>
+            <g id="solMotif"></g>
+          </g>
+
+          <!-- objet de la pièce -->
+          <g id="objet" fill="none" stroke="#16211F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></g>
+        </svg>
+
+        <p class="piece-etat" id="pieceEtat">Salle de bains &middot; carrelage</p>
+      </div>
+    </div>
+
+    <!-- ================= les choix ================= -->
+    <div class="bande">
+      <div class="choix">
+        <fieldset class="jeu">
+          <legend>Quelle pièce&nbsp;?</legend>
+          <div class="puces" data-jeu="piece">
+            <button type="button" class="puce" data-v="sdb" data-libelle="Salle de bains" aria-pressed="true">Salle de bains</button>
+            <button type="button" class="puce" data-v="cuisine" data-libelle="Cuisine" aria-pressed="false">Cuisine</button>
+            <button type="button" class="puce" data-v="sejour" data-libelle="Séjour" aria-pressed="false">Séjour</button>
+            <button type="button" class="puce" data-v="entree" data-libelle="Entrée, couloir" aria-pressed="false">Entrée</button>
+            <button type="button" class="puce" data-v="appart" data-libelle="Tout l'appartement" aria-pressed="false">Tout l'appart</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="jeu">
+          <legend>À refaire&nbsp;?</legend>
+          <div class="puces" data-jeu="travail">
+            <button type="button" class="puce" data-v="carrelage" data-libelle="Carrelage" aria-pressed="true">Carrelage</button>
+            <button type="button" class="puce" data-v="parquet" data-libelle="Parquet, sol souple" aria-pressed="false">Parquet</button>
+            <button type="button" class="puce" data-v="peinture" data-libelle="Peinture" aria-pressed="false">Peinture</button>
+            <button type="button" class="puce" data-v="placo" data-libelle="Placo, cloisons" aria-pressed="false">Placo</button>
+            <button type="button" class="puce" data-v="tout" data-libelle="Rénovation complète" aria-pressed="false">Tout refaire</button>
+          </div>
+        </fieldset>
+
+        <div class="sortie">
+          <p class="sortie-txt" id="apercu"></p>
+          <a class="bouton" id="lienWa" href="https://wa.me/33628706921" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.2-3.9c-.3-.5-.7-1.2-.7-2s.4-1.2.6-1.4c.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .5.4l.7 1.7c0 .2 0 .3-.1.5l-.3.4-.2.2c-.1.1-.2.3 0 .5a8 8 0 0 0 3.5 3c.3.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3z"/></svg>
+            Envoyer sur WhatsApp
+          </a>
+          <p class="sortie-note">Ajoutez une photo de la pièce dans WhatsApp&nbsp;: c'est ce qui permet de répondre le plus vite. Rien n'est enregistré ici.</p>
+        </div>
+      </div>
+
+      <p class="note-avis">
+        <span class="etoiles" aria-hidden="true">★★★★★</span>
+        <strong>5,0</strong> sur
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=C2L+R%C3%A9nov%2C+14+Av.+de+la+R%C3%A9publique%2C+77680+Roissy-en-Brie" target="_blank" rel="noopener">32 avis Google</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= les métiers ================= -->
+  <section class="metiers">
+    <div class="bande">
+      <h2 class="titre-2">Quatre métiers, un seul interlocuteur</h2>
+      <p class="sous">Ce qui est écrit sur le camion, et ce qui se fait sur le chantier.</p>
+      <ul class="liste">
+        <li>
+          <h3>Revêtement de sol</h3>
+          <p>Carrelage grand format, faïence, parquet et sols souples. Ragréage, découpe, calepinage et joints.</p>
+        </li>
+        <li>
+          <h3>Placo</h3>
+          <p>Cloisons, doublages, faux plafonds. Bandes, enduit et ponçage jusqu'au support prêt à peindre.</p>
+        </li>
+        <li>
+          <h3>Peinture</h3>
+          <p>Préparation des supports, enduit de lissage, sous-couche et finitions. Murs, plafonds et boiseries.</p>
+        </li>
+        <li>
+          <h3>Aménagement</h3>
+          <p>Cuisine et salle de bains reprises entièrement, du démontage à la pose des meubles et des sanitaires.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= avis ================= -->
+  <section class="avis">
+    <div class="bande">
+      <h2 class="titre-2">Trente-deux avis, aucune étoile perdue</h2>
+      <div class="citations">
+        <blockquote>
+          <p>Je recommande ce professionnel, à l'écoute, très minutieux, je suis ravie de ma salle de bain. Vous pouvez lui faire confiance.</p>
+          <cite>Jessy Dias Pereira, mai 2026</cite>
+        </blockquote>
+        <blockquote>
+          <p>Le travail est de grande qualité, les finitions sont parfaites et les délais ont été respectés. Un vrai professionnalisme du début à la fin.</p>
+          <cite>Clara Peltier, mars 2025</cite>
+        </blockquote>
+        <blockquote>
+          <p>Travail très soigné et toujours à l'écoute du client. Équipe sérieuse, je recommande à 100&nbsp;%.</p>
+          <cite>Brigitte Roux, mars 2025</cite>
+        </blockquote>
+      </div>
+      <p class="source-avis">Avis publiés sur la fiche Google de l'entreprise, où ils peuvent être lus en entier&nbsp;: <a href="https://www.google.com/maps/search/?api=1&amp;query=C2L+R%C3%A9nov%2C+14+Av.+de+la+R%C3%A9publique%2C+77680+Roissy-en-Brie" target="_blank" rel="noopener">voir les 32 avis</a>.</p>
+    </div>
+  </section>
+
+  <!-- ================= infos ================= -->
+  <section class="infos">
+    <div class="bande infos-in">
+      <div>
+        <h2 class="titre-2">Joignable tôt</h2>
+        <p class="etat" id="etat"><i></i><span id="etatTxt">Horaires de l'entreprise</span></p>
+        <table class="heures" id="heures">
+          <tbody>
+            <tr data-j="1"><th scope="row">Lundi</th><td>7 h – 20 h</td></tr>
+            <tr data-j="2"><th scope="row">Mardi</th><td>7 h – 20 h</td></tr>
+            <tr data-j="3"><th scope="row">Mercredi</th><td>7 h – 20 h</td></tr>
+            <tr data-j="4"><th scope="row">Jeudi</th><td>7 h – 20 h</td></tr>
+            <tr data-j="5"><th scope="row">Vendredi</th><td>7 h – 20 h</td></tr>
+            <tr data-j="6"><th scope="row">Samedi</th><td>8 h – 17 h</td></tr>
+            <tr data-j="0"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2 class="titre-2">Où nous trouver</h2>
+        <ul class="coord">
+          <li>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=C2L+R%C3%A9nov%2C+14+Av.+de+la+R%C3%A9publique%2C+77680+Roissy-en-Brie" target="_blank" rel="noopener">14 avenue de la République<br>77680 Roissy-en-Brie</a>
+          </li>
+          <li><a href="tel:+33628706921">06 28 70 69 21</a></li>
+          <li><a href="https://wa.me/33628706921" target="_blank" rel="noopener">Écrire sur WhatsApp</a></li>
+        </ul>
+        <p class="zone">Interventions en Seine-et-Marne et alentours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= photos ================= -->
+  <section class="travaux">
+    <div class="bande">
+      <h2 class="titre-2">Un chantier, du début à la fin</h2>
+      <div class="grille">
+        <figure class="t1">
+          <img src="photos/chantier.jpg" width="700" height="933" loading="lazy" decoding="async"
+               alt="Pièce en cours de rénovation, murs enduits, sacs de plâtre et outils au sol">
+          <figcaption>Les murs sont montés et enduits.</figcaption>
+        </figure>
+        <figure class="t2">
+          <img src="photos/carrelage.jpg" width="700" height="933" loading="lazy" decoding="async"
+               alt="Mur de salle de bains en cours de carrelage, grand format posé avec croisillons autonivelants">
+          <figcaption>Pose au niveau laser, croisillons autonivelants.</figcaption>
+        </figure>
+        <figure class="t3">
+          <img src="photos/livre.jpg" width="900" height="675" loading="lazy" decoding="async"
+               alt="Pièce terminée, murs blancs et sol carrelé grand format">
+          <figcaption>La pièce rendue, prête à vivre.</figcaption>
+        </figure>
+        <figure class="t4">
+          <img src="photos/camion.jpg" width="900" height="675" loading="lazy" decoding="async"
+               alt="Camion de l'entreprise C2L Rénov, portant la liste des métiers">
+          <figcaption>Le camion, et tout ce qu'il transporte.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="bande">
+    <p><strong>C2L Rénov</strong> — 14 avenue de la République, 77680 Roissy-en-Brie. SIREN 939&nbsp;420&nbsp;832, activité 43.34Z.</p>
+    <p class="pied-note"><strong>Maquette de proposition.</strong> Ce n'est pas le site officiel de l'entreprise. Les informations et les photographies proviennent de la fiche Google publique de C2L Rénov&nbsp;: elles lui appartiennent et doivent être validées, complétées ou remplacées par le gérant avant toute mise en ligne.</p>
+  </div>
+</footer>
+
+<nav class="barre-bas" aria-label="Contact rapide">
+  <a href="tel:+33628706921">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    Appeler
+  </a>
+  <a class="bas-wa" href="#haut">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6a11 11 0 0 1-4.2-3.9c-.3-.5-.7-1.2-.7-2s.4-1.2.6-1.4c.2-.2.4-.3.6-.3h.4c.2 0 .4 0 .5.4l.7 1.7c0 .2 0 .3-.1.5l-.3.4-.2.2c-.1.1-.2.3 0 .5a8 8 0 0 0 3.5 3c.3.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3z"/></svg>
+    Décrire mon projet
+  </a>
+</nav>
+
+<script src="app.js?v=1" defer></script>
+</body>
+</html>

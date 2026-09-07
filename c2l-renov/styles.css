@@ -1,0 +1,254 @@
+/* =========================================================
+   C2L Rénov — maquette
+   Palette relevée sur leur propre camion : vert sauge sur
+   plâtre pâle. Le sujet, c'est la surface : la pièce du
+   haut se refait sous le doigt du visiteur.
+   Téléphone d'abord. Deux paliers : 48rem et 64rem.
+   ========================================================= */
+
+:root{
+  --mur:     #E4EAE6;   /* plâtre teinté eucalyptus */
+  --mur-2:   #D6DEDA;
+  --joint:   #B7C1BB;
+  --craie:   #FBFCFB;
+  --encre:   #16211F;
+  --encre-2: #4A5754;
+  --sauge:   #6E9490;   /* la couleur du camion */
+  --sauge-f: #3F5D59;
+  --menthe:  #CDE6DE;
+  --wa:      #1FA855;
+  --vert:    #2E7D4F;
+
+  --bande-max: 64rem;
+  --marge: 1.15rem;
+  --barre: calc(3.5rem + env(safe-area-inset-bottom));
+
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --titre: "Bricolage Grotesque", var(--sans);
+}
+
+*{ box-sizing: border-box }
+
+html{
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  margin: 0;
+  padding-bottom: var(--barre);
+  background: var(--mur);
+  color: var(--encre);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+p{ margin: 0 }
+img{ max-width: 100%; display: block }
+a{ color: var(--sauge-f) }
+:focus-visible{ outline: 2px solid var(--sauge-f); outline-offset: 3px }
+
+.bande{ padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2) }
+section{ padding-block: 3rem }
+
+.titre, .titre-2{
+  font-family: var(--titre); font-weight: 800;
+  letter-spacing: -.02em; line-height: 1.02; margin: 0; text-wrap: balance;
+}
+.titre{ font-size: clamp(2.05rem, 8vw, 4rem) }
+.titre-2{ font-size: clamp(1.5rem, 5.5vw, 2.3rem) }
+h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
+
+/* ================= bandeau maquette ================= */
+.maquette{
+  display: flex; align-items: center; gap: .5rem;
+  padding: .5rem max(var(--marge), (100% - var(--bande-max)) / 2);
+  background: var(--encre); color: #C4CFCB;
+  font-size: .72rem; line-height: 1.35;
+}
+.maquette strong{ color: var(--craie) }
+.maquette-puce{ width: 7px; height: 7px; border-radius: 50%; background: var(--sauge); flex: none }
+@media (max-width: 26rem){ .maquette-txt{ display: none } }
+
+/* ================= en-tête ================= */
+.entete{
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in oklab, var(--mur) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--joint);
+}
+.entete-in{ display: flex; align-items: center; gap: 1rem; min-height: 3.5rem }
+.marque{ display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--encre) }
+.marque-signe{ display: grid; grid-template-columns: 11px 11px; gap: 3px; flex: none }
+.marque-signe i{ display: block; width: 11px; height: 11px; background: var(--sauge) }
+.marque-signe i:nth-child(2){ background: var(--encre); grid-column: 2; grid-row: 2 }
+.marque-nom{ font-family: var(--titre); font-weight: 800; font-size: 1.22rem; letter-spacing: -.01em }
+.tel-haut{
+  margin-left: auto; background: var(--encre); color: var(--craie);
+  font-weight: 700; font-size: .9rem; text-decoration: none;
+  padding: .5rem .8rem; border-radius: 3px; white-space: nowrap;
+}
+.tel-haut:hover{ background: var(--sauge-f) }
+
+/* ================= ouverture ================= */
+.ouverture{ padding-block: 2rem 3.5rem }
+.situe{ font-size: .88rem; color: var(--encre-2); margin-bottom: .8rem }
+.intro{ margin-top: 1.1rem; font-size: 1.06rem; color: var(--encre-2); max-width: 40ch }
+
+/* ================= la pièce ================= */
+.piece-cadre{
+  margin-top: 1.8rem; position: relative;
+  border: 1px solid var(--joint); border-radius: 4px; overflow: hidden;
+  background: var(--mur-2);
+  box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
+}
+.piece{ width: 100%; height: auto; display: block }
+.piece-etat{
+  position: absolute; left: .6rem; bottom: .6rem;
+  background: color-mix(in oklab, var(--encre) 86%, transparent);
+  color: var(--craie); font-size: .74rem; font-weight: 600;
+  padding: .3rem .6rem; border-radius: 3px;
+}
+
+/* les carreaux se posent l'un après l'autre */
+.js .tuile{ opacity: 0; animation: poser .34s cubic-bezier(.2,.8,.3,1) forwards }
+@keyframes poser{ from{ opacity: 0; transform: translateY(9px) } to{ opacity: 1; transform: none } }
+.js .lame{ opacity: 0; animation: glisser .38s cubic-bezier(.2,.8,.3,1) forwards }
+@keyframes glisser{ from{ opacity: 0; transform: translateX(-16px) } to{ opacity: 1; transform: none } }
+#objet{ transition: opacity .3s ease }
+
+/* ================= les choix ================= */
+.choix{ margin-top: 1.8rem }
+.jeu{ border: 0; padding: 0; margin: 0 0 1.3rem }
+.jeu legend{
+  font-family: var(--titre); font-weight: 600; font-size: 1.05rem;
+  color: var(--encre); margin-bottom: .6rem; padding: 0;
+}
+.puces{ display: flex; flex-wrap: wrap; gap: .4rem }
+.puce{
+  font-family: inherit; font-size: .94rem; font-weight: 600; color: var(--encre);
+  background: var(--craie); border: 1px solid var(--joint); border-radius: 999px;
+  padding: .6rem .95rem; min-height: 2.75rem; cursor: pointer;
+  transition: background .16s ease, border-color .16s ease, color .16s ease;
+}
+.puce:hover{ border-color: var(--sauge) }
+.puce[aria-pressed="true"]{ background: var(--encre); border-color: var(--encre); color: var(--craie) }
+
+.sortie{
+  margin-top: 1.6rem; background: var(--craie);
+  border: 1px solid var(--joint); border-radius: 4px; padding: 1rem;
+}
+.sortie-txt{
+  font-size: .95rem; line-height: 1.55; color: var(--encre-2);
+  white-space: pre-line; padding-left: .8rem; border-left: 3px solid var(--sauge);
+}
+.bouton{
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  margin-top: 1rem; min-height: 3.4rem; padding: .85rem 1.2rem; border-radius: 4px;
+  background: var(--wa); color: #fff; text-decoration: none;
+  font-family: var(--titre); font-weight: 800; font-size: 1.15rem;
+}
+.bouton svg{ width: 1.2rem; height: 1.2rem; flex: none }
+.bouton:hover{ background: #1B9149 }
+.sortie-note{ margin-top: .7rem; font-size: .8rem; line-height: 1.5; color: var(--encre-2) }
+
+.note-avis{ display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; margin-top: 1.5rem; font-size: .92rem; color: var(--encre-2) }
+.note-avis strong{ color: var(--encre); font-size: 1.1rem }
+.etoiles{ color: var(--sauge-f); letter-spacing: .08em }
+
+/* ================= métiers ================= */
+.metiers{ background: var(--craie); border-block: 1px solid var(--joint) }
+.sous{ margin-top: .6rem; color: var(--encre-2) }
+.liste{ list-style: none; margin: 1.6rem 0 0; padding: 0 }
+.liste li{ padding: 1.15rem 0; border-top: 1px solid var(--joint) }
+.liste li:last-child{ border-bottom: 1px solid var(--joint) }
+.liste p{ margin-top: .3rem; color: var(--encre-2); font-size: .95rem; max-width: 52ch }
+
+/* ================= avis ================= */
+.citations{ display: grid; gap: 1.5rem; margin-top: 1.6rem }
+.citations blockquote{ margin: 0 }
+.citations p{ font-size: 1.1rem; line-height: 1.45; font-family: var(--titre); font-weight: 600; letter-spacing: -.01em }
+.citations p::before{ content: "« " } .citations p::after{ content: " »" }
+.citations cite{ display: block; margin-top: .5rem; font-style: normal; font-size: .84rem; color: var(--encre-2) }
+.source-avis{ margin-top: 1.6rem; font-size: .84rem; color: var(--encre-2) }
+
+/* ================= infos ================= */
+.infos{ background: var(--craie); border-block: 1px solid var(--joint) }
+.etat{
+  display: inline-flex; align-items: center; gap: .45rem; margin-top: 1rem;
+  padding: .35rem .7rem; border: 1px solid var(--joint); border-radius: 999px;
+  font-size: .8rem; font-weight: 700; color: var(--encre-2); background: var(--mur);
+}
+.etat i{ width: 8px; height: 8px; border-radius: 50%; background: var(--joint); flex: none }
+.etat.ouvert{ border-color: color-mix(in oklab, var(--vert) 40%, var(--joint)); color: var(--vert) }
+.etat.ouvert i{ background: var(--vert) }
+.heures{ width: 100%; border-collapse: collapse; margin-top: 1.1rem }
+.heures th, .heures td{ padding: .6rem 0; border-bottom: 1px solid var(--joint); font-size: .95rem; font-weight: 400 }
+.heures th{ text-align: left }
+.heures td{ text-align: right; color: var(--encre-2); font-variant-numeric: tabular-nums }
+.heures tr.jour th, .heures tr.jour td{ color: var(--sauge-f); font-weight: 700 }
+.coord{ list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .9rem }
+.coord a{ font-family: var(--titre); font-weight: 600; font-size: 1.14rem; text-decoration: none; color: var(--encre); line-height: 1.25 }
+.coord a:hover{ color: var(--sauge-f) }
+.zone{ margin-top: 1.1rem; font-size: .88rem; color: var(--encre-2) }
+
+/* ================= photos ================= */
+.grille{ display: grid; gap: .8rem; margin-top: 1.6rem }
+.grille figure{ margin: 0; background: var(--craie); border: 1px solid var(--joint); border-radius: 4px; overflow: hidden }
+.grille img{ width: 100%; height: auto }
+.grille figcaption{ padding: .7rem .85rem; font-size: .84rem; color: var(--encre-2) }
+
+/* ================= pied ================= */
+.pied{ background: var(--encre); color: #9BA8A4; padding-block: 2rem; font-size: .8rem; line-height: 1.6 }
+.pied strong{ color: var(--craie) }
+.pied-note{ margin-top: .85rem; max-width: 48rem }
+
+/* ================= barre du bas ================= */
+.barre-bas{
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: grid; grid-template-columns: 1fr 1.35fr;
+  border-top: 1px solid var(--joint); background: var(--craie);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.barre-bas a{
+  display: flex; align-items: center; justify-content: center; gap: .45rem;
+  min-height: 3.5rem; text-decoration: none; color: var(--encre);
+  font-family: var(--titre); font-weight: 800; font-size: 1.05rem;
+}
+.barre-bas .bas-wa{ background: var(--wa); color: #fff }
+.barre-bas svg{ width: 1.05rem; height: 1.05rem; flex: none }
+
+/* ================= palier 1 : 48rem ================= */
+@media (min-width: 48rem){
+  :root{ --marge: 2rem; --barre: 0px }
+  body{ font-size: 1.09rem }
+  section{ padding-block: 4.5rem }
+  .ouverture{ padding-block: 3rem 5rem }
+  .barre-bas{ display: none }
+  .choix{ display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; align-items: start }
+  .sortie{ grid-column: 1 / -1; margin-top: .8rem }
+  .liste li{ display: grid; grid-template-columns: 14rem 1fr; gap: 1.5rem; align-items: baseline }
+  .liste p{ margin-top: 0 }
+  .citations{ grid-template-columns: repeat(3, 1fr); gap: 2rem }
+  .infos-in{ display: grid; grid-template-columns: 1fr 1fr; gap: 3rem }
+  .grille{ grid-template-columns: 1fr 1fr; gap: 1rem }
+}
+
+/* ================= palier 2 : 64rem ================= */
+@media (min-width: 64rem){
+  section{ padding-block: 5.5rem }
+  .intro{ font-size: 1.16rem }
+  .grille{ grid-template-columns: repeat(4, 1fr) }
+  .grille .t3, .grille .t4{ grid-row: span 1 }
+  .liste li{ grid-template-columns: 16rem 1fr }
+}
+
+/* ================= mouvement réduit ================= */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto }
+  *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important }
+  .js .tuile, .js .lame{ opacity: 1 }
+}
