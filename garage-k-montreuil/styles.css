@@ -236,10 +236,10 @@ a{ color: var(--rouge-clair) }
 .piece-phare  { animation-name: venirD }
 .piece-bombe  { animation-name: venirD2 }
 @keyframes venirG{
-  0%,26%{ transform: translate(-90px,470px) rotate(0deg); opacity:0 }
+  0%,26%{ transform: translate(-90px,392px) rotate(0deg); opacity:0 }
   28%{ opacity:1 }
-  38%{ transform: translate(330px,470px) rotate(540deg); opacity:1 }
-  42%,100%{ transform: translate(390px,470px) rotate(650deg); opacity:0 }
+  38%{ transform: translate(330px,392px) rotate(540deg); opacity:1 }
+  42%,100%{ transform: translate(390px,392px) rotate(650deg); opacity:0 }
 }
 @keyframes venirG2{
   0%,29%{ transform: translate(-70px,300px); opacity:0 }
@@ -254,10 +254,10 @@ a{ color: var(--rouge-clair) }
   43%,100%{ transform: translate(420px,238px); opacity:0 }
 }
 @keyframes venirD2{
-  0%,30%{ transform: translate(890px,404px) rotate(24deg); opacity:0 }
+  0%,30%{ transform: translate(890px,372px) rotate(24deg); opacity:0 }
   32%{ opacity:1 }
-  41%{ transform: translate(480px,420px) rotate(-8deg); opacity:1 }
-  45%,100%{ transform: translate(430px,424px) rotate(-14deg); opacity:0 }
+  41%{ transform: translate(480px,384px) rotate(-8deg); opacity:1 }
+  45%,100%{ transform: translate(430px,388px) rotate(-14deg); opacity:0 }
 }
 
 .neon{ animation-name: neonPulse }
