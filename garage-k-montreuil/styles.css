@@ -100,13 +100,13 @@ a{ color: var(--rouge-clair) }
 
 /* le texte de l'affiche, posé sur le bas de la scène */
 .heros-txt{
-  position: relative; z-index: 3; margin-top: -14%;
+  position: relative; z-index: 3; margin-top: -7%;
   padding-bottom: 2.5rem;
   background: linear-gradient(180deg, rgba(11,13,17,0) 0%, var(--bitume) 22%);
 }
 .titre{
   font-family: var(--affiche); font-weight: 800; text-transform: uppercase;
-  font-size: clamp(3.4rem, 17vw, 8.5rem); line-height: .8; letter-spacing: -.005em;
+  font-size: clamp(3.4rem, 17vw, 8.5rem); line-height: .84; letter-spacing: -.005em;
   margin: 0; padding-top: 1.5rem;
 }
 .titre span{ display: block }
@@ -148,7 +148,7 @@ a{ color: var(--rouge-clair) }
 }
 
 /* le rideau : les lames se compriment vers le linteau */
-.rideau{ transform-box: view-box; transform-origin: 400px 96px; animation-name: rideau }
+.rideau{ transform-box: view-box; transform-origin: 400px 190px; animation-name: rideau }
 @keyframes rideau{
   0%,   12% { transform: scaleY(.055) }
   25%,  60% { transform: scaleY(1) }
@@ -194,7 +194,7 @@ a{ color: var(--rouge-clair) }
 .b1{ animation-delay: 0s }    .b2{ animation-delay: .9s }  .b3{ animation-delay: 1.7s }
 .b4{ animation-delay: 2.6s }  .b5{ animation-delay: 3.4s }
 @keyframes bluette{
-  0%,  27% { transform: translate(400px, 588px) scale(1); opacity: 0 }
+  0%,  27% { transform: translate(400px, 596px) scale(1); opacity: 0 }
   28%      { opacity: 1 }
   33%      { transform: translate(320px, 548px) scale(.7); opacity: .9 }
   36%      { transform: translate(268px, 596px) scale(.4); opacity: 0 }
@@ -390,7 +390,7 @@ section{ padding-block: 3rem }
   body{ font-size: 1.09rem }
   section{ padding-block: 4.5rem }
   .barre-bas{ display: none }
-  .heros-txt{ margin-top: -11% }
+  .heros-txt{ margin-top: -6% }
   .actions{ grid-auto-flow: column; justify-content: start; gap: .7rem }
   .cta{ padding-inline: 2rem }
   .liste li{ display: grid; grid-template-columns: 15rem 1fr; gap: 1.5rem; align-items: baseline }
@@ -407,7 +407,7 @@ section{ padding-block: 3rem }
 /* ================= palier 2 : 64rem ================= */
 @media (min-width: 64rem){
   section{ padding-block: 5.5rem }
-  .heros-txt{ margin-top: -13% }
+  .heros-txt{ margin-top: -7% }
   .intro{ font-size: 1.2rem }
   .liste li{ grid-template-columns: 18rem 1fr }
 }
