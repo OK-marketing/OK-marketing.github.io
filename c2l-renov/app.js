@@ -149,35 +149,65 @@
      où elle arrive à l'écran : la page se carrèle de haut en bas
      --------------------------------------------------------- */
   var colonnes = document.querySelectorAll('.colonne');
-  Array.prototype.forEach.call(colonnes, function (col, ic) {
-    /* on remplit large : le trop-plein est masqué par overflow */
-    var hauteur = col.parentElement ? col.parentElement.offsetHeight : 700;
-    var pas = parseFloat(getComputedStyle(col).gridAutoRows) || 26;
-    var combien = Math.ceil(hauteur / (pas + 3)) + 2;
+  var carreaux = [];              /* { el, y } trié par y, mesuré une seule fois */
+  var pose = 0;                   /* jusqu'où on a déjà posé */
+  var douxMouvement = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    for (var i = 0; i < combien; i++) {
-      var carreau = document.createElement('i');
-      carreau.style.background = TERRES[(i * 3 + ic) % TERRES.length];
-      carreau.style.animationDelay = (i * 55) + 'ms';   /* de haut en bas */
-      col.appendChild(carreau);
+  function batir() {
+    carreaux = [];
+    pose = 0;
+    Array.prototype.forEach.call(colonnes, function (col, ic) {
+      col.textContent = '';
+      var hauteur = col.parentElement ? col.parentElement.offsetHeight : 700;
+      var pas = parseFloat(getComputedStyle(col).gridAutoRows) || 26;
+      var haut = col.getBoundingClientRect().top + window.pageYOffset;
+      var combien = Math.ceil(hauteur / (pas + 3)) + 2;
+
+      for (var i = 0; i < combien; i++) {
+        var carreau = document.createElement('i');
+        carreau.style.background = TERRES[(i * 3 + ic) % TERRES.length];
+        col.appendChild(carreau);
+        /* la hauteur du carreau dans la page, calculee ici et plus jamais */
+        carreaux.push({ el: carreau, y: haut + i * (pas + 3) });
+      }
+    });
+    carreaux.sort(function (a, b) { return a.y - b.y; });
+  }
+
+  /* le defilement ne fait que comparer des nombres : aucune mesure ici */
+  function poserJusqua(limite) {
+    while (pose < carreaux.length && carreaux[pose].y < limite) {
+      carreaux[pose].el.classList.add('posee');
+      pose++;
     }
-  });
-
-  function poserTout() {
-    Array.prototype.forEach.call(colonnes, function (c) { c.classList.add('colonne-va'); });
   }
 
-  if (!('IntersectionObserver' in window)) {
-    poserTout();
+  var enAttente = false;
+  function auDefilement() {
+    if (enAttente) return;
+    enAttente = true;
+    requestAnimationFrame(function () {
+      enAttente = false;
+      poserJusqua(window.pageYOffset + window.innerHeight - 24);
+    });
+  }
+
+  batir();
+  if (douxMouvement) {
+    poserJusqua(Infinity);        /* pas d'animation : tout est deja pose */
   } else {
-    var oi = new IntersectionObserver(function (entrees) {
-      entrees.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('colonne-va'); oi.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
-    Array.prototype.forEach.call(colonnes, function (c) { oi.observe(c); });
-    setTimeout(poserTout, 4500);   /* filet de sécurité */
+    poserJusqua(window.pageYOffset + window.innerHeight - 24);
+    addEventListener('scroll', auDefilement, { passive: true });
   }
+
+  var minuterie;
+  addEventListener('resize', function () {
+    clearTimeout(minuterie);
+    minuterie = setTimeout(function () {
+      batir();
+      poserJusqua(douxMouvement ? Infinity : window.pageYOffset + window.innerHeight - 24);
+    }, 200);
+  }, { passive: true });
 
   /* ---------------------------------------------------------
      ouvert ou fermé, à l'heure de Paris
