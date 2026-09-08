@@ -160,17 +160,23 @@
       col.textContent = '';
       /* la hauteur de la colonne elle-même : c'est elle qui borne la pose.
          Passer par la section donnait des carreaux hors cadre, jamais posés. */
+      var st = getComputedStyle(col);
       var hauteur = col.offsetHeight || (col.parentElement ? col.parentElement.offsetHeight : 700);
-      var pas = parseFloat(getComputedStyle(col).gridAutoRows) || 26;
+      var cote = parseFloat(st.gridAutoRows) || 14;          /* côté d'un carreau */
+      var jeu = parseFloat(st.rowGap) || 2;                  /* le joint */
       var haut = col.getBoundingClientRect().top + window.pageYOffset;
-      var combien = Math.ceil(hauteur / (pas + 3)) + 1;
+      var PARRANG = 3;                                       /* trois carreaux de large */
+      var rangs = Math.ceil(hauteur / (cote + jeu)) + 1;
 
-      for (var i = 0; i < combien; i++) {
-        var carreau = document.createElement('i');
-        carreau.style.background = TERRES[(i * 3 + ic) % TERRES.length];
-        col.appendChild(carreau);
-        /* la hauteur du carreau dans la page, calculee ici et plus jamais */
-        carreaux.push({ el: carreau, y: haut + i * (pas + 3) });
+      for (var r2 = 0; r2 < rangs; r2++) {
+        var yRang = haut + r2 * (cote + jeu);
+        for (var c2 = 0; c2 < PARRANG; c2++) {
+          var carreau = document.createElement('i');
+          carreau.style.background = TERRES[(r2 * 2 + c2 + ic) % TERRES.length];
+          col.appendChild(carreau);
+          /* la hauteur du carreau dans la page, calculée ici et plus jamais */
+          carreaux.push({ el: carreau, y: yRang });
+        }
       }
     });
     carreaux.sort(function (a, b) { return a.y - b.y; });

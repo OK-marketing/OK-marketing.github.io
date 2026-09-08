@@ -22,8 +22,9 @@
   --vert:     #4E7A46;
 
   --bande-max: 64rem;
-  --marge: 2.5rem;
-  --col: 26px;
+  --marge: 3.8rem;
+  --carreau: 14px;
+  --col: calc(var(--carreau) * 3 + 4px);
   --barre: calc(3.5rem + env(safe-area-inset-bottom));
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -252,7 +253,8 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
    fait pas descendre la page, rien ne se pose. Au milieu, que du texte. */
 .colonne{
   position: absolute; top: 0; bottom: 0; width: var(--col);
-  display: grid; grid-auto-rows: var(--col); gap: 3px;
+  display: grid; grid-template-columns: repeat(3, var(--carreau));
+  grid-auto-rows: var(--carreau); gap: 2px;
   overflow: hidden; pointer-events: none; z-index: 0;
 }
 .colonne-g{ left: max(0px, (100% - var(--bande-max)) / 2 - var(--col) - .8rem) }
@@ -373,7 +375,7 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 
 /* ================= palier 1 : 48rem ================= */
 @media (min-width: 48rem){
-  :root{ --marge: 3.6rem; --col: 40px; --barre: 0px }
+  :root{ --marge: 6rem; --carreau: 26px; --barre: 0px }
   body{ font-size: 1.09rem }
   section{ padding-block: 4.5rem }
   .ouverture{ padding-block: 3rem 5rem }
