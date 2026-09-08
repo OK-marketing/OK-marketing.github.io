@@ -158,10 +158,12 @@
     pose = 0;
     Array.prototype.forEach.call(colonnes, function (col, ic) {
       col.textContent = '';
-      var hauteur = col.parentElement ? col.parentElement.offsetHeight : 700;
+      /* la hauteur de la colonne elle-même : c'est elle qui borne la pose.
+         Passer par la section donnait des carreaux hors cadre, jamais posés. */
+      var hauteur = col.offsetHeight || (col.parentElement ? col.parentElement.offsetHeight : 700);
       var pas = parseFloat(getComputedStyle(col).gridAutoRows) || 26;
       var haut = col.getBoundingClientRect().top + window.pageYOffset;
-      var combien = Math.ceil(hauteur / (pas + 3)) + 2;
+      var combien = Math.ceil(hauteur / (pas + 3)) + 1;
 
       for (var i = 0; i < combien; i++) {
         var carreau = document.createElement('i');
@@ -200,13 +202,19 @@
     addEventListener('scroll', auDefilement, { passive: true });
   }
 
+  function refaire() {
+    batir();
+    poserJusqua(douxMouvement ? Infinity : window.pageYOffset + window.innerHeight - 24);
+  }
+
+  /* les images et les polices changent la hauteur des sections :
+     on remesure une fois tout chargé, sinon les repères sont faux */
+  addEventListener('load', refaire);
+
   var minuterie;
   addEventListener('resize', function () {
     clearTimeout(minuterie);
-    minuterie = setTimeout(function () {
-      batir();
-      poserJusqua(douxMouvement ? Infinity : window.pageYOffset + window.innerHeight - 24);
-    }, 200);
+    minuterie = setTimeout(refaire, 200);
   }, { passive: true });
 
   /* ---------------------------------------------------------
