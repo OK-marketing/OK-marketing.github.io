@@ -1,9 +1,9 @@
 /* =========================================================
    C2L Rénov — maquette
    Tons chauds : sable, plâtre, terre cuite, chêne.
-   Le mur du haut se refait tout seul — fissuré, rebouché,
-   enduit, poncé, peint — et le carrelage se pose au fil
-   du défilement, de haut en bas.
+   La pièce du haut se refait toute seule — dépose du vieux
+   carrelage, ragréage, encollage, pose — et le carrelage se pose
+   aussi au fil du défilement, de haut en bas.
    Téléphone d'abord. Deux paliers : 48rem et 64rem.
    ========================================================= */
 
@@ -100,127 +100,152 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 .situe{ font-size: .88rem; color: var(--encre-2); margin-bottom: .8rem }
 .intro{ margin-top: 1.1rem; font-size: 1.06rem; color: var(--encre-2); max-width: 42ch }
 
-/* ================= le mur, 13 s ================= */
+/* ================= la piece, 16 s =================
+   0    -> 1,6 s   etat d'origine : murs fissures, vieux carrelage
+   1,6  -> 3,8 s   depose : le vieux sol part, les gravats restent
+   3,8  -> 6,4 s   ragreage : la lisseuse tire du fond vers l'entree
+   6,4  -> 9,0 s   encollage : la colle est peignee rang par rang
+   9,0  -> 13,8 s  pose : le carrelage se pose rang par rang
+   13,8 -> 16 s    la piece finie
+   ==================================================== */
 .mur-cadre{
   margin-top: 1.8rem; position: relative;
   border: 1px solid var(--joint-2); border-radius: 4px; overflow: hidden;
   background: var(--sable-2);
 }
-.mur{ width: 100%; height: auto; display: block }
+.piece{ width: 100%; height: auto; display: block }
 
-.defauts, .rebouche path, .enduit, .peint,
-.couteau, .taloche, .cale, .poussiere, .rouleau, .etape{
-  animation-duration: 13s;
+.murs-n, .fissures, .vieux-sol, .ragreage, .colle, .carreaux,
+.croisillons, .lisseuse, .peigne, .gravats, .etape{
+  animation-duration: 16s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
-/* les fissures et les trous disparaissent sous l'enduit de rebouchage */
-.defauts{ animation-name: defauts }
-@keyframes defauts{ 0%, 20%{ opacity: 1 } 24%, 100%{ opacity: 0 } }
-
-/* chaque rebouchage arrive à son tour */
-.rebouche path{ opacity: 0; animation-name: rebouche }
-.r1{ animation-delay: .0s }  .r2{ animation-delay: .32s } .r3{ animation-delay: .64s }
-.r4{ animation-delay: .96s } .r5{ animation-delay: 1.2s } .r6{ animation-delay: 1.44s }
-@keyframes rebouche{
-  0%,  8%  { opacity: 0 }
-  13%      { opacity: 1 }
-  92%      { opacity: 1 }
-  96%, 100%{ opacity: 0 }
+/* les murs sont repeints tot : le sol reste la vedette */
+.fissures{ animation-name: fissures }
+@keyframes fissures{ 0%, 14%{ opacity: 1 } 20%, 100%{ opacity: 0 } }
+.murs-n{ animation-name: mursN }
+@keyframes mursN{
+  0%,  13% { clip-path: inset(0 0 100% 0) }
+  22%, 96% { clip-path: inset(0 0 0 0) }
+  100%     { clip-path: inset(0 0 100% 0) }
 }
 
-/* l'enduit est tiré de gauche à droite */
-.enduit{ animation-name: enduit }
-@keyframes enduit{
-  0%,  26% { clip-path: inset(0 100% 0 0) }
-  44%, 92% { clip-path: inset(0 0 0 0) }
-  96%, 100%{ clip-path: inset(0 100% 0 0) }
+/* le vieux carrelage est depose du fond vers l'entree */
+.vieux-sol{ animation-name: depose; animation-timing-function: steps(1, end) }
+@keyframes depose{
+  0%,  10% { clip-path: inset(0 0 0 0) }
+  13%      { clip-path: inset(0 0 77% 0) }
+  16%      { clip-path: inset(0 0 55% 0) }
+  19%      { clip-path: inset(0 0 33% 0) }
+  22%      { clip-path: inset(0 0 12% 0) }
+  24%, 96% { clip-path: inset(0 0 100% 0) }
+  100%     { clip-path: inset(0 0 0 0) }
+}
+.gravats{ opacity: 0; animation-name: gravats }
+@keyframes gravats{
+  0%,  11% { opacity: 0 }
+  15%      { opacity: .9 }
+  36%      { opacity: .9 }
+  40%, 100%{ opacity: 0 }
 }
 
-/* la peinture descend du plafond vers la plinthe */
-.peint{ animation-name: peint }
-@keyframes peint{
-  0%,  60% { clip-path: inset(0 0 100% 0) }
-  80%, 93% { clip-path: inset(0 0 0 0) }
-  96%, 100%{ clip-path: inset(0 0 100% 0) }
+/* le ragreage est tire du fond vers l'entree */
+.ragreage{ animation-name: ragreage }
+@keyframes ragreage{
+  0%,  24% { clip-path: inset(0 0 100% 0) }
+  40%, 96% { clip-path: inset(0 0 0 0) }
+  100%     { clip-path: inset(0 0 100% 0) }
+}
+.lisseuse{ opacity: 0; animation-name: lisseuse }
+@keyframes lisseuse{
+  0%,  23% { transform: translate(300px, 258px) scale(.55); opacity: 0 }
+  26%      { opacity: 1 }
+  40%      { transform: translate(300px, 392px) scale(1.15); opacity: 1 }
+  43%, 100%{ transform: translate(300px, 400px) scale(1.15); opacity: 0 }
 }
 
-/* le couteau à enduire passe sur chaque défaut */
-.couteau{ opacity: 0; animation-name: couteau }
-@keyframes couteau{
-  0%,  7%  { transform: translate(120px, 90px); opacity: 0 }
-  10%      { opacity: 1 }
-  14%      { transform: translate(150px, 250px) }
-  18%      { transform: translate(400px, 150px) }
-  21%      { transform: translate(540px, 250px); opacity: 1 }
-  24%, 100%{ transform: translate(560px, 260px); opacity: 0 }
+/* la colle, peignee rang par rang */
+.colle{ animation-name: colleP; animation-timing-function: steps(1, end) }
+@keyframes colleP{
+  0%,  40% { clip-path: inset(0 0 100% 0) }
+  43%      { clip-path: inset(0 0 77% 0) }
+  46%      { clip-path: inset(0 0 55% 0) }
+  49%      { clip-path: inset(0 0 33% 0) }
+  52%      { clip-path: inset(0 0 12% 0) }
+  55%, 96% { clip-path: inset(0 0 0 0) }
+  100%     { clip-path: inset(0 0 100% 0) }
+}
+.peigne{ opacity: 0; animation-name: peigne }
+@keyframes peigne{
+  0%,  40% { transform: translate(300px, 262px) scale(.6); opacity: 0 }
+  43%      { opacity: 1 }
+  55%      { transform: translate(300px, 384px) scale(1.1); opacity: 1 }
+  58%, 100%{ transform: translate(300px, 392px) scale(1.1); opacity: 0 }
 }
 
-/* la taloche tire l'enduit */
-.taloche{ opacity: 0; animation-name: taloche }
-@keyframes taloche{
-  0%,  25% { transform: translate(-40px, 180px); opacity: 0 }
-  28%      { opacity: 1 }
-  44%      { transform: translate(600px, 210px); opacity: 1 }
-  47%, 100%{ transform: translate(640px, 210px); opacity: 0 }
+/* LE CARRELAGE : rang par rang, du fond de la piece vers l'entree.
+   Les paliers suivent exactement les lignes de rangs calculees en JS. */
+.carreaux{ animation-name: poseSol; animation-timing-function: steps(1, end) }
+@keyframes poseSol{
+  0%,  56% { clip-path: inset(0 0 100% 0) }
+  59%      { clip-path: inset(0 0 97% 0) }
+  63%      { clip-path: inset(0 0 89.5% 0) }
+  67%      { clip-path: inset(0 0 78.2% 0) }
+  71%      { clip-path: inset(0 0 63.4% 0) }
+  75%      { clip-path: inset(0 0 45.1% 0) }
+  79%      { clip-path: inset(0 0 23.5% 0) }
+  83%, 96% { clip-path: inset(0 0 0 0) }
+  100%     { clip-path: inset(0 0 100% 0) }
+}
+/* les croisillons suivent la pose, puis on les retire */
+.croisillons{ opacity: 0; animation-name: croisillons; animation-timing-function: steps(1, end) }
+@keyframes croisillons{
+  0%,  58% { opacity: 0; clip-path: inset(0 0 100% 0) }
+  61%      { opacity: .85; clip-path: inset(0 0 89.5% 0) }
+  67%      { opacity: .85; clip-path: inset(0 0 78.2% 0) }
+  71%      { opacity: .85; clip-path: inset(0 0 63.4% 0) }
+  75%      { opacity: .85; clip-path: inset(0 0 45.1% 0) }
+  79%      { opacity: .85; clip-path: inset(0 0 23.5% 0) }
+  83%      { opacity: .85; clip-path: inset(0 0 0 0) }
+  88%, 100%{ opacity: 0; clip-path: inset(0 0 0 0) }
 }
 
-/* la cale à poncer, et la poussière qui monte */
-.cale{ opacity: 0; animation-name: cale }
-@keyframes cale{
-  0%,  47% { transform: translate(500px, 120px); opacity: 0 }
-  50%      { opacity: 1 }
-  57%      { transform: translate(140px, 250px); opacity: 1 }
-  60%, 100%{ transform: translate(120px, 260px); opacity: 0 }
-}
-.poussiere{ opacity: 0; animation-name: poussiere }
-@keyframes poussiere{
-  0%,  48% { transform: translate(460px, 140px); opacity: 0 }
-  52%      { opacity: .9 }
-  57%      { transform: translate(240px, 190px); opacity: .5 }
-  60%, 100%{ transform: translate(180px, 170px); opacity: 0 }
-}
-
-/* le rouleau descend avec la peinture */
-.rouleau{ opacity: 0; animation-name: rouleau }
-@keyframes rouleau{
-  0%,  59% { transform: translate(300px, -10px); opacity: 0 }
-  62%      { opacity: 1 }
-  80%      { transform: translate(300px, 400px); opacity: 1 }
-  83%, 100%{ transform: translate(300px, 430px); opacity: 0 }
-}
-
-/* le nom de l'étape */
+/* le nom de l'etape */
 .etape{
-  font-family: var(--titre); font-weight: 800; font-size: 22px;
-  letter-spacing: .12em; text-anchor: middle; fill: var(--encre);
-  opacity: 0; paint-order: stroke; stroke: rgba(244,236,221,.85); stroke-width: 6px;
+  font-family: var(--titre); font-weight: 800; font-size: 20px;
+  letter-spacing: .1em; text-anchor: middle; fill: var(--encre);
+  opacity: 0; paint-order: stroke; stroke: rgba(246,238,224,.9); stroke-width: 6px;
 }
-.e1{ animation-name: n1 } .e2{ animation-name: n2 } .e3{ animation-name: n3 }
-.e4{ animation-name: n4 } .e5{ animation-name: n5 }
-@keyframes n1{ 0%,2%{opacity:0} 5%,16%{opacity:1} 20%,100%{opacity:0} }
-@keyframes n2{ 0%,20%{opacity:0} 23%,24%{opacity:1} 26%,100%{opacity:0} }
-@keyframes n3{ 0%,27%{opacity:0} 30%,42%{opacity:1} 46%,100%{opacity:0} }
-@keyframes n4{ 0%,48%{opacity:0} 51%,57%{opacity:1} 60%,100%{opacity:0} }
-@keyframes n5{ 0%,61%{opacity:0} 64%,90%{opacity:1} 94%,100%{opacity:0} }
+.e1{ animation-name: p1 } .e2{ animation-name: p2 } .e3{ animation-name: p3 }
+.e4{ animation-name: p4 } .e5{ animation-name: p5 }
+@keyframes p1{ 0%,1%{opacity:0} 4%,8%{opacity:1} 11%,100%{opacity:0} }
+@keyframes p2{ 0%,11%{opacity:0} 14%,20%{opacity:1} 23%,100%{opacity:0} }
+@keyframes p3{ 0%,24%{opacity:0} 27%,36%{opacity:1} 39%,100%{opacity:0} }
+@keyframes p4{ 0%,40%{opacity:0} 43%,52%{opacity:1} 55%,100%{opacity:0} }
+@keyframes p5{ 0%,56%{opacity:0} 59%,92%{opacity:1} 96%,100%{opacity:0} }
 
-/* ================= le carrelage qui se pose au défilement ================= */
+/* ================= le carrelage qui se pose au defilement =================
+   De vrais carreaux carres, chauds, qui tombent d'en haut, rang du haut
+   d'abord : la page se carrele de haut en bas. */
 .pose{
-  position: absolute; top: 0; left: 0; right: 0; height: 14px;
-  display: flex; gap: 3px; overflow: hidden; pointer-events: none;
+  position: absolute; top: 0; left: 0; right: 0;
+  display: grid; grid-template-columns: repeat(20, 1fr); grid-auto-rows: 26px;
+  gap: 3px; height: 55px; overflow: hidden; pointer-events: none;
+  padding-inline: 3px;
 }
 .pose i{
-  display: block; flex: 1 1 auto; height: 14px; background: var(--joint);
-  transform: translateY(-16px); opacity: 0;
+  display: block; border-radius: 2px;
+  transform: translateY(-34px); opacity: 0;
+  box-shadow: inset 0 -2px 0 rgba(42,32,24,.14);
 }
-.js .pose-va i{
-  animation: carreau .42s cubic-bezier(.2,.85,.3,1) forwards;
-}
+.js .pose-va i{ animation: carreau .4s cubic-bezier(.2,.85,.3,1) forwards }
 @keyframes carreau{ to{ transform: none; opacity: 1 } }
-.pose i:nth-child(3n){ background: var(--bois) }
-.pose i:nth-child(4n){ background: var(--terre) }
-
+@media (max-width: 30rem){
+  .pose{ grid-template-columns: repeat(10, 1fr); grid-auto-rows: 24px; height: 51px }
+  .pose i{ transform: translateY(-30px) }
+}
 /* ================= les choix ================= */
 .choix{ margin-top: 1.8rem }
 .jeu{ border: 0; padding: 0; margin: 0 0 1.3rem }
@@ -357,10 +382,10 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto }
   *, *::before, *::after{ animation: none !important; transition-duration: .01ms !important }
-  .defauts{ opacity: 0 }
-  .enduit{ clip-path: inset(0 0 0 0) }
-  .peint{ clip-path: inset(0 0 0 0) }
-  .couteau, .taloche, .cale, .poussiere, .rouleau{ opacity: 0 }
+  .fissures{ opacity: 0 }
+  .ragreage{ clip-path: inset(0 0 0 0) }
+  .carreaux, .murs-n, .colle{ clip-path: inset(0 0 0 0) }
+  .lisseuse, .peigne, .gravats, .vieux-sol, .croisillons{ opacity: 0 }
   .e5{ opacity: 1 }
   .pose i{ transform: none; opacity: 1 }
   .js .tuile, .js .lame{ opacity: 1 }

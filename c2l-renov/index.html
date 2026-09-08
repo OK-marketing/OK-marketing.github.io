@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <script>
   document.documentElement.classList.add('js');
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -56,121 +56,85 @@
     <!-- ================= le mur qui se refait tout seul ================= -->
     <div class="bande">
       <div class="mur-cadre">
-        <svg class="mur" viewBox="0 0 600 400" role="img"
-             aria-label="Un mur fissuré est rebouché, enduit, poncé puis peint, en boucle">
+        <svg class="piece" viewBox="0 0 600 420" role="img"
+             aria-label="Une piece en perspective : le vieux carrelage est depose, le sol ragree, encolle, puis le carrelage neuf est pose rang par rang, du fond vers l'entree">
           <defs>
-            <linearGradient id="gVieux" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#C3AE90"/>
-              <stop offset="60%" stop-color="#B49C7C"/>
-              <stop offset="100%" stop-color="#A18869"/>
+            <linearGradient id="gMurV" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C6B195"/>
+              <stop offset="100%" stop-color="#A98F6F"/>
             </linearGradient>
-            <linearGradient id="gEnduit" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#E9DCC5"/>
-              <stop offset="100%" stop-color="#DCCBAE"/>
-            </linearGradient>
-            <linearGradient id="gPeint" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="gMurN" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#F6EEE0"/>
-              <stop offset="100%" stop-color="#EBDFCB"/>
+              <stop offset="100%" stop-color="#E7DAC4"/>
             </linearGradient>
-            <linearGradient id="gJour" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#fff" stop-opacity=".34"/>
-              <stop offset="55%" stop-color="#fff" stop-opacity="0"/>
+            <linearGradient id="gChape" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#9E9384"/>
+              <stop offset="100%" stop-color="#B6AB9A"/>
             </linearGradient>
+            <linearGradient id="gRagreage" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C4BBAC"/>
+              <stop offset="100%" stop-color="#D6CDBE"/>
+            </linearGradient>
+            <linearGradient id="gJour2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".3"/>
+              <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
+            <clipPath id="capSol">
+              <polygon points="40,400 560,400 400,250 200,250"/>
+            </clipPath>
           </defs>
 
-          <!-- 1. le mur d'origine : fissures, trous, peinture qui cloque -->
-          <rect width="600" height="400" fill="url(#gVieux)"/>
-          <g class="salissures">
-            <ellipse cx="120" cy="86" rx="78" ry="46" fill="#9C8465" opacity=".5"/>
-            <ellipse cx="470" cy="300" rx="96" ry="52" fill="#9C8465" opacity=".42"/>
-            <ellipse cx="300" cy="200" rx="150" ry="80" fill="#AB9375" opacity=".3"/>
-          </g>
-          <!-- peinture écaillée -->
-          <g class="ecailles" fill="#CFBB9C">
-            <path d="M60 250 l44 -14 l30 18 l-16 26 l-40 6 z"/>
-            <path d="M392 96 l52 -10 l22 24 l-30 22 l-40 -12 z"/>
-            <path d="M232 320 l40 -8 l14 20 l-34 16 z"/>
+          <polygon points="40,58 560,58 400,120 200,120" fill="#B7A488"/>
+
+          <polygon class="mur-v" points="200,120 400,120 400,250 200,250" fill="url(#gMurV)"/>
+          <polygon class="mur-v" points="40,58 200,120 200,250 40,400" fill="#B49C7C"/>
+          <polygon class="mur-v" points="560,58 400,120 400,250 560,400" fill="#BCA485"/>
+
+          <g class="fissures" stroke="#6E5B45" fill="none" stroke-linecap="round">
+            <path d="M262 120 l10 40 l-14 32 l16 34 l-8 24" stroke-width="3.4"/>
+            <path d="M268 168 l24 14" stroke-width="2"/>
+            <path d="M118 108 l14 52 l-16 46 l18 54" stroke-width="3"/>
+            <path d="M470 138 l-12 44 l16 40" stroke-width="2.6"/>
           </g>
 
-          <!-- 2. les défauts, effacés par le rebouchage -->
-          <g class="defauts">
-            <g class="fissure f1" stroke="#5E4B36" fill="none" stroke-linecap="round">
-              <path d="M96 20 l14 54 l-20 42 l24 58 l-12 46 l18 62 l-8 48 l14 50"
-                    stroke-width="5"/>
-              <path d="M110 74 l34 22 M114 174 l-30 26 M124 282 l32 20" stroke-width="3"/>
-            </g>
-            <g class="fissure f2" stroke="#5E4B36" fill="none" stroke-linecap="round">
-              <path d="M470 0 l-16 46 l22 40 l-14 44 l20 38" stroke-width="4.5"/>
-              <path d="M476 86 l30 -18 M462 174 l-28 22" stroke-width="2.6"/>
-            </g>
-            <g class="fissure f3" stroke="#5E4B36" fill="none" stroke-linecap="round">
-              <path d="M250 400 l10 -52 l-16 -40 l18 -44" stroke-width="4"/>
-              <path d="M254 300 l-30 -16" stroke-width="2.4"/>
-            </g>
-            <!-- trous -->
-            <g class="trou t1" fill="#4E3D2C">
-              <path d="M330 130 l26 -12 l22 16 l-6 26 l-28 8 l-18 -20 z"/>
-            </g>
-            <g class="trou t2" fill="#4E3D2C">
-              <path d="M164 214 l20 -10 l16 14 l-8 20 l-22 4 z"/>
-            </g>
-            <g class="trou t3" fill="#4E3D2C">
-              <path d="M520 236 l22 -8 l14 16 l-10 18 l-22 -2 z"/>
-            </g>
+          <g class="murs-n">
+            <polygon points="200,120 400,120 400,250 200,250" fill="url(#gMurN)"/>
+            <polygon points="40,58 200,120 200,250 40,400" fill="#EDE3D2"/>
+            <polygon points="560,58 400,120 400,250 560,400" fill="#F1E8D8"/>
           </g>
 
-          <!-- 3. les rebouchages, qui apparaissent un par un -->
-          <g class="rebouche" fill="#E6D9C2">
-            <path class="r1" d="M84 8 l30 4 l6 60 l-14 48 l20 60 l-14 48 l18 64 l-10 50 l12 46 l-32 4 l-14 -52 l10 -50 l-18 -62 l12 -46 l-22 -58 l18 -42 z"/>
-            <path class="r2" d="M446 0 l34 0 l-12 48 l22 40 l-16 46 l20 38 l-30 8 l-20 -44 l14 -44 l-22 -42 z"/>
-            <path class="r3" d="M232 400 l34 0 l10 -54 l-18 -42 l20 -46 l-30 -8 l-20 52 l16 42 z"/>
-            <path class="r4" d="M318 116 l44 -18 l30 22 l-8 38 l-40 14 l-28 -30 z"/>
-            <path class="r5" d="M154 204 l32 -16 l24 20 l-10 30 l-34 8 z"/>
-            <path class="r6" d="M510 226 l34 -12 l20 22 l-14 28 l-34 -2 z"/>
+          <polyline points="40,400 200,250 400,250 560,400" fill="none" stroke="#B3A08E" stroke-width="2"/>
+
+          <g clip-path="url(#capSol)">
+            <polygon points="40,400 560,400 400,250 200,250" fill="url(#gChape)"/>
+            <g class="vieux-sol"></g>
+            <polygon class="ragreage" points="40,400 560,400 400,250 200,250" fill="url(#gRagreage)"/>
+            <g class="colle"></g>
+            <g class="carreaux"></g>
           </g>
 
-          <!-- 4. l'enduit, tiré de gauche à droite -->
-          <rect class="enduit" width="600" height="400" fill="url(#gEnduit)"/>
+          <g class="croisillons" fill="#8FA0B4"></g>
 
-          <!-- 5. la peinture, passée du haut vers le bas -->
-          <rect class="peint" width="600" height="400" fill="url(#gPeint)"/>
+          <g class="lisseuse">
+            <rect x="-58" y="-7" width="116" height="14" rx="3" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
+            <rect x="-16" y="-26" width="32" height="20" rx="6" fill="#3A2C1E"/>
+          </g>
+          <g class="peigne">
+            <rect x="-46" y="-6" width="92" height="12" rx="2" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
+            <path d="M-44 6 v9 M-34 6 v9 M-24 6 v9 M-14 6 v9 M-4 6 v9 M6 6 v9 M16 6 v9 M26 6 v9 M36 6 v9"
+                  stroke="#8A9099" stroke-width="3"/>
+            <rect x="-14" y="-24" width="28" height="18" rx="5" fill="#3A2C1E"/>
+          </g>
+          <g class="gravats" fill="#7C6B55"></g>
 
-          <!-- lumière -->
-          <rect width="600" height="400" fill="url(#gJour)" pointer-events="none"/>
+          <polygon points="40,58 560,58 560,400 40,400" fill="url(#gJour2)" pointer-events="none"/>
 
-          <!-- ================= les outils ================= -->
-          <!-- couteau à enduire -->
-          <g class="couteau">
-            <rect x="-52" y="-6" width="52" height="12" rx="2" fill="#3A2C1E"/>
-            <path d="M0 -14 L34 -9 L34 9 L0 14 Z" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
-          </g>
-          <!-- taloche -->
-          <g class="taloche">
-            <rect x="-6" y="-52" width="14" height="104" rx="3" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
-            <rect x="-26" y="-16" width="22" height="32" rx="6" fill="#3A2C1E"/>
-          </g>
-          <!-- cale à poncer -->
-          <g class="cale">
-            <rect x="-34" y="-16" width="68" height="32" rx="4" fill="#D8B36A" stroke="#A6853F" stroke-width="1.6"/>
-            <rect x="-20" y="-30" width="40" height="16" rx="5" fill="#3A2C1E"/>
-          </g>
-          <g class="poussiere" fill="#EDE3D0">
-            <circle cx="0" cy="0" r="4"/><circle cx="18" cy="-14" r="3"/><circle cx="-16" cy="-10" r="2.6"/>
-            <circle cx="8" cy="-26" r="3.4"/><circle cx="-24" cy="-22" r="2.4"/>
-          </g>
-          <!-- rouleau -->
-          <g class="rouleau">
-            <rect x="-70" y="-13" width="140" height="26" rx="13" fill="#E2D3B6" stroke="#B9A180" stroke-width="2"/>
-            <path d="M0 13 v26 h-8" stroke="#3A2C1E" stroke-width="7" fill="none" stroke-linecap="round"/>
-          </g>
-
-          <!-- l'étape en cours -->
           <g class="etapes">
-            <text class="etape e1" x="300" y="376">MUR D'ORIGINE</text>
-            <text class="etape e2" x="300" y="376">REBOUCHAGE</text>
-            <text class="etape e3" x="300" y="376">ENDUIT</text>
-            <text class="etape e4" x="300" y="376">PONÇAGE</text>
-            <text class="etape e5" x="300" y="376">PEINTURE</text>
+            <text class="etape e1" x="300" y="404">ETAT D'ORIGINE</text>
+            <text class="etape e2" x="300" y="404">DEPOSE</text>
+            <text class="etape e3" x="300" y="404">RAGREAGE</text>
+            <text class="etape e4" x="300" y="404">ENCOLLAGE</text>
+            <text class="etape e5" x="300" y="404">POSE</text>
           </g>
         </svg>
       </div>
@@ -353,6 +317,6 @@
   </a>
 </nav>
 
-<script src="app.js?v=3" defer></script>
+<script src="app.js?v=4" defer></script>
 </body>
 </html>
