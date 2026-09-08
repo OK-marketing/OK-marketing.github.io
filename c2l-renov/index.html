@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 <script>
   document.documentElement.classList.add('js');
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -79,6 +79,12 @@
               <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".3"/>
               <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
             </linearGradient>
+            <linearGradient id="gLustre" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
+              <stop offset="45%" stop-color="#FFFFFF" stop-opacity=".62"/>
+              <stop offset="60%" stop-color="#FFF6E6" stop-opacity=".38"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+            </linearGradient>
             <clipPath id="capSol">
               <polygon points="40,400 560,400 400,250 200,250"/>
             </clipPath>
@@ -111,9 +117,16 @@
             <polygon class="ragreage" points="40,400 560,400 400,250 200,250" fill="url(#gRagreage)"/>
             <g class="colle"></g>
             <g class="carreaux"></g>
+            <rect class="lustre" x="-190" y="246" width="170" height="160" fill="url(#gLustre)"/>
           </g>
 
           <g class="croisillons" fill="#8FA0B4"></g>
+
+          <g class="brillances" fill="#FFFFFF">
+            <path class="brille b1" d="M0 -13 L3.4 -3.4 L13 0 L3.4 3.4 L0 13 L-3.4 3.4 L-13 0 L-3.4 -3.4 Z"/>
+            <path class="brille b2" d="M0 -9 L2.4 -2.4 L9 0 L2.4 2.4 L0 9 L-2.4 2.4 L-9 0 L-2.4 -2.4 Z"/>
+            <path class="brille b3" d="M0 -11 L2.9 -2.9 L11 0 L2.9 2.9 L0 11 L-2.9 2.9 L-11 0 L-2.9 -2.9 Z"/>
+          </g>
 
           <g class="lisseuse">
             <rect x="-58" y="-7" width="116" height="14" rx="3" fill="#C9CDD2" stroke="#8A9099" stroke-width="1.6"/>
@@ -135,6 +148,7 @@
             <text class="etape e3" x="300" y="404">RAGRÉAGE</text>
             <text class="etape e4" x="300" y="404">ENCOLLAGE</text>
             <text class="etape e5" x="300" y="404">POSE</text>
+            <text class="etape e6" x="300" y="404">PIÈCE FINIE</text>
           </g>
         </svg>
       </div>
@@ -185,7 +199,8 @@
 
   <!-- ================= les métiers ================= -->
   <section class="metiers">
-    <div class="pose" aria-hidden="true"></div>
+    <div class="colonne colonne-g" aria-hidden="true"></div>
+    <div class="colonne colonne-d" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Quatre métiers, un seul interlocuteur</h2>
       <p class="sous">Ce qui est écrit sur le camion, et ce qui se fait sur le chantier.</p>
@@ -212,7 +227,8 @@
 
   <!-- ================= avis ================= -->
   <section class="avis">
-    <div class="pose" aria-hidden="true"></div>
+    <div class="colonne colonne-g" aria-hidden="true"></div>
+    <div class="colonne colonne-d" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Trente-deux avis, aucune étoile perdue</h2>
       <div class="citations">
@@ -235,7 +251,8 @@
 
   <!-- ================= infos ================= -->
   <section class="infos">
-    <div class="pose" aria-hidden="true"></div>
+    <div class="colonne colonne-g" aria-hidden="true"></div>
+    <div class="colonne colonne-d" aria-hidden="true"></div>
     <div class="bande infos-in">
       <div>
         <h2 class="titre-2">Joignable tôt</h2>
@@ -269,7 +286,8 @@
 
   <!-- ================= photos ================= -->
   <section class="travaux">
-    <div class="pose" aria-hidden="true"></div>
+    <div class="colonne colonne-g" aria-hidden="true"></div>
+    <div class="colonne colonne-d" aria-hidden="true"></div>
     <div class="bande">
       <h2 class="titre-2">Un chantier, du début à la fin</h2>
       <div class="grille">
@@ -317,6 +335,6 @@
   </a>
 </nav>
 
-<script src="app.js?v=4" defer></script>
+<script src="app.js?v=5" defer></script>
 </body>
 </html>

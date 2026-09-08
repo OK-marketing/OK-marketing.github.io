@@ -22,7 +22,8 @@
   --vert:     #4E7A46;
 
   --bande-max: 64rem;
-  --marge: 1.15rem;
+  --marge: 2.5rem;
+  --col: 26px;
   --barre: calc(3.5rem + env(safe-area-inset-bottom));
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -53,8 +54,8 @@ img{ max-width: 100%; display: block }
 a{ color: var(--terre-f) }
 :focus-visible{ outline: 2px solid var(--terre); outline-offset: 3px }
 
-.bande{ padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2) }
-section{ padding-block: 3rem; position: relative }
+.bande{ position: relative; z-index: 1; padding-inline: max(var(--marge), (100% - var(--bande-max)) / 2) }
+section{ padding-block: 3rem; position: relative; overflow: hidden }
 
 .titre, .titre-2{
   font-family: var(--titre); font-weight: 800;
@@ -100,13 +101,14 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 .situe{ font-size: .88rem; color: var(--encre-2); margin-bottom: .8rem }
 .intro{ margin-top: 1.1rem; font-size: 1.06rem; color: var(--encre-2); max-width: 42ch }
 
-/* ================= la piece, 16 s =================
-   0    -> 1,6 s   etat d'origine : murs fissures, vieux carrelage
-   1,6  -> 3,8 s   depose : le vieux sol part, les gravats restent
-   3,8  -> 6,4 s   ragreage : la lisseuse tire du fond vers l'entree
-   6,4  -> 9,0 s   encollage : la colle est peignee rang par rang
-   9,0  -> 13,8 s  pose : le carrelage se pose rang par rang
-   13,8 -> 16 s    la piece finie
+/* ================= la piece, 20 s =================
+   0    -> 1,8 s   etat d'origine
+   1,8  -> 4,0 s   depose du vieux carrelage
+   4,0  -> 6,4 s   ragreage a la lisseuse
+   6,4  -> 8,8 s   encollage au peigne
+   8,8  -> 13,0 s  pose, rang par rang
+   13,0 -> 15,0 s  le lustre balaie le sol neuf
+   13,0 -> 19,2 s  la piece finie reste a l'ecran : six secondes
    ==================================================== */
 .mur-cadre{
   margin-top: 1.8rem; position: relative;
@@ -115,101 +117,121 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 }
 .piece{ width: 100%; height: auto; display: block }
 
-.murs-n, .fissures, .vieux-sol, .ragreage, .colle, .carreaux,
-.croisillons, .lisseuse, .peigne, .gravats, .etape{
-  animation-duration: 16s;
+.murs-n, .fissures, .vieux-sol, .ragreage, .colle, .carreaux, .lustre,
+.croisillons, .lisseuse, .peigne, .gravats, .brille, .etape{
+  animation-duration: 20s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
 /* les murs sont repeints tot : le sol reste la vedette */
 .fissures{ animation-name: fissures }
-@keyframes fissures{ 0%, 14%{ opacity: 1 } 20%, 100%{ opacity: 0 } }
+@keyframes fissures{ 0%, 7%{ opacity: 1 } 11%, 100%{ opacity: 0 } }
 .murs-n{ animation-name: mursN }
 @keyframes mursN{
-  0%,  13% { clip-path: inset(0 0 100% 0) }
-  22%, 96% { clip-path: inset(0 0 0 0) }
+  0%,  7%  { clip-path: inset(0 0 100% 0) }
+  13%, 97% { clip-path: inset(0 0 0 0) }
   100%     { clip-path: inset(0 0 100% 0) }
 }
 
 /* le vieux carrelage est depose du fond vers l'entree */
 .vieux-sol{ animation-name: depose; animation-timing-function: steps(1, end) }
 @keyframes depose{
-  0%,  10% { clip-path: inset(0 0 0 0) }
-  13%      { clip-path: inset(0 0 77% 0) }
-  16%      { clip-path: inset(0 0 55% 0) }
-  19%      { clip-path: inset(0 0 33% 0) }
-  22%      { clip-path: inset(0 0 12% 0) }
-  24%, 96% { clip-path: inset(0 0 100% 0) }
+  0%,  9%  { clip-path: inset(0 0 0 0) }
+  11%      { clip-path: inset(0 0 77% 0) }
+  13%      { clip-path: inset(0 0 55% 0) }
+  15%      { clip-path: inset(0 0 33% 0) }
+  17%      { clip-path: inset(0 0 12% 0) }
+  19%, 97% { clip-path: inset(0 0 100% 0) }
   100%     { clip-path: inset(0 0 0 0) }
 }
 .gravats{ opacity: 0; animation-name: gravats }
 @keyframes gravats{
-  0%,  11% { opacity: 0 }
-  15%      { opacity: .9 }
-  36%      { opacity: .9 }
-  40%, 100%{ opacity: 0 }
+  0%,  10% { opacity: 0 }
+  13%      { opacity: .9 }
+  29%      { opacity: .9 }
+  33%, 100%{ opacity: 0 }
 }
 
-/* le ragreage est tire du fond vers l'entree */
+/* le ragreage, tire du fond vers l'entree */
 .ragreage{ animation-name: ragreage }
 @keyframes ragreage{
-  0%,  24% { clip-path: inset(0 0 100% 0) }
-  40%, 96% { clip-path: inset(0 0 0 0) }
+  0%,  19% { clip-path: inset(0 0 100% 0) }
+  32%, 97% { clip-path: inset(0 0 0 0) }
   100%     { clip-path: inset(0 0 100% 0) }
 }
 .lisseuse{ opacity: 0; animation-name: lisseuse }
 @keyframes lisseuse{
-  0%,  23% { transform: translate(300px, 258px) scale(.55); opacity: 0 }
-  26%      { opacity: 1 }
-  40%      { transform: translate(300px, 392px) scale(1.15); opacity: 1 }
-  43%, 100%{ transform: translate(300px, 400px) scale(1.15); opacity: 0 }
+  0%,  18% { transform: translate(300px, 258px) scale(.55); opacity: 0 }
+  21%      { opacity: 1 }
+  32%      { transform: translate(300px, 392px) scale(1.15); opacity: 1 }
+  34%, 100%{ transform: translate(300px, 400px) scale(1.15); opacity: 0 }
 }
 
 /* la colle, peignee rang par rang */
 .colle{ animation-name: colleP; animation-timing-function: steps(1, end) }
 @keyframes colleP{
-  0%,  40% { clip-path: inset(0 0 100% 0) }
-  43%      { clip-path: inset(0 0 77% 0) }
-  46%      { clip-path: inset(0 0 55% 0) }
-  49%      { clip-path: inset(0 0 33% 0) }
-  52%      { clip-path: inset(0 0 12% 0) }
-  55%, 96% { clip-path: inset(0 0 0 0) }
+  0%,  32% { clip-path: inset(0 0 100% 0) }
+  34%      { clip-path: inset(0 0 77% 0) }
+  36%      { clip-path: inset(0 0 55% 0) }
+  38%      { clip-path: inset(0 0 33% 0) }
+  40%      { clip-path: inset(0 0 12% 0) }
+  42%, 97% { clip-path: inset(0 0 0 0) }
   100%     { clip-path: inset(0 0 100% 0) }
 }
 .peigne{ opacity: 0; animation-name: peigne }
 @keyframes peigne{
-  0%,  40% { transform: translate(300px, 262px) scale(.6); opacity: 0 }
-  43%      { opacity: 1 }
-  55%      { transform: translate(300px, 384px) scale(1.1); opacity: 1 }
-  58%, 100%{ transform: translate(300px, 392px) scale(1.1); opacity: 0 }
+  0%,  32% { transform: translate(300px, 262px) scale(.6); opacity: 0 }
+  34%      { opacity: 1 }
+  43%      { transform: translate(300px, 384px) scale(1.1); opacity: 1 }
+  45%, 100%{ transform: translate(300px, 392px) scale(1.1); opacity: 0 }
 }
 
 /* LE CARRELAGE : rang par rang, du fond de la piece vers l'entree.
-   Les paliers suivent exactement les lignes de rangs calculees en JS. */
+   Les paliers suivent les lignes de rangs calculees en JS. */
 .carreaux{ animation-name: poseSol; animation-timing-function: steps(1, end) }
 @keyframes poseSol{
-  0%,  56% { clip-path: inset(0 0 100% 0) }
-  59%      { clip-path: inset(0 0 97% 0) }
-  63%      { clip-path: inset(0 0 89.5% 0) }
-  67%      { clip-path: inset(0 0 78.2% 0) }
-  71%      { clip-path: inset(0 0 63.4% 0) }
-  75%      { clip-path: inset(0 0 45.1% 0) }
-  79%      { clip-path: inset(0 0 23.5% 0) }
-  83%, 96% { clip-path: inset(0 0 0 0) }
+  0%,  44% { clip-path: inset(0 0 100% 0) }
+  47%      { clip-path: inset(0 0 97% 0) }
+  50%      { clip-path: inset(0 0 89.5% 0) }
+  53%      { clip-path: inset(0 0 78.2% 0) }
+  56%      { clip-path: inset(0 0 63.4% 0) }
+  59%      { clip-path: inset(0 0 45.1% 0) }
+  62%      { clip-path: inset(0 0 23.5% 0) }
+  65%, 97% { clip-path: inset(0 0 0 0) }
   100%     { clip-path: inset(0 0 100% 0) }
 }
-/* les croisillons suivent la pose, puis on les retire */
 .croisillons{ opacity: 0; animation-name: croisillons; animation-timing-function: steps(1, end) }
 @keyframes croisillons{
-  0%,  58% { opacity: 0; clip-path: inset(0 0 100% 0) }
-  61%      { opacity: .85; clip-path: inset(0 0 89.5% 0) }
-  67%      { opacity: .85; clip-path: inset(0 0 78.2% 0) }
-  71%      { opacity: .85; clip-path: inset(0 0 63.4% 0) }
-  75%      { opacity: .85; clip-path: inset(0 0 45.1% 0) }
-  79%      { opacity: .85; clip-path: inset(0 0 23.5% 0) }
-  83%      { opacity: .85; clip-path: inset(0 0 0 0) }
-  88%, 100%{ opacity: 0; clip-path: inset(0 0 0 0) }
+  0%,  46% { opacity: 0; clip-path: inset(0 0 100% 0) }
+  49%      { opacity: .85; clip-path: inset(0 0 89.5% 0) }
+  53%      { opacity: .85; clip-path: inset(0 0 78.2% 0) }
+  56%      { opacity: .85; clip-path: inset(0 0 63.4% 0) }
+  59%      { opacity: .85; clip-path: inset(0 0 45.1% 0) }
+  62%      { opacity: .85; clip-path: inset(0 0 23.5% 0) }
+  65%      { opacity: .85; clip-path: inset(0 0 0 0) }
+  69%, 100%{ opacity: 0; clip-path: inset(0 0 0 0) }
+}
+
+/* LE LUSTRE : la lumiere balaie le sol neuf, juste apres la pose */
+.lustre{ opacity: 0; animation-name: lustre }
+@keyframes lustre{
+  0%,  65% { transform: translateX(0); opacity: 0 }
+  67%      { opacity: 1 }
+  76%      { transform: translateX(830px); opacity: 1 }
+  78%, 100%{ transform: translateX(860px); opacity: 0 }
+}
+/* trois eclats qui accrochent la lumiere */
+.brille{ transform-box: fill-box; transform-origin: center; opacity: 0; animation-name: brille }
+.b1{ transform: translate(196px, 330px) }
+.b2{ transform: translate(372px, 292px); animation-delay: .9s }
+.b3{ transform: translate(300px, 372px); animation-delay: 1.7s }
+@keyframes brille{
+  0%,  70% { opacity: 0 }
+  74%      { opacity: .95 }
+  80%      { opacity: 0 }
+  86%      { opacity: .8 }
+  92%, 100%{ opacity: 0 }
 }
 
 /* le nom de l'etape */
@@ -219,33 +241,32 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
   opacity: 0; paint-order: stroke; stroke: rgba(246,238,224,.9); stroke-width: 6px;
 }
 .e1{ animation-name: p1 } .e2{ animation-name: p2 } .e3{ animation-name: p3 }
-.e4{ animation-name: p4 } .e5{ animation-name: p5 }
-@keyframes p1{ 0%,1%{opacity:0} 4%,8%{opacity:1} 11%,100%{opacity:0} }
-@keyframes p2{ 0%,11%{opacity:0} 14%,20%{opacity:1} 23%,100%{opacity:0} }
-@keyframes p3{ 0%,24%{opacity:0} 27%,36%{opacity:1} 39%,100%{opacity:0} }
-@keyframes p4{ 0%,40%{opacity:0} 43%,52%{opacity:1} 55%,100%{opacity:0} }
-@keyframes p5{ 0%,56%{opacity:0} 59%,92%{opacity:1} 96%,100%{opacity:0} }
+.e4{ animation-name: p4 } .e5{ animation-name: p5 } .e6{ animation-name: p6 }
+@keyframes p1{ 0%,1%{opacity:0} 3%,6%{opacity:1} 9%,100%{opacity:0} }
+@keyframes p2{ 0%,9%{opacity:0} 11%,16%{opacity:1} 19%,100%{opacity:0} }
+@keyframes p3{ 0%,19%{opacity:0} 22%,29%{opacity:1} 32%,100%{opacity:0} }
+@keyframes p4{ 0%,32%{opacity:0} 34%,41%{opacity:1} 44%,100%{opacity:0} }
+@keyframes p5{ 0%,44%{opacity:0} 47%,63%{opacity:1} 66%,100%{opacity:0} }
+@keyframes p6{ 0%,68%{opacity:0} 71%,93%{opacity:1} 97%,100%{opacity:0} }
 
-/* ================= le carrelage qui se pose au defilement =================
-   De vrais carreaux carres, chauds, qui tombent d'en haut, rang du haut
-   d'abord : la page se carrele de haut en bas. */
-.pose{
-  position: absolute; top: 0; left: 0; right: 0;
-  display: grid; grid-template-columns: repeat(20, 1fr); grid-auto-rows: 26px;
-  gap: 3px; height: 55px; overflow: hidden; pointer-events: none;
-  padding-inline: 3px;
+/* ================= le carrelage descend le long du texte =================
+   Deux colonnes de vrais carreaux, a gauche et a droite du contenu.
+   Elles se posent de haut en bas quand la section arrive a l'ecran ;
+   au milieu, il n'y a que le texte. */
+.colonne{
+  position: absolute; top: 0; bottom: 0; width: var(--col);
+  display: grid; grid-auto-rows: var(--col); gap: 3px;
+  overflow: hidden; pointer-events: none; z-index: 0;
 }
-.pose i{
+.colonne-g{ left: max(0px, (100% - var(--bande-max)) / 2 - var(--col) - .8rem) }
+.colonne-d{ right: max(0px, (100% - var(--bande-max)) / 2 - var(--col) - .8rem) }
+.colonne i{
   display: block; border-radius: 2px;
-  transform: translateY(-34px); opacity: 0;
-  box-shadow: inset 0 -2px 0 rgba(42,32,24,.14);
+  transform: translateY(-18px); opacity: 0;
+  box-shadow: inset 0 -2px 0 rgba(42, 32, 24, .16);
 }
-.js .pose-va i{ animation: carreau .4s cubic-bezier(.2,.85,.3,1) forwards }
+.js .colonne-va i{ animation: carreau .4s cubic-bezier(.2,.85,.3,1) forwards }
 @keyframes carreau{ to{ transform: none; opacity: 1 } }
-@media (max-width: 30rem){
-  .pose{ grid-template-columns: repeat(10, 1fr); grid-auto-rows: 24px; height: 51px }
-  .pose i{ transform: translateY(-30px) }
-}
 /* ================= les choix ================= */
 .choix{ margin-top: 1.8rem }
 .jeu{ border: 0; padding: 0; margin: 0 0 1.3rem }
@@ -355,7 +376,7 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
 
 /* ================= palier 1 : 48rem ================= */
 @media (min-width: 48rem){
-  :root{ --marge: 2rem; --barre: 0px }
+  :root{ --marge: 3.6rem; --col: 40px; --barre: 0px }
   body{ font-size: 1.09rem }
   section{ padding-block: 4.5rem }
   .ouverture{ padding-block: 3rem 5rem }
@@ -367,7 +388,6 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
   .citations{ grid-template-columns: repeat(3, 1fr); gap: 2rem }
   .infos-in{ display: grid; grid-template-columns: 1fr 1fr; gap: 3rem }
   .grille{ grid-template-columns: 1fr 1fr; gap: 1rem }
-  .pose{ height: 18px } .pose i{ height: 18px }
 }
 
 /* ================= palier 2 : 64rem ================= */
@@ -387,6 +407,7 @@ h3{ font-family: var(--titre); font-weight: 600; font-size: 1.18rem; margin: 0 }
   .carreaux, .murs-n, .colle{ clip-path: inset(0 0 0 0) }
   .lisseuse, .peigne, .gravats, .vieux-sol, .croisillons{ opacity: 0 }
   .e5{ opacity: 1 }
-  .pose i{ transform: none; opacity: 1 }
+  .colonne i{ transform: none; opacity: 1 }
+  .lustre, .brille{ opacity: 0 }
   .js .tuile, .js .lame{ opacity: 1 }
 }

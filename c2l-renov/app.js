@@ -1,6 +1,6 @@
 /* C2L Rénov — maquette
    Trois choses : les deux réponses composent le message WhatsApp,
-   le carrelage se pose en tête de section au défilement, et l'état
+   le carrelage descend en colonnes le long du texte, et l'état
    d'ouverture se calcule à l'heure de Paris.
    Sans ce fichier la page reste lisible et le bouton part avec un
    message générique. */
@@ -148,18 +148,23 @@
      le carrelage se pose en tête de chaque section, au moment
      où elle arrive à l'écran : la page se carrèle de haut en bas
      --------------------------------------------------------- */
-  var bandes = document.querySelectorAll('.pose');
-  Array.prototype.forEach.call(bandes, function (b) {
-    for (var i = 0; i < 40; i++) {
+  var colonnes = document.querySelectorAll('.colonne');
+  Array.prototype.forEach.call(colonnes, function (col, ic) {
+    /* on remplit large : le trop-plein est masqué par overflow */
+    var hauteur = col.parentElement ? col.parentElement.offsetHeight : 700;
+    var pas = parseFloat(getComputedStyle(col).gridAutoRows) || 26;
+    var combien = Math.ceil(hauteur / (pas + 3)) + 2;
+
+    for (var i = 0; i < combien; i++) {
       var carreau = document.createElement('i');
-      carreau.style.background = TERRES[(i * 5 + Math.floor(i / 20)) % TERRES.length];
-      carreau.style.animationDelay = (i * 26) + 'ms';
-      b.appendChild(carreau);
+      carreau.style.background = TERRES[(i * 3 + ic) % TERRES.length];
+      carreau.style.animationDelay = (i * 55) + 'ms';   /* de haut en bas */
+      col.appendChild(carreau);
     }
   });
 
   function poserTout() {
-    Array.prototype.forEach.call(bandes, function (b) { b.classList.add('pose-va'); });
+    Array.prototype.forEach.call(colonnes, function (c) { c.classList.add('colonne-va'); });
   }
 
   if (!('IntersectionObserver' in window)) {
@@ -167,11 +172,11 @@
   } else {
     var oi = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('pose-va'); oi.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('colonne-va'); oi.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    Array.prototype.forEach.call(bandes, function (b) { oi.observe(b); });
-    setTimeout(poserTout, 4000);   /* filet de sécurité */
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+    Array.prototype.forEach.call(colonnes, function (c) { oi.observe(c); });
+    setTimeout(poserTout, 4500);   /* filet de sécurité */
   }
 
   /* ---------------------------------------------------------
